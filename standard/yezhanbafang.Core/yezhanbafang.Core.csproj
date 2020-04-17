@@ -5,4 +5,8 @@
     <Authors>夜战八方</Authors>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Management" Version="4.7.0" />
+  </ItemGroup>
+
 </Project>
