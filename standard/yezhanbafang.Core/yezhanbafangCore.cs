@@ -162,14 +162,14 @@ namespace yezhanbafang.Core
             xmlDoc.Load(path);
             //判断连接字符的类型
             XmlNode contype = xmlDoc.SelectSingleNode("constring/type");
-            if (contype.InnerText.Trim() != "SQL" && contype.InnerText.Trim() != "ACCESS" && contype.InnerText.Trim() != "Oracle" && contype.InnerText.Trim() != "Excel")
+            if (contype.InnerText.Trim() != "MSSQL" && contype.InnerText.Trim() != "ACCESS" && contype.InnerText.Trim() != "Oracle" && contype.InnerText.Trim() != "Excel")
             {
                 throw new Exception("数据连接类型没填写,或者填写错误,只能填写SQL;ACCESS;Oracle;Excel并且区分大小写!");
             }
 
-            if (contype.InnerText.Trim() == "SQL")//sql
+            if (contype.InnerText.Trim() == "MSSQL")//sql
             {
-                this._Contype = ConType.Sql;
+                this._Contype = ConType.MSSQL;
                 //判断是否用简单的直接写字符串的方式
                 XmlNode mynode = xmlDoc.SelectSingleNode("constring/sqlserver/simple");
                 if (mynode.InnerText.Trim() != "")
@@ -341,7 +341,7 @@ namespace yezhanbafang.Core
         /// <summary>
         /// 可以写入的Excel链接字符串
         /// </summary>
-        void ExcelWriteConString()
+        protected void ExcelWriteConString()
         {
             string path = this.Path;
             XmlDocument xmlDoc = new XmlDocument();
@@ -382,7 +382,7 @@ namespace yezhanbafang.Core
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        private string GetExcelReadonlyConnStr(string filePath)
+        protected string GetExcelReadonlyConnStr(string filePath)
         {
             string connStr = string.Empty;
 
@@ -407,7 +407,7 @@ namespace yezhanbafang.Core
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        private string GetExcelConnStr(string filePath)
+        protected string GetExcelConnStr(string filePath)
         {
             string connStr = string.Empty;
 
@@ -935,7 +935,7 @@ namespace yezhanbafang.Core
         /// <summary>
         /// sql
         /// </summary>
-        Sql,
+        MSSQL,
         /// <summary>
         /// access
         /// </summary>

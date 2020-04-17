@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Xml.Linq;
 using yezhanbafang.Core;
+using Oracle.ManagedDataAccess.Client;
+using System.Collections.Generic;
+using System.Data.Common;
+using System.Xml.Linq;
 
-namespace yezhanbafang.MSSQL
+namespace yezhanbafang.Oracle
 {
     public class IoRyClass : YezhanbafangCore
     {
@@ -59,10 +59,10 @@ namespace yezhanbafang.MSSQL
             {
                 case ConType.Null:
                     throw new Exception("配置文件错误!没有确定数据库连接字符串！");
-                case ConType.MSSQL:
-                    return new SqlConnection(path);
-                case ConType.Access:
                 case ConType.Oracle:
+                    return new    OracleConnection(path);
+                case ConType.Access:
+                case ConType.MSSQL:
                 case ConType.Excel:
                 case ConType.MySQL:
                 default:
@@ -90,13 +90,13 @@ namespace yezhanbafang.MSSQL
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
+                case ConType.Oracle:
                     try
                     {
                         int result = 0;
-                        using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                        using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
                         {
-                            SqlCommand com = new SqlCommand(sql, Con);
+                            OracleCommand com = new OracleCommand(sql, Con);
                             if (this.timeout != -1)
                             {
                                 com.CommandTimeout = this.timeout;
@@ -111,7 +111,7 @@ namespace yezhanbafang.MSSQL
                         throw me;
                     }
                 case ConType.Access:
-                case ConType.Oracle:
+                case ConType.MSSQL:
                 case ConType.Excel:
                 case ConType.MySQL:
                 default:
@@ -141,13 +141,13 @@ namespace yezhanbafang.MSSQL
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
+                case ConType.Oracle:
                     try
                     {
                         int result = 0;
-                        using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                        using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
                         {
-                            SqlCommand com = new SqlCommand(sql, Con);
+                            OracleCommand com = new OracleCommand(sql, Con);
                             com.Parameters.AddRange(DbParameterS.ToArray());
                             if (this.timeout != -1)
                             {
@@ -164,7 +164,7 @@ namespace yezhanbafang.MSSQL
                     }
                 case ConType.MySQL:
                 case ConType.Access:
-                case ConType.Oracle:
+                case ConType.MSSQL:
                 case ConType.Excel:
                 default:
                     throw new Exception("请根据数据库类型选择类库！");
@@ -202,16 +202,16 @@ namespace yezhanbafang.MSSQL
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
-                    SqlTransaction sqlTran = null;
+                case ConType.Oracle:
+                    OracleTransaction sqlTran = null;
                     int result = 0;
-                    using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                    using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
                     {
                         try
                         {
                             Con.Open();
                             sqlTran = Con.BeginTransaction();
-                            SqlCommand command = Con.CreateCommand();
+                            OracleCommand command = Con.CreateCommand();
                             if (this.timeout != -1)
                             {
                                 command.CommandTimeout = this.timeout;
@@ -233,7 +233,7 @@ namespace yezhanbafang.MSSQL
                     }
                     return Convert.ToString(result);
                 case ConType.MySQL:
-                case ConType.Oracle:
+                case ConType.MSSQL:
                 case ConType.Access:
                 case ConType.Excel:
                 default:
@@ -252,16 +252,16 @@ namespace yezhanbafang.MSSQL
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
-                    SqlTransaction sqlTran = null;
+                case ConType.Oracle:
+                    OracleTransaction sqlTran = null;
                     int result = 0;
-                    using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                    using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
                     {
                         try
                         {
                             Con.Open();
                             sqlTran = Con.BeginTransaction();
-                            SqlCommand command = Con.CreateCommand();
+                            OracleCommand command = Con.CreateCommand();
                             command.Parameters.AddRange(DbParameterS.ToArray());
                             if (this.timeout != -1)
                             {
@@ -284,7 +284,7 @@ namespace yezhanbafang.MSSQL
                     }
                     return Convert.ToString(result);
                 case ConType.MySQL:
-                case ConType.Oracle:
+                case ConType.MSSQL:
                 case ConType.Access:
                 case ConType.Excel:
                 default:
@@ -344,17 +344,17 @@ namespace yezhanbafang.MSSQL
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
+                case ConType.Oracle:
                     try
                     {
-                        using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                        using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
                         {
-                            SqlCommand com = new SqlCommand(sql, Con);
+                            OracleCommand com = new OracleCommand(sql, Con);
                             if (this.timeout != -1)
                             {
                                 com.CommandTimeout = this.timeout;
                             }
-                            SqlDataAdapter ada = new SqlDataAdapter(com);
+                            OracleDataAdapter ada = new OracleDataAdapter(com);
                             DataSet myds = new DataSet();
                             ada.Fill(myds);
                             return myds;
@@ -366,7 +366,7 @@ namespace yezhanbafang.MSSQL
                     }
                 case ConType.MySQL:
                 case ConType.Access:
-                case ConType.Oracle:
+                case ConType.MSSQL:
                 case ConType.Excel:
                 default:
                     throw new Exception("请根据数据库类型选择类库！");
@@ -384,18 +384,18 @@ namespace yezhanbafang.MSSQL
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
+                case ConType.Oracle:
                     try
                     {
-                        using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                        using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
                         {
-                            SqlCommand com = new SqlCommand(sql, Con);
+                            OracleCommand com = new OracleCommand(sql, Con);
                             com.Parameters.AddRange(DbParameterS.ToArray());
                             if (this.timeout != -1)
                             {
                                 com.CommandTimeout = this.timeout;
                             }
-                            SqlDataAdapter ada = new SqlDataAdapter(com);
+                            OracleDataAdapter ada = new OracleDataAdapter(com);
                             DataSet myds = new DataSet();
                             ada.Fill(myds);
                             return myds;
@@ -407,7 +407,7 @@ namespace yezhanbafang.MSSQL
                     }
                 case ConType.MySQL:
                 case ConType.Access:
-                case ConType.Oracle:
+                case ConType.MSSQL:
                 case ConType.Excel:
                 default:
                     throw new Exception("请根据数据库类型选择类库！");
@@ -426,12 +426,12 @@ namespace yezhanbafang.MSSQL
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
+                case ConType.Oracle:
                     try
                     {
-                        using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                        using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
                         {
-                            SqlCommand sc = new SqlCommand();
+                            OracleCommand sc = new OracleCommand();
                             if (this.timeout != -1)
                             {
                                 sc.CommandTimeout = this.timeout;
@@ -441,7 +441,7 @@ namespace yezhanbafang.MSSQL
                             sc.CommandText = SPname;
                             sc.Parameters.AddRange(DbParameterS.ToArray());
                             DataSet ds = new DataSet();
-                            SqlDataAdapter SDA = new SqlDataAdapter(sc);
+                            OracleDataAdapter SDA = new OracleDataAdapter(sc);
                             SDA.Fill(ds);
                             return ds;
                         }
@@ -451,7 +451,7 @@ namespace yezhanbafang.MSSQL
                         throw me;
                     }
                 case ConType.MySQL:
-                case ConType.Oracle:
+                case ConType.MSSQL:
                 case ConType.Access:
                 case ConType.Excel:
                 case ConType.Null:
@@ -470,68 +470,6 @@ namespace yezhanbafang.MSSQL
         public DataSet ExecuteSP(string SPname, List<DbParameter> DbParameterS)
         {
             return this.ExecuteSP(this.Path, SPname, DbParameterS);
-        }
-
-        /// <summary>
-        /// 已过时
-        /// 这个只能执行一个，而且必须是insert语句
-        /// 由于GUID的应用,此函数基本用不到了
-        /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <returns>当前自增列的值，很有用</returns>
-        public string GetTheValueOfNewAdd(string sql)
-        {
-            return this.GetTheValueOfNewAdd(this.Path, sql);
-        }
-
-        /// <summary>
-        /// 这个只能执行一个，而且必须是insert语句
-        /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
-        /// <param name="sql">sql语句</param>
-        /// <returns>当前自增列的值，很有用</returns>
-        string GetTheValueOfNewAdd(string path, string sql)
-        {
-            switch (this.Contype)
-            {
-                case ConType.MSSQL:
-                    SqlTransaction sqlTran = null;
-                    string result = null;
-                    using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
-                    {
-                        try
-                        {
-                            Con.Open();
-                            sqlTran = Con.BeginTransaction();
-                            SqlCommand command = Con.CreateCommand();
-                            if (this.timeout != -1)
-                            {
-                                command.CommandTimeout = this.timeout;
-                            }
-                            command.Transaction = sqlTran;
-                            //精髓，加上这个就能得到
-                            sql = sql + ";select scope_identity();";
-                            command.CommandText = sql;
-                            result = Convert.ToString(command.ExecuteScalar());
-                            sqlTran.Commit();
-                        }
-                        catch (Exception me)
-                        {
-                            if (sqlTran != null)
-                            {
-                                sqlTran.Rollback();
-                            }
-                            throw me;
-                        }
-                    }
-                    return result;
-                case ConType.Access:
-                case ConType.Oracle:
-                case ConType.Excel:
-                case ConType.MySQL:
-                default:
-                    throw new Exception("请根据数据库类型选择类库！");
-            }
         }
 
         #endregion
@@ -851,7 +789,7 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
+                case ConType.Oracle:
                     string newsql = "";
                     if (sql.Contains(";"))
                     {
@@ -882,7 +820,7 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
+                case ConType.Oracle:
                     string newsql = "";
                     if (sql.Contains(";"))
                     {
@@ -925,7 +863,7 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
+                case ConType.Oracle:
                     string newsql = "";
                     newsql = this.GetLogSP_IP(username, SPname, DbParameterS);
                     this.ExecuteSql(newsql);
@@ -969,7 +907,7 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
+                case ConType.Oracle:
                     try
                     {
                         string newsql = "";
@@ -1007,7 +945,7 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
         {
             switch (this.Contype)
             {
-                case ConType.MSSQL:
+                case ConType.Oracle:
                     try
                     {
                         string newsql = "";
@@ -1105,6 +1043,5 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
         }
 
         #endregion
-
     }
 }
