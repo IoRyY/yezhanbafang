@@ -36,7 +36,6 @@
   <!-- Provider=MSDAORA;Data Source=dbserver;User ID=name;Password=pwd     另一种 Provider=OraOledb.Oracle; -->
   <Oracle>
     <simple></simple>
-    <Provider>OraOledb.Oracle</Provider>
     <DataSource>yuan</DataSource>
     <username></username>
     <passwordencryption></passwordencryption>

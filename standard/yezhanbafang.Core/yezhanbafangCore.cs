@@ -267,17 +267,8 @@ namespace yezhanbafang.Core
                         password = mynode.FirstChild.Value;
                     }
                     mynode = xmlDoc.SelectSingleNode("constring/Oracle/Provider");
-                    string Provider = mynode.FirstChild.Value;
                     string con;
-                    if (Provider == "OraOledb.Oracle")
-                    {
-                        con = string.Format("Provider=OraOledb.Oracle;Data Source={0};User ID={1};Password={2}", DBServer, username, password);
-                    }
-                    else
-                    {
-                        con = string.Format("Provider=MSDAORA;Data Source={0};User ID={1};Password={2}", DBServer, username, password);
-                    }
-
+                    con = string.Format("Data Source={0};User ID={1};Password={2}", DBServer, username, password);
                     this.ConString = con;
                 }
             }

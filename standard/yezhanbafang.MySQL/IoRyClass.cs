@@ -53,20 +53,23 @@ namespace yezhanbafang.MySQL
         /// </summary>
         /// <param name="path">数据库连接xml路径</param>
         /// <returns></returns>
-        IDbConnection IoRyCon(string path)
+        IDbConnection IoRyCon
         {
-            switch (this.Contype)
+            get
             {
-                case ConType.Null:
-                    throw new Exception("配置文件错误!没有确定数据库连接字符串！");
-                case ConType.MySQL:
-                    return new MySqlConnection(path);
-                case ConType.Access:
-                case ConType.Oracle:
-                case ConType.Excel:
-                case ConType.MSSQL:
-                default:
-                    throw new Exception("请根据数据库类型选择类库！");
+                switch (this.Contype)
+                {
+                    case ConType.Null:
+                        throw new Exception("配置文件错误!没有确定数据库连接字符串！");
+                    case ConType.MySQL:
+                        return new MySqlConnection(this.ConString);
+                    case ConType.Access:
+                    case ConType.Oracle:
+                    case ConType.Excel:
+                    case ConType.MSSQL:
+                    default:
+                        throw new Exception("请根据数据库类型选择类库！");
+                }
             }
         }
 
@@ -94,7 +97,7 @@ namespace yezhanbafang.MySQL
                     try
                     {
                         int result = 0;
-                        using (MySqlConnection Con = (MySqlConnection)this.IoRyCon(path))
+                        using (MySqlConnection Con = (MySqlConnection)this.IoRyCon)
                         {
                             MySqlCommand com = new MySqlCommand(sql, Con);
                             if (this.timeout != -1)
@@ -145,7 +148,7 @@ namespace yezhanbafang.MySQL
                     try
                     {
                         int result = 0;
-                        using (MySqlConnection Con = (MySqlConnection)this.IoRyCon(path))
+                        using (MySqlConnection Con = (MySqlConnection)this.IoRyCon)
                         {
                             MySqlCommand com = new MySqlCommand(sql, Con);
                             com.Parameters.AddRange(DbParameterS.ToArray());
@@ -205,7 +208,7 @@ namespace yezhanbafang.MySQL
                 case ConType.MySQL:
                     MySqlTransaction sqlTran = null;
                     int result = 0;
-                    using (MySqlConnection Con = (MySqlConnection)this.IoRyCon(path))
+                    using (MySqlConnection Con = (MySqlConnection)this.IoRyCon)
                     {
                         try
                         {
@@ -255,7 +258,7 @@ namespace yezhanbafang.MySQL
                 case ConType.MySQL:
                     MySqlTransaction sqlTran = null;
                     int result = 0;
-                    using (MySqlConnection Con = (MySqlConnection)this.IoRyCon(path))
+                    using (MySqlConnection Con = (MySqlConnection)this.IoRyCon)
                     {
                         try
                         {
@@ -347,7 +350,7 @@ namespace yezhanbafang.MySQL
                 case ConType.MySQL:
                     try
                     {
-                        using (MySqlConnection Con = (MySqlConnection)this.IoRyCon(path))
+                        using (MySqlConnection Con = (MySqlConnection)this.IoRyCon)
                         {
                             MySqlCommand com = new MySqlCommand(sql, Con);
                             if (this.timeout != -1)
@@ -387,7 +390,7 @@ namespace yezhanbafang.MySQL
                 case ConType.MySQL:
                     try
                     {
-                        using (MySqlConnection Con = (MySqlConnection)this.IoRyCon(path))
+                        using (MySqlConnection Con = (MySqlConnection)this.IoRyCon)
                         {
                             MySqlCommand com = new MySqlCommand(sql, Con);
                             com.Parameters.AddRange(DbParameterS.ToArray());
@@ -429,7 +432,7 @@ namespace yezhanbafang.MySQL
                 case ConType.MySQL:
                     try
                     {
-                        using (MySqlConnection Con = (MySqlConnection)this.IoRyCon(path))
+                        using (MySqlConnection Con = (MySqlConnection)this.IoRyCon)
                         {
                             MySqlCommand sc = new MySqlCommand();
                             if (this.timeout != -1)

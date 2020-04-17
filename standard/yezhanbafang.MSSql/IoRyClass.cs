@@ -53,20 +53,23 @@ namespace yezhanbafang.MSSQL
         /// </summary>
         /// <param name="path">数据库连接xml路径</param>
         /// <returns></returns>
-        IDbConnection IoRyCon(string path)
+        IDbConnection IoRyCon
         {
-            switch (this.Contype)
+            get
             {
-                case ConType.Null:
-                    throw new Exception("配置文件错误!没有确定数据库连接字符串！");
-                case ConType.MSSQL:
-                    return new SqlConnection(path);
-                case ConType.Access:
-                case ConType.Oracle:
-                case ConType.Excel:
-                case ConType.MySQL:
-                default:
-                    throw new Exception("请根据数据库类型选择类库！");
+                switch (this.Contype)
+                {
+                    case ConType.Null:
+                        throw new Exception("配置文件错误!没有确定数据库连接字符串！");
+                    case ConType.MSSQL:
+                        return new SqlConnection(this.ConString);
+                    case ConType.Access:
+                    case ConType.Oracle:
+                    case ConType.Excel:
+                    case ConType.MySQL:
+                    default:
+                        throw new Exception("请根据数据库类型选择类库！");
+                }
             }
         }
 
@@ -94,7 +97,7 @@ namespace yezhanbafang.MSSQL
                     try
                     {
                         int result = 0;
-                        using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                        using (SqlConnection Con = (SqlConnection)this.IoRyCon)
                         {
                             SqlCommand com = new SqlCommand(sql, Con);
                             if (this.timeout != -1)
@@ -145,7 +148,7 @@ namespace yezhanbafang.MSSQL
                     try
                     {
                         int result = 0;
-                        using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                        using (SqlConnection Con = (SqlConnection)this.IoRyCon)
                         {
                             SqlCommand com = new SqlCommand(sql, Con);
                             com.Parameters.AddRange(DbParameterS.ToArray());
@@ -205,7 +208,7 @@ namespace yezhanbafang.MSSQL
                 case ConType.MSSQL:
                     SqlTransaction sqlTran = null;
                     int result = 0;
-                    using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                    using (SqlConnection Con = (SqlConnection)this.IoRyCon)
                     {
                         try
                         {
@@ -255,7 +258,7 @@ namespace yezhanbafang.MSSQL
                 case ConType.MSSQL:
                     SqlTransaction sqlTran = null;
                     int result = 0;
-                    using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                    using (SqlConnection Con = (SqlConnection)this.IoRyCon)
                     {
                         try
                         {
@@ -347,7 +350,7 @@ namespace yezhanbafang.MSSQL
                 case ConType.MSSQL:
                     try
                     {
-                        using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                        using (SqlConnection Con = (SqlConnection)this.IoRyCon)
                         {
                             SqlCommand com = new SqlCommand(sql, Con);
                             if (this.timeout != -1)
@@ -387,7 +390,7 @@ namespace yezhanbafang.MSSQL
                 case ConType.MSSQL:
                     try
                     {
-                        using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                        using (SqlConnection Con = (SqlConnection)this.IoRyCon)
                         {
                             SqlCommand com = new SqlCommand(sql, Con);
                             com.Parameters.AddRange(DbParameterS.ToArray());
@@ -429,7 +432,7 @@ namespace yezhanbafang.MSSQL
                 case ConType.MSSQL:
                     try
                     {
-                        using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                        using (SqlConnection Con = (SqlConnection)this.IoRyCon)
                         {
                             SqlCommand sc = new SqlCommand();
                             if (this.timeout != -1)
@@ -497,7 +500,7 @@ namespace yezhanbafang.MSSQL
                 case ConType.MSSQL:
                     SqlTransaction sqlTran = null;
                     string result = null;
-                    using (SqlConnection Con = (SqlConnection)this.IoRyCon(path))
+                    using (SqlConnection Con = (SqlConnection)this.IoRyCon)
                     {
                         try
                         {

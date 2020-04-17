@@ -53,20 +53,23 @@ namespace yezhanbafang.Oracle
         /// </summary>
         /// <param name="path">数据库连接xml路径</param>
         /// <returns></returns>
-        IDbConnection IoRyCon(string path)
+        IDbConnection IoRyCon
         {
-            switch (this.Contype)
+            get
             {
-                case ConType.Null:
-                    throw new Exception("配置文件错误!没有确定数据库连接字符串！");
-                case ConType.Oracle:
-                    return new    OracleConnection(path);
-                case ConType.Access:
-                case ConType.MSSQL:
-                case ConType.Excel:
-                case ConType.MySQL:
-                default:
-                    throw new Exception("请根据数据库类型选择类库！");
+                switch (this.Contype)
+                {
+                    case ConType.Null:
+                        throw new Exception("配置文件错误!没有确定数据库连接字符串！");
+                    case ConType.Oracle:
+                        return new OracleConnection(this.ConString);
+                    case ConType.Access:
+                    case ConType.MSSQL:
+                    case ConType.Excel:
+                    case ConType.MySQL:
+                    default:
+                        throw new Exception("请根据数据库类型选择类库！");
+                }
             }
         }
 
@@ -77,24 +80,13 @@ namespace yezhanbafang.Oracle
         /// <returns>受影响行数</returns>
         public string ExecuteSql(string sql)
         {
-            return this.ExecuteSql(this.Path, sql);
-        }
-
-        /// <summary>
-        /// 执行sql语句
-        /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
-        /// <param name="sql">sql语句</param>
-        /// <returns>受影响行数</returns>
-        string ExecuteSql(string path, string sql)
-        {
             switch (this.Contype)
             {
                 case ConType.Oracle:
                     try
                     {
                         int result = 0;
-                        using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
+                        using (OracleConnection Con = (OracleConnection)this.IoRyCon)
                         {
                             OracleCommand com = new OracleCommand(sql, Con);
                             if (this.timeout != -1)
@@ -127,25 +119,13 @@ namespace yezhanbafang.Oracle
         /// <returns>受影响行数</returns>
         public string ExecuteSql_DbParameter(string sql, List<DbParameter> DbParameterS)
         {
-            return this.ExecuteSql_DbParameter(this.Path, sql, DbParameterS);
-        }
-
-        /// <summary>
-        /// 执行sql语句 带参数的
-        /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
-        /// <param name="sql">sql语句</param>
-        /// <param name="DbParameterS">入参</param>
-        /// <returns>受影响行数</returns>
-        string ExecuteSql_DbParameter(string path, string sql, List<DbParameter> DbParameterS)
-        {
             switch (this.Contype)
             {
                 case ConType.Oracle:
                     try
                     {
                         int result = 0;
-                        using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
+                        using (OracleConnection Con = (OracleConnection)this.IoRyCon)
                         {
                             OracleCommand com = new OracleCommand(sql, Con);
                             com.Parameters.AddRange(DbParameterS.ToArray());
@@ -205,7 +185,7 @@ namespace yezhanbafang.Oracle
                 case ConType.Oracle:
                     OracleTransaction sqlTran = null;
                     int result = 0;
-                    using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
+                    using (OracleConnection Con = (OracleConnection)this.IoRyCon)
                     {
                         try
                         {
@@ -255,7 +235,7 @@ namespace yezhanbafang.Oracle
                 case ConType.Oracle:
                     OracleTransaction sqlTran = null;
                     int result = 0;
-                    using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
+                    using (OracleConnection Con = (OracleConnection)this.IoRyCon)
                     {
                         try
                         {
@@ -347,7 +327,7 @@ namespace yezhanbafang.Oracle
                 case ConType.Oracle:
                     try
                     {
-                        using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
+                        using (OracleConnection Con = (OracleConnection)this.IoRyCon)
                         {
                             OracleCommand com = new OracleCommand(sql, Con);
                             if (this.timeout != -1)
@@ -387,7 +367,7 @@ namespace yezhanbafang.Oracle
                 case ConType.Oracle:
                     try
                     {
-                        using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
+                        using (OracleConnection Con = (OracleConnection)this.IoRyCon)
                         {
                             OracleCommand com = new OracleCommand(sql, Con);
                             com.Parameters.AddRange(DbParameterS.ToArray());
@@ -429,7 +409,7 @@ namespace yezhanbafang.Oracle
                 case ConType.Oracle:
                     try
                     {
-                        using (OracleConnection Con = (OracleConnection)this.IoRyCon(path))
+                        using (OracleConnection Con = (OracleConnection)this.IoRyCon)
                         {
                             OracleCommand sc = new OracleCommand();
                             if (this.timeout != -1)
