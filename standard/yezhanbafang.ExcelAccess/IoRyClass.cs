@@ -82,17 +82,6 @@ namespace yezhanbafang.OleDb
         /// <returns>受影响行数</returns>
         public string ExecuteSql(string sql)
         {
-            return this.ExecuteSql(this.Path, sql);
-        }
-
-        /// <summary>
-        /// 执行sql语句
-        /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
-        /// <param name="sql">sql语句</param>
-        /// <returns>受影响行数</returns>
-        string ExecuteSql(string path, string sql)
-        {
             switch (this.Contype)
             {
                 case ConType.Access:
@@ -130,24 +119,13 @@ namespace yezhanbafang.OleDb
         /// <param name="sql">sql语句</param>
         /// <param name="DbParameterS">入参</param>
         /// <returns>受影响行数</returns>
-        public string ExecuteSql_DbParameter(string sql, List<DbParameter> DbParameterS)
-        {
-            return this.ExecuteSql_DbParameter(this.Path, sql, DbParameterS);
-        }
-
-        /// <summary>
-        /// 执行sql语句 带参数的
-        /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
-        /// <param name="sql">sql语句</param>
-        /// <param name="DbParameterS">入参</param>
-        /// <returns>受影响行数</returns>
-        string ExecuteSql_DbParameter(string path, string sql, List<DbParameter> DbParameterS)
+        public string ExecuteSql(string sql, List<DbParameter> DbParameterS)
         {
             switch (this.Contype)
             {
                 case ConType.Access:
                 case ConType.Excel:
+                case ConType.Oracle:
                     try
                     {
                         int result = 0;
@@ -170,7 +148,7 @@ namespace yezhanbafang.OleDb
                     }
                 case ConType.MySQL:
                 case ConType.MSSQL:
-                case ConType.Oracle:
+
                 default:
                     throw new Exception("请根据数据库类型选择类库！");
             }
@@ -182,28 +160,6 @@ namespace yezhanbafang.OleDb
         /// <param name="sql">sql语句们</param>
         /// <returns>受影响行数</returns>
         public string ExecuteSqlTran(string sql)
-        {
-            return this.ExecuteSqlTran(this.Path, sql);
-        }
-
-        /// <summary>
-        /// 事务执行sql，只支持SqlServer有事务
-        /// </summary>
-        /// <param name="sql">sql语句们</param>
-        /// <param name="DbParameterS">入参</param>
-        /// <returns></returns>
-        public string ExecuteSqlTran_DbParameter(string sql, List<DbParameter> DbParameterS)
-        {
-            return this.ExecuteSqlTran_DbParameter(this.Path, sql, DbParameterS);
-        }
-
-        /// <summary>
-        /// 事务执行sql，Access没有事务,oracle不支持一次执行多条带;的sql语句
-        /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
-        /// <param name="sql">sql语句们</param>
-        /// <returns>受影响行数</returns>
-        string ExecuteSqlTran(string path, string sql)
         {
             switch (this.Contype)
             {
@@ -247,13 +203,12 @@ namespace yezhanbafang.OleDb
         }
 
         /// <summary>
-        /// 事务执行sql带DbParameterS
+        /// 事务执行sql，只支持SqlServer有事务
         /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
         /// <param name="sql">sql语句们</param>
-        /// <param name="DbParameterS">参数</param>
+        /// <param name="DbParameterS">入参</param>
         /// <returns></returns>
-        string ExecuteSqlTran_DbParameter(string path, string sql, List<DbParameter> DbParameterS)
+        public string ExecuteSqlTran(string sql, List<DbParameter> DbParameterS)
         {
             switch (this.Contype)
             {
@@ -313,9 +268,9 @@ namespace yezhanbafang.OleDb
         /// <param name="sql">sql语句</param>
         /// <param name="DbParameterS">入参</param>
         /// <returns></returns>
-        public DataTable GetTable_DbParameter(string sql, List<DbParameter> DbParameterS)
+        public DataTable GetTable(string sql, List<DbParameter> DbParameterS)
         {
-            return this.GetDataSet_DbParameter(sql, DbParameterS).Tables[0];
+            return this.GetDataSet(sql, DbParameterS).Tables[0];
         }
 
         /// <summary>
@@ -324,28 +279,6 @@ namespace yezhanbafang.OleDb
         /// <param name="sql">sql语句</param>
         /// <returns></returns>
         public DataSet GetDataSet(string sql)
-        {
-            return this.GetDataSet(this.Path, sql);
-        }
-
-        /// <summary>
-        ///  取得DataSet
-        /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="DbParameterS">入参</param>
-        /// <returns></returns>
-        public DataSet GetDataSet_DbParameter(string sql, List<DbParameter> DbParameterS)
-        {
-            return this.GetDataSet_DbParameter(this.Path, sql, DbParameterS);
-        }
-
-        /// <summary>
-        /// 取得dataset
-        /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
-        /// <param name="sql">sql语句</param>
-        /// <returns></returns>
-        DataSet GetDataSet(string path, string sql)
         {
             switch (this.Contype)
             {
@@ -379,13 +312,12 @@ namespace yezhanbafang.OleDb
         }
 
         /// <summary>
-        /// 取得dataset
+        ///  取得DataSet
         /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
         /// <param name="sql">sql语句</param>
         /// <param name="DbParameterS">入参</param>
         /// <returns></returns>
-        DataSet GetDataSet_DbParameter(string path, string sql, List<DbParameter> DbParameterS)
+        public DataSet GetDataSet(string sql, List<DbParameter> DbParameterS)
         {
             switch (this.Contype)
             {
@@ -420,14 +352,13 @@ namespace yezhanbafang.OleDb
         }
 
         /// <summary>
-        /// 执行存储过程,用sqlparameter的方式,一般返回数据集  2012-4-17添加
+        /// 执行存储过程,用sqlparameter的方式,一般返回数据集 2012-4-17添加
         /// 注意out类型的入参 要设置dd.Direction = System.Data.ParameterDirection.Output; 存储过程中给out复制要 select @id=(select count(*) from log_data)
         /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
         /// <param name="SPname">SP名称</param>
         /// <param name="DbParameterS">DbParameter的集合</param>
         /// <returns>一般返回数据集</returns>
-        DataSet ExecuteSP(string path, string SPname, List<DbParameter> DbParameterS)
+        public DataSet ExecuteSP(string SPname, List<DbParameter> DbParameterS)
         {
             switch (this.Contype)
             {
@@ -460,80 +391,6 @@ namespace yezhanbafang.OleDb
                 case ConType.MySQL:
                 case ConType.MSSQL:
                 case ConType.Null:
-                default:
-                    throw new Exception("请根据数据库类型选择类库！");
-            }
-        }
-
-        /// <summary>
-        /// 执行存储过程,用sqlparameter的方式,一般返回数据集 2012-4-17添加
-        /// 注意out类型的入参 要设置dd.Direction = System.Data.ParameterDirection.Output; 存储过程中给out复制要 select @id=(select count(*) from log_data)
-        /// </summary>
-        /// <param name="SPname">SP名称</param>
-        /// <param name="DbParameterS">DbParameter的集合</param>
-        /// <returns>一般返回数据集</returns>
-        public DataSet ExecuteSP(string SPname, List<DbParameter> DbParameterS)
-        {
-            return this.ExecuteSP(this.Path, SPname, DbParameterS);
-        }
-
-        /// <summary>
-        /// 已过时
-        /// 这个只能执行一个，而且必须是insert语句
-        /// 由于GUID的应用,此函数基本用不到了
-        /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <returns>当前自增列的值，很有用</returns>
-        public string GetTheValueOfNewAdd(string sql)
-        {
-            return this.GetTheValueOfNewAdd(this.Path, sql);
-        }
-
-        /// <summary>
-        /// 这个只能执行一个，而且必须是insert语句
-        /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
-        /// <param name="sql">sql语句</param>
-        /// <returns>当前自增列的值，很有用</returns>
-        string GetTheValueOfNewAdd(string path, string sql)
-        {
-            switch (this.Contype)
-            {
-                case ConType.Access:
-                case ConType.Excel:
-                case ConType.Oracle:
-                    OleDbTransaction sqlTran = null;
-                    string result = null;
-                    using (OleDbConnection Con = (OleDbConnection)this.IoRyCon)
-                    {
-                        try
-                        {
-                            Con.Open();
-                            sqlTran = Con.BeginTransaction();
-                            OleDbCommand command = Con.CreateCommand();
-                            if (this.timeout != -1)
-                            {
-                                command.CommandTimeout = this.timeout;
-                            }
-                            command.Transaction = sqlTran;
-                            //精髓，加上这个就能得到
-                            sql = sql + ";select scope_identity();";
-                            command.CommandText = sql;
-                            result = Convert.ToString(command.ExecuteScalar());
-                            sqlTran.Commit();
-                        }
-                        catch (Exception me)
-                        {
-                            if (sqlTran != null)
-                            {
-                                sqlTran.Rollback();
-                            }
-                            throw me;
-                        }
-                    }
-                    return result;
-                case ConType.MSSQL:
-                case ConType.MySQL:
                 default:
                     throw new Exception("请根据数据库类型选择类库！");
             }
@@ -704,7 +561,7 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "新�
             {
                 tablename = sql.ToLower().Split(new string[] { "set" }, StringSplitOptions.RemoveEmptyEntries)[0].Replace("update", "").Trim();
                 string sqlold = "select * from " + tablename + " where " + sql.ToLower().Split(new string[] { "where" }, StringSplitOptions.None)[1];
-                DataTable oldtable = ic.GetTable_DbParameter(sqlold, DbParameterS);
+                DataTable oldtable = ic.GetTable(sqlold, DbParameterS);
                 if (oldtable.Rows.Count == 0)
                 {
                     return ";";
@@ -758,7 +615,7 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "修�
                     }
                     sqlold = sql.ToLower().Replace("delete", "select * from ");
                 }
-                DataTable oldtable = ic.GetTable_DbParameter(sqlold, DbParameterS);
+                DataTable oldtable = ic.GetTable(sqlold, DbParameterS);
                 if (oldtable.Rows.Count > 0)
                 {
                     XElement xolddata = new XElement("OldData");
@@ -830,30 +687,6 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
         /// <returns>受影响行数</returns>
         public string Log_ExecuteSqlTran(string sql, string username)
         {
-            return this.Log_ExecuteSqlTran(this.Path, sql, username);
-        }
-
-        /// <summary>
-        /// 事务执行sql并且生成Log,只支持Sqlserver,oracle不行,报错
-        /// </summary>
-        /// <param name="sql">sql语句们</param>
-        /// <param name="DbParameterS">参数</param>
-        /// <param name="username">执行sql语句的用户</param>
-        /// <returns></returns>
-        public string Log_ExecuteSqlTran_DbParameter(string sql, List<DbParameter> DbParameterS, string username)
-        {
-            return this.Log_ExecuteSqlTran_DbParameter(this.Path, sql, username, DbParameterS);
-        }
-
-        /// <summary>
-        /// 事务执行sql并且生成Log,只支持Sqlserver,oracle不行,报错
-        /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
-        /// <param name="sql">sql语句们</param>
-        /// <param name="username">执行sql语句的用户</param>
-        /// <returns>受影响行数</returns>
-        string Log_ExecuteSqlTran(string path, string sql, string username)
-        {
             switch (this.Contype)
             {
                 case ConType.Access:
@@ -871,21 +704,20 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
                     {
                         newsql = this.GetLogSql_IP(username, sql) + sql;
                     }
-                    return this.ExecuteSqlTran(path, newsql);
+                    return this.ExecuteSqlTran(newsql);
                 default:
-                    return null;
+                    throw new Exception("请根据数据库类型选择类库！");
             }
         }
 
         /// <summary>
         /// 事务执行sql并且生成Log,只支持Sqlserver,oracle不行,报错
         /// </summary>
-        /// <param name="path">数据库连接xml路径</param>
         /// <param name="sql">sql语句们</param>
-        /// <param name="username">执行sql语句的用户</param>
         /// <param name="DbParameterS">参数</param>
+        /// <param name="username">执行sql语句的用户</param>
         /// <returns></returns>
-        string Log_ExecuteSqlTran_DbParameter(string path, string sql, string username, List<DbParameter> DbParameterS)
+        public string Log_ExecuteSqlTran(string sql, List<DbParameter> DbParameterS, string username)
         {
             switch (this.Contype)
             {
@@ -904,9 +736,9 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
                     {
                         newsql = this.GetLogSql_IP(username, sql, DbParameterS) + sql;
                     }
-                    return this.ExecuteSqlTran_DbParameter(path, newsql, DbParameterS);
+                    return this.ExecuteSqlTran(newsql, DbParameterS);
                 default:
-                    return null;
+                    throw new Exception("请根据数据库类型选择类库！");
             }
         }
 
@@ -919,19 +751,6 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
         /// <returns></returns>
         public DataSet Log_ExecuteSP(string SPname, List<DbParameter> DbParameterS, string username)
         {
-            return this.Log_ExecuteSP(this.Path, SPname, DbParameterS, username);
-        }
-
-        /// <summary>
-        /// 带日志的执行存储过程的方法
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="SPname"></param>
-        /// <param name="DbParameterS"></param>
-        /// <param name="username"></param>
-        /// <returns></returns>
-        DataSet Log_ExecuteSP(string path, string SPname, List<DbParameter> DbParameterS, string username)
-        {
             switch (this.Contype)
             {
                 case ConType.Access:
@@ -940,9 +759,9 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
                     string newsql = "";
                     newsql = this.GetLogSP_IP(username, SPname, DbParameterS);
                     this.ExecuteSql(newsql);
-                    return this.ExecuteSP(path, SPname, DbParameterS);
+                    return this.ExecuteSP(SPname, DbParameterS);
                 default:
-                    return null;
+                    throw new Exception("请根据数据库类型选择类库！");
             }
         }
 
@@ -953,30 +772,6 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
         /// <param name="username">执行sql语句的用户</param>
         /// <returns></returns>
         public DataSet Log_GetDataSet(string sql, string username)
-        {
-            return this.Log_GetDataSet(this.Path, sql, username);
-        }
-
-        /// <summary>
-        /// 目前只支持sqlserver
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="DbParameterS"></param>
-        /// <param name="username">执行sql语句的用户</param>
-        /// <returns></returns>
-        public DataSet Log_GetDataSet_DbParameter(string sql, List<DbParameter> DbParameterS, string username)
-        {
-            return this.Log_GetDataSet_DbParameter(this.Path, sql, username, DbParameterS);
-        }
-
-        /// <summary>
-        /// 目前只支持sqlserver
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="sql"></param>
-        /// <param name="username">执行sql语句的用户</param>
-        /// <returns></returns>
-        DataSet Log_GetDataSet(string path, string sql, string username)
         {
             switch (this.Contype)
             {
@@ -997,26 +792,25 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
                         {
                             newsql = this.GetLogSql_IP(username, sql) + sql;
                         }
-                        return this.GetDataSet(path, newsql);
+                        return this.GetDataSet(newsql);
                     }
                     catch (Exception me)
                     {
                         throw me;
                     }
                 default:
-                    return null;
+                    throw new Exception("请根据数据库类型选择类库！");
             }
         }
 
         /// <summary>
         /// 目前只支持sqlserver
         /// </summary>
-        /// <param name="path"></param>
         /// <param name="sql"></param>
-        /// <param name="username">执行sql语句的用户</param>
         /// <param name="DbParameterS"></param>
+        /// <param name="username">执行sql语句的用户</param>
         /// <returns></returns>
-        DataSet Log_GetDataSet_DbParameter(string path, string sql, string username, List<DbParameter> DbParameterS)
+        public DataSet Log_GetDataSet(string sql, List<DbParameter> DbParameterS, string username)
         {
             switch (this.Contype)
             {
@@ -1037,14 +831,14 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
                         {
                             newsql = this.GetLogSql_IP(username, sql, DbParameterS) + sql;
                         }
-                        return this.GetDataSet_DbParameter(path, newsql, DbParameterS);
+                        return this.GetDataSet(newsql, DbParameterS);
                     }
                     catch (Exception me)
                     {
                         throw me;
                     }
                 default:
-                    return null;
+                    throw new Exception("请根据数据库类型选择类库！");
             }
         }
 

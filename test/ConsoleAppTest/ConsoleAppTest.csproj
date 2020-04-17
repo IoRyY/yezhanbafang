@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\standard\yezhanbafang.ExcelAccess\yezhanbafang.OleDb.csproj" />
     <ProjectReference Include="..\..\standard\yezhanbafang.Oracle\yezhanbafang.Oracle.csproj" />
   </ItemGroup>
 

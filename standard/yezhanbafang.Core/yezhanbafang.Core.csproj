@@ -5,6 +5,10 @@
     <Authors>夜战八方</Authors>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="System.Management" Version="4.7.0" />
   </ItemGroup>
