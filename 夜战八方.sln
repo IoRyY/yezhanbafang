@@ -5,23 +5,37 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "standard", "standard", "{ABFDFF24-0830-4CE2-9774-ADBEB52B7328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.Core", "standard\yezhanbafang.Core\yezhanbafang.Core.csproj", "{72036079-269F-43FA-A453-187D80B5E732}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yezhanbafang.sd.Core", "standard\yezhanbafang.Core\yezhanbafang.sd.Core.csproj", "{72036079-269F-43FA-A453-187D80B5E732}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.MSSQL", "standard\yezhanbafang.MSSql\yezhanbafang.MSSQL.csproj", "{319CDF28-C6A3-4FC2-A4A8-555B4977A50F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yezhanbafang.sd.MSSQL", "standard\yezhanbafang.MSSql\yezhanbafang.sd.MSSQL.csproj", "{319CDF28-C6A3-4FC2-A4A8-555B4977A50F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.OleDb", "standard\yezhanbafang.ExcelAccess\yezhanbafang.OleDb.csproj", "{C91E8014-8BBF-4331-8C9E-1B6DE1001BA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yezhanbafang.sd.OleDb", "standard\yezhanbafang.ExcelAccess\yezhanbafang.sd.OleDb.csproj", "{C91E8014-8BBF-4331-8C9E-1B6DE1001BA1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yezhanbafang.MySQL", "standard\yezhanbafang.MySQL\yezhanbafang.MySQL.csproj", "{70038E54-19C3-41C4-AED1-848D11C7E864}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yezhanbafang.sd.MySQL", "standard\yezhanbafang.MySQL\yezhanbafang.sd.MySQL.csproj", "{70038E54-19C3-41C4-AED1-848D11C7E864}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.Oracle", "standard\yezhanbafang.Oracle\yezhanbafang.Oracle.csproj", "{57B5A786-BDE9-4260-8D9C-FE512748F90A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yezhanbafang.sd.Oracle", "standard\yezhanbafang.Oracle\yezhanbafang.sd.Oracle.csproj", "{57B5A786-BDE9-4260-8D9C-FE512748F90A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AFBF9B7C-2DA4-486B-B75F-9127472BEEA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppTest", "test\ConsoleAppTest\ConsoleAppTest.csproj", "{ADA90B73-B94A-4BB7-AA9E-0D2ECC5DB42C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppTest", "test\ConsoleAppTest\ConsoleAppTest.csproj", "{ADA90B73-B94A-4BB7-AA9E-0D2ECC5DB42C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{ADF060BB-E5D0-4D7F-A8BD-186E31D38067}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.fw.Core", "framework\yezhanbafang.fw.Core\yezhanbafang.fw.Core.csproj", "{877C5076-DAB7-4B67-8759-A0CA3C9BBBB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.fw.MSoffice", "framework\MSoffice\yezhanbafang.fw.MSoffice.csproj", "{FB3FCC85-EDCC-4E47-A12E-0211B1E7475C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WCF", "WCF", "{E93BAB98-E1CF-47B1-A7BF-DE4390CEF507}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoadBalance", "LoadBalance", "{E0209FD9-6A8D-493D-9327-477698D5DFD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.fw.LoadBalance.Client", "LoadBalance\IoRyLoadBalanceClient\yezhanbafang.fw.LoadBalance.Client.csproj", "{846C5953-0C7F-4AFB-AF55-EA7BD495DFF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.fw.WCF.Client", "WCF\IoRyWCFClient5.0\yezhanbafang.fw.WCF.Client.csproj", "{B22F0455-A477-44F2-92AC-0C51D1030CA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.fw.LoadBalance.Server", "LoadBalance\LoadBalanceServerLibrary\yezhanbafang.fw.LoadBalance.Server.csproj", "{20C89260-5439-496E-92D5-B0B06DB8FA2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.fw.WCF.Server", "WCF\WcfServiceLibraryfd\yezhanbafang.fw.WCF.Server.csproj", "{C242C53D-6091-4C49-BDD5-8AE7F31185BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +71,26 @@ Global
 		{877C5076-DAB7-4B67-8759-A0CA3C9BBBB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{877C5076-DAB7-4B67-8759-A0CA3C9BBBB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{877C5076-DAB7-4B67-8759-A0CA3C9BBBB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB3FCC85-EDCC-4E47-A12E-0211B1E7475C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB3FCC85-EDCC-4E47-A12E-0211B1E7475C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB3FCC85-EDCC-4E47-A12E-0211B1E7475C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB3FCC85-EDCC-4E47-A12E-0211B1E7475C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{846C5953-0C7F-4AFB-AF55-EA7BD495DFF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{846C5953-0C7F-4AFB-AF55-EA7BD495DFF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{846C5953-0C7F-4AFB-AF55-EA7BD495DFF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{846C5953-0C7F-4AFB-AF55-EA7BD495DFF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B22F0455-A477-44F2-92AC-0C51D1030CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B22F0455-A477-44F2-92AC-0C51D1030CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B22F0455-A477-44F2-92AC-0C51D1030CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B22F0455-A477-44F2-92AC-0C51D1030CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20C89260-5439-496E-92D5-B0B06DB8FA2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C89260-5439-496E-92D5-B0B06DB8FA2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C89260-5439-496E-92D5-B0B06DB8FA2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20C89260-5439-496E-92D5-B0B06DB8FA2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C242C53D-6091-4C49-BDD5-8AE7F31185BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C242C53D-6091-4C49-BDD5-8AE7F31185BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C242C53D-6091-4C49-BDD5-8AE7F31185BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C242C53D-6091-4C49-BDD5-8AE7F31185BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +103,11 @@ Global
 		{57B5A786-BDE9-4260-8D9C-FE512748F90A} = {ABFDFF24-0830-4CE2-9774-ADBEB52B7328}
 		{ADA90B73-B94A-4BB7-AA9E-0D2ECC5DB42C} = {AFBF9B7C-2DA4-486B-B75F-9127472BEEA5}
 		{877C5076-DAB7-4B67-8759-A0CA3C9BBBB4} = {ADF060BB-E5D0-4D7F-A8BD-186E31D38067}
+		{FB3FCC85-EDCC-4E47-A12E-0211B1E7475C} = {ADF060BB-E5D0-4D7F-A8BD-186E31D38067}
+		{846C5953-0C7F-4AFB-AF55-EA7BD495DFF1} = {E0209FD9-6A8D-493D-9327-477698D5DFD7}
+		{B22F0455-A477-44F2-92AC-0C51D1030CA9} = {E93BAB98-E1CF-47B1-A7BF-DE4390CEF507}
+		{20C89260-5439-496E-92D5-B0B06DB8FA2E} = {E0209FD9-6A8D-493D-9327-477698D5DFD7}
+		{C242C53D-6091-4C49-BDD5-8AE7F31185BE} = {E93BAB98-E1CF-47B1-A7BF-DE4390CEF507}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4CC346A1-B2AF-48E2-B3D2-802FC493D8C3}

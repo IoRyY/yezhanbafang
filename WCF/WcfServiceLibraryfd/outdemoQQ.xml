@@ -1,0 +1,8 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <QQ>true</QQ>
+  <correct>true正确,false则看报错信息</correct>
+  <Exception>如果报错,则报错信息</Exception>
+  <Function>方法名称</Function>
+  <return>参数1</return>
+</root>

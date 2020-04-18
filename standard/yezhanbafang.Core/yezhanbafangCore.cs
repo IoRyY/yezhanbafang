@@ -10,7 +10,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace yezhanbafang.Core
+namespace yezhanbafang.sd.Core
 {
     /// <summary>
     /// 袁东辉 2010-11-1日 总结之前项目，提取有用的东西。

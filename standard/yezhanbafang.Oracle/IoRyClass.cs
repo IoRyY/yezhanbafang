@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Data;
-using yezhanbafang.Core;
+using yezhanbafang.sd.Core;
 using Oracle.ManagedDataAccess.Client;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Xml.Linq;
 
-namespace yezhanbafang.Oracle
+namespace yezhanbafang.sd.Oracle
 {
     public class IoRyClass : YezhanbafangCore
     {

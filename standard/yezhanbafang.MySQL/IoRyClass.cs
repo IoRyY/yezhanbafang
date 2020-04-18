@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Xml.Linq;
-using yezhanbafang.Core;
+using yezhanbafang.sd.Core;
 
-namespace yezhanbafang.MySQL
+namespace yezhanbafang.sd.MySQL
 {
     public class IoRyClass : YezhanbafangCore
     {

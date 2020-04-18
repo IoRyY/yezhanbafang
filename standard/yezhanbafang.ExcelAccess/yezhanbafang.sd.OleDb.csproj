@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\yezhanbafang.Core\yezhanbafang.Core.csproj" />
+    <ProjectReference Include="..\yezhanbafang.Core\yezhanbafang.sd.Core.csproj" />
   </ItemGroup>
 
 </Project>

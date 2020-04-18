@@ -12,12 +12,15 @@ namespace ConsoleAppTest
                 Console.WriteLine("Hello World!");
                 while (true)
                 {
-                    string sql = Console.ReadLine();
-                    yezhanbafang.Oracle.IoRyClass ic = new yezhanbafang.Oracle.IoRyClass();
-                    yezhanbafang.OleDb.IoRyClass ic1 = new yezhanbafang.OleDb.IoRyClass();
+                    //string sql = Console.ReadLine();
+                    string sql = "select name_str from uvt_data";
+                    yezhanbafang.sd.MSSQL.IoRyClass msic = new yezhanbafang.sd.MSSQL.IoRyClass("msconstring.xml");
+                    yezhanbafang.sd.OleDb.IoRyClass oleic = new yezhanbafang.sd.OleDb.IoRyClass("excelconstring");
                     //ic1.Excel_Get()
-                    DataSet ds = ic1.GetDataSet(sql);
-                    string dts = yezhanbafang.Core.YezhanbafangCore.BytesToString(yezhanbafang.Core.YezhanbafangCore.GetXmlFormatDataSet(ds));
+                    DataSet ds = msic.GetDataSet(sql);
+                    sql = "select * from [sheet1$]";
+                    DataSet ds1 = oleic.Excel_Get("H:\\a.xlsx", sql);
+                    string dts = yezhanbafang.sd.Core.YezhanbafangCore.BytesToString(yezhanbafang.sd.Core.YezhanbafangCore.GetXmlFormatDataSet(ds));
                     Console.WriteLine(dts);
                 }
             }

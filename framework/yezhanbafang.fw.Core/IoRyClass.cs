@@ -15,7 +15,7 @@ using System.Data.Common;
 using System.Xml.Linq;
 using System.Management;
 
-namespace IoRyNP
+namespace yezhanbafang.fw.Core
 {
     /// <summary>
     /// 袁东辉 2010-11-1日 总结之前项目，提取有用的东西。

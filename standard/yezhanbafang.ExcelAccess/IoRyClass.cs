@@ -5,9 +5,9 @@ using System.Data.Common;
 using System.Data.OleDb;
 using System.IO;
 using System.Xml.Linq;
-using yezhanbafang.Core;
+using yezhanbafang.sd.Core;
 
-namespace yezhanbafang.OleDb
+namespace yezhanbafang.sd.OleDb
 {
     public class IoRyClass : YezhanbafangCore
     {

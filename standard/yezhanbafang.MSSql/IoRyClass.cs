@@ -4,9 +4,9 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Xml.Linq;
-using yezhanbafang.Core;
+using yezhanbafang.sd.Core;
 
-namespace yezhanbafang.MSSQL
+namespace yezhanbafang.sd.MSSQL
 {
     public class IoRyClass : YezhanbafangCore
     {

@@ -11,7 +11,8 @@
     <RootNamespace>yezhanbafang.fw.Core</RootNamespace>
     <AssemblyName>yezhanbafang.fw.Core</AssemblyName>
     <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>IoRy.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <ApplicationIcon>
     </ApplicationIcon>
@@ -77,9 +78,6 @@
     <Content Include="constring.xml">
       <SubType>Designer</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="IoRy.snk" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

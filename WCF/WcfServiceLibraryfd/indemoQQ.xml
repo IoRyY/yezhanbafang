@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <QQ>true</QQ>
+  <xmlPath>path</xmlPath>
+  <Function>方法名称</Function>
+  <Param>参数1</Param>
+  <Param>参数2</Param>
+  <Param>参数3</Param>
+</root>
