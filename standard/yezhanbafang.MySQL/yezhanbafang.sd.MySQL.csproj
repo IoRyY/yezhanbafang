@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>夜战八方</Authors>
     <Company>夜战八方</Company>
+    <Product>standard标准MySQL</Product>
   </PropertyGroup>
 
   <ItemGroup>

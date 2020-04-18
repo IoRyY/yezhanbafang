@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using yezhanbafang.fw.Core;
 
-namespace yezhanbafang.fw.LoadBalance.Client
+namespace yezhanbafang.fw.WCF.LoadBalance.Client
 {
     /// <summary>
     /// 服务器状态变化

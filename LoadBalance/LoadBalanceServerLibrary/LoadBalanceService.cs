@@ -16,7 +16,7 @@ using System.Xml.Linq;
 using Newtonsoft.Json;
 using yezhanbafang.fw.Core;
 
-namespace yezhanbafang.fw.LoadBalance.Server
+namespace yezhanbafang.fw.WCF.LoadBalance.Server
 {
     /// <summary>
     /// 服务消息委托

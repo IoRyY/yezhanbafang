@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<OutQuery>
+  <Sql value="select a.病案号,a.姓名,a.姓名拼音,b.Hos_Name as 医院名称,c.str_name as 性别,a.患者ID,b.Hos_ID as 医院ID ,a.出生日期 
+from UsersInfo a
+inner join HospitalName b on a.医院ID=b.Hos_ID  
+inner join mydict c on a.性别=c.str_value where " />
+  <MyQuery display="病案号" value="a.病案号" type="string" />
+  <MyQuery display="姓名" value="a.姓名" type="string" />
+  <MyQuery display="姓名拼音" value="a.姓名拼音" type="string" />
+  <MyQuery display="医院名称" value="b.Hos_Name" type="string" />
+  <MyQuery display="性别" value="c.str_name" type="string" />
+  <MyQuery display="患者ID" value="a.患者ID" type="int" />
+  <MyQuery display="医院ID" value="b.Hos_ID" type="int" />
+  <MyQuery display="出生日期" value="a.出生日期" type="datetime" />
+  <MyQuery display="创建时间" value="a.创建时间" type="datetime" />
+</OutQuery>

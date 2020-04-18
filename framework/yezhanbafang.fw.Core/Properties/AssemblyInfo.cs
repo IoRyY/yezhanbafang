@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列属性集
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("袁东辉的基础类库")]
+[assembly: AssemblyTitle("袁东辉的基础类库-framework框架")]
 [assembly: AssemblyDescription("所有基础的和数据库打交道的,加密解密适合写成静态方法的")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("版权所有 (C) © 袁东辉 2011-2025")]

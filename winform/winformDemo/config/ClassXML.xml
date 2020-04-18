@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<classforms>
+  <classform>
+    <className>Users</className>
+    <Property>
+      <column>1</column>
+      <row>1</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>loginname_str</name>
+      <displayname>登录名称</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat>true</checkRepeat>
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>2</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>pwd_str</name>
+      <displayname>密码</displayname>
+      <valuetype>string</valuetype>
+      <isPassword>true</isPassword>
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>3</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>name_str</name>
+      <displayname>姓名</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>4</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>type_str</name>
+      <displayname>用户类型</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>5</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>power_str</name>
+      <displayname>用户权限</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable>power_dict</comboTable>
+      <comboDisplay>power_display_str</comboDisplay>
+      <comboValue>power_dict_str</comboValue>
+      <comboDefault>A</comboDefault>
+    </Property>
+  </classform>
+  <classform>
+    <className>PC_config</className>
+    <Property>
+      <column>1</column>
+      <row>1</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>key_str</name>
+      <displayname>key</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat>true</checkRepeat>
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>2</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>value_str</name>
+      <displayname>value</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat></checkRepeat>
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+  </classform>
+</classforms>

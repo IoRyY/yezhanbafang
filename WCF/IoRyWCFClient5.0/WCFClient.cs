@@ -6,13 +6,12 @@ using System.Data;
 using System.Windows.Forms;
 using System.Threading;
 using System.Xml.Linq;
-using WcfServiceLibrary;
 using System.IO;
 using System.Diagnostics;
 using System.Data.Common;
 using yezhanbafang.fw.Core;
 
-namespace IoRyWCFClientV5
+namespace yezhanbafang.fw.WCF.Client
 {
     /// <summary>
     /// 异步得到数据的委托
@@ -416,7 +415,7 @@ namespace IoRyWCFClientV5
 
         public ModelClassDeliver ConvertDeliver(ydhDeliver yd)
         {
-            ModelClassDeliver md = new IoRyWCFClientV5.ModelClassDeliver();
+            ModelClassDeliver md = new ModelClassDeliver();
             md.DataType = yd.DataType;
             md.Exstr = yd.Exstr;
             md.FunctionName = yd.FunctionName;

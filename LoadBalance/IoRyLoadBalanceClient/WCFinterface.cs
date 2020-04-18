@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using System.ServiceModel;
 
-namespace yezhanbafang.fw.LoadBalance
+namespace yezhanbafang.fw.WCF
 {
     /// <summary>
     /// WCF接口

@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<classforms>
+  <classform>
+    <className>Users</className>
+    <Property>
+      <column>1</column>
+      <row>1</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>index_int</name>
+      <displayname>序号</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>2</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>loginname_str</name>
+      <displayname>登录名称</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>3</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>pwd_str</name>
+      <displayname>密码</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>4</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>name_str</name>
+      <displayname>姓名</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>5</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>type_str</name>
+      <displayname>用户类型</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>6</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>power_str</name>
+      <displayname>用户权限</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+  </classform>
+  <classform>
+    <className>PICC</className>
+    <Property>
+      <column>1</column>
+      <row>1</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>index_int</name>
+      <displayname>序号</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>2</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>name_str</name>
+      <displayname>姓名</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>3</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>patientid_int</name>
+      <displayname>住院号</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>4</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>dep_str</name>
+      <displayname>科别</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>5</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>dg_tpye_str</name>
+      <displayname>导管类型</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>6</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>dg_size_str</name>
+      <displayname>导管型号</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>7</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>piwei_str</name>
+      <displayname>臂围</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>8</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>twcd_str</name>
+      <displayname>体外长度</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>9</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>silekou_int</name>
+      <displayname>思乐扣</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable>dict_yesno</comboTable>
+      <comboDisplay>display_str</comboDisplay>
+      <comboValue>key_int</comboValue>
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>10</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>feng_int</name>
+      <displayname>封</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>11</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>chong_int</name>
+      <displayname>冲</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>12</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>jietou_int</name>
+      <displayname>接头</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>13</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>fuliao_str</name>
+      <displayname>辅料</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>14</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>duse_str</name>
+      <displayname>堵塞</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>15</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>pizhen_str</name>
+      <displayname>皮疹</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>16</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>posun_str</name>
+      <displayname>破损</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>17</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>shenye_str</name>
+      <displayname>渗液</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>18</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>daoguanduanlie_str</name>
+      <displayname>导管断裂</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>19</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>zhongxinlixibao_str</name>
+      <displayname>中性粒细胞</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>1</column>
+      <row>20</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>weixianyinsu_int</name>
+      <displayname>危险因素</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>1</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>ganranzao_str</name>
+      <displayname>感染灶</displayname>
+      <valuetype>string</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>2</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>daoguanqiangshu_int</name>
+      <displayname>导管腔数</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>3</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>daoguansongru_int</name>
+      <displayname>导管送入</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>4</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>zhirujingmai_int</name>
+      <displayname>置入静脉</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>5</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>zhiguanbuwei_int</name>
+      <displayname>置管部位</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>6</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>zhiguanfangshi_int</name>
+      <displayname>置管方式</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>7</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>daoguanleixing_int</name>
+      <displayname>导管类型</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>8</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>ganranleixing_int</name>
+      <displayname>感染类型</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>9</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>ganranchengdu_int</name>
+      <displayname>感染程度</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>10</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>fare_int</name>
+      <displayname>发热</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>11</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>hanzhan_int</name>
+      <displayname>寒颤</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>12</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>hongzhong_int</name>
+      <displayname>红肿热痛</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>13</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>fenmiwu_int</name>
+      <displayname>分泌物</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>14</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>siwang_int</name>
+      <displayname>死亡</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>15</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>baguan_int</name>
+      <displayname>拔管</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>16</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>CRBSI_int</name>
+      <displayname>CRBSI与死亡直接关系</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+    <Property>
+      <column>2</column>
+      <row>17</row>
+      <height>28</height>
+      <width>320</width>
+      <textstart>110</textstart>
+      <textwidth>200</textwidth>
+      <name>zhiliaoxiaoguo_int</name>
+      <displayname>治疗效果</displayname>
+      <valuetype>int?</valuetype>
+      <isPassword />
+      <checkRepeat />
+      <comboTable />
+      <comboDisplay />
+      <comboValue />
+    </Property>
+  </classform>
+  <classform>
+    <className>dict_yesno</className>
+  </classform>
+</classforms>

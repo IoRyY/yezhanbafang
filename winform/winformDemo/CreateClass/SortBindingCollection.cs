@@ -1,0 +1,196 @@
+﻿﻿﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.ComponentModel;
+
+/************************************************************************************
+ * 作者 袁东辉 时间：2016-2
+ * Email windy_23762872@126.com 253625488@qq.com
+ * 作用 用来取得表或者视图,并且转换成类的集合
+ * VS版本 2010 2013
+ ***********************************************************************************/
+
+namespace CreateDataTableTool
+{
+    /// <summary>
+    /// 自定义绑定列表类 2016年 参考网上代码
+    /// </summary>
+    /// <typeparam name="T">列表对象类型</typeparam>
+    public class BindingCollection<T> : BindingList<T>
+    {
+        /// <summary>
+        /// 需要从此类中再次提取出集合,增加此方法
+        /// </summary>
+        /// <returns></returns>
+        public List<T> GetItems()
+        {
+            return this.Items as List<T>;
+        }
+
+        private bool isSorted;
+        private PropertyDescriptor sortProperty;
+        private ListSortDirection sortDirection;
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public BindingCollection()
+            : base()
+        {
+        }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="list">IList类型的列表对象</param>
+        public BindingCollection(IList<T> list)
+            : base(list)
+        {
+        }
+
+        /// <summary>
+        /// 自定义排序操作
+        /// </summary>
+        /// <param name="property"></param>
+        /// <param name="direction"></param>
+        protected override void ApplySortCore(PropertyDescriptor property, ListSortDirection direction)
+        {
+            //看意思是修改继承的类的面的Items集合的排序就能排序了
+            List<T> items = this.Items as List<T>;
+
+            if (items != null)
+            {
+                ObjectPropertyCompare<T> pc = new ObjectPropertyCompare<T>(property, direction);
+                items.Sort(pc);
+                isSorted = true;
+            }
+            else
+            {
+                isSorted = false;
+            }
+
+            sortProperty = property;
+            sortDirection = direction;
+
+            this.OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
+        }
+
+        /// <summary>
+        /// 获取一个值，指示列表是否已排序
+        /// </summary>
+        protected override bool IsSortedCore
+        {
+            get
+            {
+                return isSorted;
+            }
+        }
+
+        /// <summary>
+        /// 获取一个值，指示列表是否支持排序
+        /// </summary>
+        protected override bool SupportsSortingCore
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// 获取一个只，指定类别排序方向
+        /// </summary>
+        protected override ListSortDirection SortDirectionCore
+        {
+            get
+            {
+                return sortDirection;
+            }
+        }
+
+        /// <summary>
+        /// 获取排序属性说明符
+        /// </summary>
+        protected override PropertyDescriptor SortPropertyCore
+        {
+            get
+            {
+                return sortProperty;
+            }
+        }
+
+        /// <summary>
+        /// 移除默认实现的排序
+        /// </summary>
+        protected override void RemoveSortCore()
+        {
+            isSorted = false;
+            this.OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
+        }
+    }
+
+    /// <summary>
+    /// 具体的比较方法
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class ObjectPropertyCompare<T> : IComparer<T>
+    {
+        private PropertyDescriptor property;
+        private ListSortDirection direction;
+
+        // 构造函数
+        public ObjectPropertyCompare(PropertyDescriptor property, ListSortDirection direction)
+        {
+            this.property = property;
+            this.direction = direction;
+        }
+
+        // 实现IComparer中方法
+        public int Compare(T x, T y)
+        {
+            object xValue = x.GetType().GetProperty(property.Name).GetValue(x, null);
+            object yValue = y.GetType().GetProperty(property.Name).GetValue(y, null);
+
+
+            int returnValue;
+            //实测后,亲自加上了x,y为null时候的处理
+            if (xValue != null && xValue != null)
+            {
+                if (xValue is IComparable)
+                {
+                    returnValue = ((IComparable)xValue).CompareTo(yValue);
+                }
+                else if (xValue.Equals(yValue))
+                {
+                    returnValue = 0;
+                }
+                else
+                {
+                    returnValue = xValue.ToString().CompareTo(yValue.ToString());
+                }
+            }
+            else if (xValue == null && yValue != null)
+            {
+                returnValue = -1;
+            }
+            else if (xValue != null && yValue == null)
+            {
+                returnValue = 1;
+            }
+            else
+            {
+                returnValue = 0;
+            }
+
+            if (direction == ListSortDirection.Ascending)
+            {
+                return returnValue;
+            }
+            else
+            {
+                return returnValue * -1;
+            }
+        }
+    }
+}

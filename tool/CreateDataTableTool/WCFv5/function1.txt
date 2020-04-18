@@ -1,0 +1,26 @@
+﻿﻿﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text;
+
+/************************************************************************************
+ * 作者 袁东辉 时间：2016-1
+ * Email windy_23762872@126.com 253625488@qq.com
+ * 作用 从类->数据库的操作,可以直接方式,可以wcf方式,可以webapi方式
+ * VS版本 2010 2013
+ ***********************************************************************************/
+
+namespace CreateDataTableTool
+{
+    /// <summary>
+    /// 此静态类执行执行同步,异步的请
+    /// IoRyWCFClientV5.WCFClientV5 irf = new IoRyWCFClientV5.WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url);
+    /// irf.myAsnyGetDataSet += IC_myAsnyGetDataSet;
+    /// irf.myProgressBar = this.progressBar1;
+    /// irf.myGetDataSetAsync("select * from log_H", "vvv");
+    /// void IC_myAsnyGetDataSet(DataSet DS, object obj)
+    /// </summary>
+    public static class IoRyFunction
+    {
+        public static string cOperator = Dns.GetHostName();

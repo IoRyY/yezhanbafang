@@ -8,8 +8,8 @@
     <ProjectGuid>{B22F0455-A477-44F2-92AC-0C51D1030CA9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>yezhanbafang.fw.WCFClient</RootNamespace>
-    <AssemblyName>yezhanbafang.fw.WCFClient</AssemblyName>
+    <RootNamespace>yezhanbafang.fw.WCF.Client</RootNamespace>
+    <AssemblyName>yezhanbafang.fw.WCF.Client</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -30,7 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\yezhanbafang.fw.WCFClient.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\yezhanbafang.fw.WCF.Client.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

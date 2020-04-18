@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutQuery>
+  <Sql value="SELECT   sopreater_str as 操作者, type_str as 类型, tablename_str as 表名, SQL_str as [SQL],olddata_str as 旧数据, createtime_dt as 创建时间, log_data_GUID as ID
+            FROM      log_data where " />
+  <MyQuery display="操作者" value="sopreater_str" type="string" />
+  <MyQuery display="类型" value="type_str" type="string" />
+  <MyQuery display="表名" value="tablename_str" type="string" />
+  <MyQuery display="SQL" value="SQL_str" type="string" />
+  <MyQuery display="旧数据" value="olddata_str" type="string" />
+  <MyQuery display="创建时间" value="createtime_dt" type="datetime" />
+</OutQuery>

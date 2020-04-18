@@ -1,0 +1,11 @@
+﻿1.本demo支持数据库直连和WCF格式,编程上略有区别,WCF参考例子
+2.生成createClass时要注意,必须用默认命名空间CreateDataTableTool,因为classControlForm DLL中有部分内容写死了,已经踩雷一次了,千万要注意.
+3.目前classControlForm并不支持数据库中所有的类型.目前只支持string int decimal double 像时间,GUID类型,只在select时,在datagridview里显示即可.classxml不要配置这些类型的字段.
+4.用classControlForm生成和修改的时候,并不要求classxml配置当前表里的所有字段,
+一些其他字段可以直接在数据库里默认,或者在事件里面增加,例如生成时间和更新时间.update的时候,会根据主键再从数据库中获取一遍数据,所以datagridview里只要有主键就好.
+已经忘了一次了,看代码才想起来.
+5,配置里能设置配置多次check重复,例如用户表中的登录名不能重复,但是又不是主键的情况.
+6,配置里可以配置密码模式.
+7,配置里可以配置下拉模式.
+8,配置里可以修改控件位置,大小等.
+9,20190612在classControlForm加入了DateTime类型的支持

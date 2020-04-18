@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using System.ServiceModel;
 
-namespace WcfServiceLibrary
+namespace yezhanbafang.fw.WCF
 {
     /// <summary>
     /// WCF接口

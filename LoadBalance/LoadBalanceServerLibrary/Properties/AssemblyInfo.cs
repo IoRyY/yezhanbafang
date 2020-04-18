@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("负载均衡服务端DLL")]
-[assembly: AssemblyDescription("负载均衡服务端DLL")]
+[assembly: AssemblyTitle("WCF负载均衡服务端DLL")]
+[assembly: AssemblyDescription("WCF负载均衡服务端DLL")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("夜战八方")]
-[assembly: AssemblyProduct("负载均衡服务端DLL")]
+[assembly: AssemblyProduct("WCF负载均衡服务端DLL")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

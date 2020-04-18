@@ -1,0 +1,51 @@
+﻿
+        static IoRyWCFClientV5.WCFClientV5 ic = null;
+
+        public static IoRyWCFClientV5.WCFClientV5 IC
+        {
+            get
+            {
+                if (ic == null)
+                {
+                    ic = new IoRyWCFClientV5.WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url, true);
+                }
+                return ic;
+            }
+        }
+
+        /// <summary>
+        /// 执行sql语句们(仅对sqlserver)
+        /// </summary>
+        /// <param name="sql"></param>
+        public static void CallIoRyClass(string sql)
+        {
+            try
+            {
+                IC.SynExcutSqlTran(sql);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 执行sql语句with Log
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="cuser">执行者</param>
+        public static void CallIoRyClass(string sql, string cuser)
+        {
+            try
+            {
+                IC.SynExcutSqlTran(sql, cuser);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+    }
+}

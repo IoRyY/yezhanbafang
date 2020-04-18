@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<constring>
+  <!-- 这里的类型请输入 SQL,ACCESS 或者 Oracle-->
+  <type>SQL</type>
+  <!-- Data Source=192.168.0.21;Initial Catalog=test;Persist Security Info=True;User ID=sa;Password=sa -->
+  <!-- Data Source=IORYY-PC\SQLEXPRESS;Initial Catalog=AML;Integrated Security=True -->
+  <sqlserver>
+    <simple>Data Source=.;Initial Catalog=BXB2016;Integrated Security=True</simple>
+    <ip></ip>
+    <databasename>yuan</databasename>
+    <username></username>
+    <passwordencryption></passwordencryption>
+    <encryptKey></encryptKey>
+    <password>123</password>
+  </sqlserver>
+  <!-- Provider=Microsoft.Jet.OLEDB.4.0;Data Source=E:\xiangmu\IoRyClass\IoRyClass\123123.mdb;Jet OLEDB:Database Password=123 -->
+  <!-- Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\新建 Microsoft Office Access 应用程序.mdb" -->
+  <access>
+    <simple>Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\新建 Microsoft Office Access 应用程序.mdb</simple>
+    <path>E:\xiangmu\IoRyClass\IoRyClass\123123.mdb</path>
+    <passwordencryption></passwordencryption>
+    <encryptKey></encryptKey>
+    <password>123</password>
+  </access>
+  <!-- Provider=MSDAORA;Data Source=dbserver;User ID=name;Password=pwd     另一种 Provider=OraOledb.Oracle; -->
+  <Oracle>
+    <simple></simple>
+    <DataSource>yuan</DataSource>
+    <username></username>
+    <passwordencryption></passwordencryption>
+    <encryptKey></encryptKey>
+    <password>123</password>
+  </Oracle>
+</constring>

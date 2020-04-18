@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 
-namespace yezhanbafang.fw.LoadBalance.Client
+namespace yezhanbafang.fw.WCF.LoadBalance.Client
 {
     public delegate void GetDeliver(ydhDeliver mcd);
     public delegate void AsnyCallBll(string json, object obj);

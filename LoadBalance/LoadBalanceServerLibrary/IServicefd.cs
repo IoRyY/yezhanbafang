@@ -2,7 +2,7 @@
 using System.ServiceModel;
 using System.Collections.Generic;
 
-namespace yezhanbafang.fw.LoadBalance
+namespace yezhanbafang.fw.WCF
 {
     [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(ImyCallBack))]
     public interface ImyService

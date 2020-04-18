@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IoRyWCFClientV5
+namespace yezhanbafang.fw.WCF.Client
 {
     public class ModelClassDeliver
     {

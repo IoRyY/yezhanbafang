@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>夜战八方</Authors>
+    <Product>standard标准Oracle</Product>
+    <Description>standard标准Oracle</Description>
   </PropertyGroup>
 
   <ItemGroup>

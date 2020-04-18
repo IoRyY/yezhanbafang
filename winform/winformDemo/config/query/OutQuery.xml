@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutQuery>
+  <Sql value="SELECT   index_int as 序号, loginname_str as 登录名, name_str as 姓名, type_str as 用户类型, power_display_str as 权限, createtime_dt as 创建时间, changetime_dt as 修改时间
+FROM      V_user where " />
+  <MyQuery display="登录名" value="loginname_str" type="string" />
+  <MyQuery display="姓名" value="name_str" type="string" />
+  <MyQuery display="用户类型" value="type_str" type="string" />
+  <MyQuery display="权限" value="power_display_str" type="string" />
+  <MyQuery display="创建时间" value="createtime_dt" type="datetime" />
+  <MyQuery display="修改时间" value="changetime_dt" type="datetime" />
+</OutQuery>

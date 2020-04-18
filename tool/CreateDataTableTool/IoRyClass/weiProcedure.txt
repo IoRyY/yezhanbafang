@@ -1,0 +1,105 @@
+﻿
+        /// <summary>
+        /// 执行存储过程
+        /// </summary>
+        /// <returns></returns>
+        public DataSet IoRyExcute()
+        {
+            List<DbParameter> ld = new List<DbParameter>();
+            foreach (var item in LIC)
+            {
+                SqlParameter sp = new SqlParameter();
+                //这个转换实在是难看,但是目前没有好办法
+                switch (item.ioryType)
+                {
+                    case "DateTime?":
+                        sp.Value = Convert.ToDateTime(item.ioryValue);
+                        break;
+                    case "int?":
+                        sp.Value = Convert.ToInt32(item.ioryValue);
+                        break;
+                    case "decimal?":
+                        sp.Value = Convert.ToDecimal(item.ioryValue);
+                        break;
+                    case "double?":
+                        sp.Value = Convert.ToDouble(item.ioryValue);
+                        break;
+                    case "byte[]":
+                        sp.Value = System.Text.Encoding.UTF8.GetBytes(item.ioryValue);
+                        break;
+                    default:
+                        sp.Value = item.ioryValue;
+                        break;
+                }
+                sp.ParameterName = item.ioryName;
+                if (item.IsOut)
+                {
+                    sp.Direction = ParameterDirection.Output;
+                }
+                ld.Add(sp);
+            }
+            DataSet ds = IoRyFunction.CallIoRyProcedure(this.tablename, ld);
+            foreach (var item in ld)
+            {
+                if (item.Direction == ParameterDirection.Output)
+                {
+                    Type Ts = this.GetType();
+                    Ts.GetProperty(item.ParameterName).SetValue(this, item.Value, null);
+                }
+            }
+            return ds;
+        }
+
+        /// <summary>
+        /// 执行存储过程
+        /// </summary>
+        /// <param name="cuser">执行者</param>
+        /// <returns></returns>
+        public DataSet IoRyExcute(string cuser)
+        {
+            List<DbParameter> ld = new List<DbParameter>();
+            foreach (var item in LIC)
+            {
+                SqlParameter sp = new SqlParameter();
+                //这个转换实在是难看,但是目前没有好办法
+                switch (item.ioryType)
+                {
+                    case "DateTime?":
+                        sp.Value = Convert.ToDateTime(item.ioryValue);
+                        break;
+                    case "int?":
+                        sp.Value = Convert.ToInt32(item.ioryValue);
+                        break;
+                    case "decimal?":
+                        sp.Value = Convert.ToDecimal(item.ioryValue);
+                        break;
+                    case "double?":
+                        sp.Value = Convert.ToDouble(item.ioryValue);
+                        break;
+                    case "byte[]":
+                        sp.Value = System.Text.Encoding.UTF8.GetBytes(item.ioryValue);
+                        break;
+                    default:
+                        sp.Value = item.ioryValue;
+                        break;
+                }
+                sp.ParameterName = item.ioryName;
+                if (item.IsOut)
+                {
+                    sp.Direction = ParameterDirection.Output;
+                }
+                ld.Add(sp);
+            }
+            DataSet ds = IoRyFunction.CallIoRyProcedure(this.tablename, ld, cuser);
+            foreach (var item in ld)
+            {
+                if (item.Direction == ParameterDirection.Output)
+                {
+                    Type Ts = this.GetType();
+                    Ts.GetProperty(item.ParameterName).SetValue(this, item.Value, null);
+                }
+            }
+            return ds;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+﻿﻿﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+
+/************************************************************************************
+ * 作者 袁东辉 时间：2016-1 20200326 新增接口实现以及存储过程
+ * Email windy_23762872@126.com 253625488@qq.com
+ * 作用 从类->数据库的操作,可以直接方式,可以wcf方式,可以webapi方式
+ * VS版本 2010 2013 2019
+ ***********************************************************************************/
+
+namespace CreateDataTableTool
+{
+    public static class IoRyFunction
+    {
+        static IoRyNP.IoRyClass ic = null;
