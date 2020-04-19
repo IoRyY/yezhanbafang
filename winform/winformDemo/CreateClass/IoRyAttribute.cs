@@ -1,18 +1,14 @@
 ﻿﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /************************************************************************************
- * 作者 袁东辉 时间：2017-10
+ * 作者 袁东辉 时间：2017-10 20200401
  * Email windy_23762872@126.com 253625488@qq.com
  * 作用 用来控制每一列的各种属性,以便后续的增,删,改等处理
- * VS版本 2010 2013 2015
+ * VS版本 2010 2013 2015 2019
  * 通过此属性来控制显示层的文字描述
  ***********************************************************************************/
 
-namespace CreateDataTableTool
+namespace yezhanbafang.fw
 {
     [AttributeUsage(AttributeTargets.All)]
     public class IoRyDisPlayAttribute : Attribute

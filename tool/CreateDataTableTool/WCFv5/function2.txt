@@ -1,13 +1,13 @@
 ﻿
-        static IoRyWCFClientV5.WCFClientV5 ic = null;
+        static WCFClientV5 ic = null;
 
-        public static IoRyWCFClientV5.WCFClientV5 IC
+        public static WCFClientV5 IC
         {
             get
             {
                 if (ic == null)
                 {
-                    ic = new IoRyWCFClientV5.WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url, true);
+                    ic = new WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url, true);
                 }
                 return ic;
             }
@@ -21,7 +21,7 @@
         {
             try
             {
-                IC.SynExcutSqlTran(sql);
+                IC.ExcutSqlTran_Syn(sql);
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@
         {
             try
             {
-                IC.SynExcutSqlTran(sql, cuser);
+                IC.ExcutSqlTran_Syn(sql, cuser);
             }
             catch (Exception ex)
             {

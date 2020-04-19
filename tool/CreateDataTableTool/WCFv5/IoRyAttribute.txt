@@ -8,7 +8,7 @@
  * 通过此属性来控制显示层的文字描述
  ***********************************************************************************/
 
-namespace CreateDataTableTool
+namespace yezhanbafang.fw
 {
     [AttributeUsage(AttributeTargets.All)]
     public class IoRyDisPlayAttribute : Attribute

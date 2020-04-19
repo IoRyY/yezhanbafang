@@ -1,7 +1,5 @@
-﻿﻿﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
 
 /************************************************************************************
@@ -11,7 +9,7 @@ using System.ComponentModel;
  * VS版本 2010 2013
  ***********************************************************************************/
 
-namespace CreateDataTableTool
+namespace yezhanbafang.fw
 {
     /// <summary>
     /// 自定义绑定列表类 2016年 参考网上代码

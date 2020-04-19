@@ -637,7 +637,7 @@
             this.tb_namespace.Name = "tb_namespace";
             this.tb_namespace.Size = new System.Drawing.Size(213, 21);
             this.tb_namespace.TabIndex = 6;
-            this.tb_namespace.Text = "CreateDataTableTool";
+            this.tb_namespace.Text = "yezhanbafang.fw";
             // 
             // bt_createxml
             // 

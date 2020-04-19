@@ -1,11 +1,11 @@
-﻿
-        public static IoRyNP.IoRyClass IC
+﻿﻿
+        public static IoRyClass IC
         {
             get
             {
                 if (ic == null)
                 {
-                    ic = new IoRyNP.IoRyClass(AppDomain.CurrentDomain.BaseDirectory + IoRyClassXmlPath);
+                    ic = new IoRyClass(AppDomain.CurrentDomain.BaseDirectory + IoRyClassXmlPath);
 ﻿                }
                 return ic;
             }

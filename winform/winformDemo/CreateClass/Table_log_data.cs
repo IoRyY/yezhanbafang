@@ -11,7 +11,7 @@ using System.Data;
  * VS版本 2010 2013 2015 2019
  ***********************************************************************************/
 
-namespace CreateDataTableTool
+namespace yezhanbafang.fw
 {
     /// <summary>
     /// 自定义前缀+表名称为类名
@@ -398,7 +398,7 @@ namespace CreateDataTableTool
                 if (item.ioryValueNull == false && item.IsIdentity == false)
                 {
                     lscname.Add(item.ioryName);
-                    lscvalue.Add("'" + item.ioryValue.Replace("'", "''") + "'");
+                    lscvalue.Add("'" + item.ioryValue.Replace('\'', '"') + "'");
                 }
             }
             if (lscname.Count == 0)
@@ -423,7 +423,7 @@ namespace CreateDataTableTool
                 if (item.ioryValueNull == false && item.IsIdentity == false)
                 {
                     lscname.Add(item.ioryName);
-                    lscvalue.Add("'" + item.ioryValue.Replace("'", "''") + "'");
+                    lscvalue.Add("'" + item.ioryValue.Replace('\'', '"') + "'");
                 }
             }
             if (lscname.Count == 0)
@@ -457,7 +457,7 @@ namespace CreateDataTableTool
                             }
                             else
                             {
-                                lsset.Add(item.ioryName + "='" + item.ioryValue.Replace("'", "''") + "'");
+                                lsset.Add(item.ioryName + "='" + item.ioryValue.Replace('\'', '"') + "'");
                             }
                         }
                     }
@@ -500,7 +500,7 @@ namespace CreateDataTableTool
                             }
                             else
                             {
-                                lsset.Add(item.ioryName + "='" + item.ioryValue.Replace("'", "''") + "'");
+                                lsset.Add(item.ioryName + "='" + item.ioryValue.Replace('\'', '"') + "'");
                             }
                         }
                     }

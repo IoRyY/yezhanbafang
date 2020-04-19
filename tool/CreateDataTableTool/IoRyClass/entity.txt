@@ -8,7 +8,7 @@ using System.Data;
  * VS版本 2010 2013 2015 2019
  ***********************************************************************************/
 
-namespace CreateDataTableTool
+namespace yezhanbafang.fw
 {
     public class IoRyEntity<T> where T : IoRyView, new()
     {

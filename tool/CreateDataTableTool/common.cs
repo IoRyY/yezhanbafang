@@ -7,7 +7,7 @@ using System.IO;
 using yezhanbafang.fw.Core;
 
 /************************************************************************************
- * 作者 袁东辉 时间：2016-1 最后修改时间：2018-1
+ * 作者 袁东辉 时间：2016-1 最后修改时间：2020-4
  * Email windy_23762872@126.com 253625488@qq.com
  * 作用 2016BigProject http://blog.csdn.net/yuandonghuia/article/details/50514985
  * VS版本 2010 2013 2015
@@ -26,7 +26,7 @@ namespace yezhanbafang.fw.ORMTool
     {
         #region 预设变量
 
-        public static string inamespace = "CreateDataTableTool";
+        public static string inamespace = "yezhanbafang.fw";
         public static string prefix = "i";
         public static string calltype = "IoRyClass";
         public static string IoRyClassXML = null;
@@ -187,13 +187,13 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
                     mystr = myRead("IoRyClass\\IoRyAttribute.txt");
                     mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
                     myWrite(mystr, "IoRyAttribute");
-                    //调试的时候先把生成DLL去了,总是影响跟踪代码
-                    if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL"))
-                    {
-                        Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL");
-                    }
-                    System.IO.File.Copy("IoRyClass\\IoRyClass.dll", "CreateClass\\DLL\\IoRyClass.dll", true);
-                    System.IO.File.Copy("IoRyClass\\IoRyClass.xml", "CreateClass\\DLL\\IoRyClass.xml", true);
+                    //调试的时候先把生成DLL去了,总是影响跟踪代码 20200418 有了nuget不用再生成DLL了
+                    //if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL"))
+                    //{
+                    //    Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL");
+                    //}
+                    //System.IO.File.Copy("IoRyClass\\IoRyClass.dll", "CreateClass\\DLL\\IoRyClass.dll", true);
+                    //System.IO.File.Copy("IoRyClass\\IoRyClass.xml", "CreateClass\\DLL\\IoRyClass.xml", true);
                     System.IO.File.Copy("constring.xml", "CreateClass\\" + IoRyClassXML, true);
                     break;
                 case "WCF":
@@ -220,15 +220,15 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
                     mystr = myRead("WCFv5\\IoRyAttribute.txt");
                     mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
                     myWrite(mystr, "IoRyAttribute");
-                    //调试的时候先把生成DLL去了,总是影响跟踪代码
-                    if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL"))
-                    {
-                        Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL");
-                    }
-                    System.IO.File.Copy("WCFv5\\IoRyClass.dll", "CreateClass\\DLL\\IoRyClass.dll", true);
-                    System.IO.File.Copy("WCFv5\\IoRyWCFClientV5.dll", "CreateClass\\DLL\\IoRyWCFClientV5.dll", true);
-                    System.IO.File.Copy("WCFv5\\IoRyClass.xml", "CreateClass\\DLL\\IoRyClass.xml", true);
-                    System.IO.File.Copy("WCFv5\\IoRyWCFClientV5.xml", "CreateClass\\DLL\\IoRyWCFClientV5.xml", true);
+                    //调试的时候先把生成DLL去了,总是影响跟踪代码 20200418 有了nuget不用再生成DLL了
+                    //if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL"))
+                    //{
+                    //    Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL");
+                    //}
+                    //System.IO.File.Copy("WCFv5\\IoRyClass.dll", "CreateClass\\DLL\\IoRyClass.dll", true);
+                    //System.IO.File.Copy("WCFv5\\IoRyWCFClientV5.dll", "CreateClass\\DLL\\IoRyWCFClientV5.dll", true);
+                    //System.IO.File.Copy("WCFv5\\IoRyClass.xml", "CreateClass\\DLL\\IoRyClass.xml", true);
+                    //System.IO.File.Copy("WCFv5\\IoRyWCFClientV5.xml", "CreateClass\\DLL\\IoRyWCFClientV5.xml", true);
                     break;
                 case "WebAPI":
 

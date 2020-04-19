@@ -1,32 +1,42 @@
-﻿﻿﻿using System;
+﻿﻿﻿﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
-using yezhanbafang.fw.Core;
+using yezhanbafang.fw.WCF.Client;
 
 /************************************************************************************
- * 作者 袁东辉 时间：2016-1
+ * 作者 袁东辉 时间：2016-1 2020-4修改
  * Email windy_23762872@126.com 253625488@qq.com
  * 作用 从类->数据库的操作,可以直接方式,可以wcf方式,可以webapi方式
  * VS版本 2010 2013
  ***********************************************************************************/
 
-namespace CreateDataTableTool
+namespace yezhanbafang.fw
 {
+    /// <summary>
+    /// 此静态类执行执行同步,异步的请
+    /// IoRyWCFClientV5.WCFClientV5 irf = new IoRyWCFClientV5.WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url);
+    /// irf.myAsnyGetDataSet += IC_myAsnyGetDataSet;
+    /// irf.myProgressBar = this.progressBar1;
+    /// irf.myGetDataSetAsync("select * from log_H", "vvv");
+    /// void IC_myAsnyGetDataSet(DataSet DS, object obj)
+    /// </summary>
     public static class IoRyFunction
     {
-        static IoRyClass ic = null;
+        public static string cOperator = Dns.GetHostName();
+        public static string mxml = "constring.xml";
+        public static string url = "net.tcp://127.0.0.1:8090/yuan";﻿
+        static WCFClientV5 ic = null;
 
-        public static string IoRyClassXmlPath = "config\\constring.xml";
-﻿
-        public static IoRyClass IC
+        public static WCFClientV5 IC
         {
             get
             {
                 if (ic == null)
                 {
-                    ic = new IoRyClass(AppDomain.CurrentDomain.BaseDirectory + IoRyClassXmlPath);
-﻿                }
+                    ic = new WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url, true);
+                }
                 return ic;
             }
         }
@@ -39,7 +49,7 @@ namespace CreateDataTableTool
         {
             try
             {
-                IC.ExecuteSqlTran(sql);
+                IC.ExcutSqlTran_Syn(sql);
             }
             catch (Exception ex)
             {
@@ -56,12 +66,14 @@ namespace CreateDataTableTool
         {
             try
             {
-                IC.Log_ExecuteSqlTran(sql, cuser);
+                IC.ExcutSqlTran_Syn(sql, cuser);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
+
     }
 }

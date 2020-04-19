@@ -1,5 +1,4 @@
-﻿using CreateDataTableTool;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using yezhanbafang.fw.Core;
+using yezhanbafang.fw.WCF.Client;
 
 namespace yezhanbafang.fw.winform.Demo.test
 {
@@ -29,10 +29,17 @@ namespace yezhanbafang.fw.winform.Demo.test
 
         private void F_QueryEvent(string sql)
         {
-            //IoRyEntity<Users> iu = new CreateDataTableTool.IoRyEntity<CreateDataTableTool.Users>();
-            //BindingCollection<Users> lu = iu.GetSortdata_IoRyClass(sql);
+            //统一的方式
+            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
+
+            ////WCF
+            //IoRyEntity<Users> iu = new IoRyEntity<Users>();
+            //BindingCollection<Users> lu = iu.GetSortData_IoRyClass(sql);
             //this.dataGridView1.DataSource = lu;
-            this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
+
+            ////Core
+            //this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
+
             this.LastSql = sql;
         }
 
@@ -40,11 +47,17 @@ namespace yezhanbafang.fw.winform.Demo.test
         {
             string sql = string.Format(@"SELECT   index_int as 序号, loginname_str as 登录名, name_str as 姓名, type_str as 用户类型, power_display_str as 权限, createtime_dt as 创建时间, changetime_dt as 修改时间
 FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.Value, this.dtp_end.Value);
-            //IoRyEntity<Users> iu = new CreateDataTableTool.IoRyEntity<CreateDataTableTool.Users>();
-            //BindingCollection<Users> lu = iu.GetSortdata_IoRyClass(sql);
+            //统一的方式
+            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
+
+            ////WCF
+            //IoRyEntity<Users> iu = new IoRyEntity<Users>();
+            //BindingCollection<Users> lu = iu.GetSortData_IoRyClass(sql);
             //this.dataGridView1.DataSource = lu;
-            this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
-            this.LastSql = sql;
+
+            ////Core
+            //this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
+            //this.LastSql = sql;
         }
 
         private void testForm1_Load(object sender, EventArgs e)
@@ -56,16 +69,24 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
             //            IoRyEntity<Users> iu = new CreateDataTableTool.IoRyEntity<CreateDataTableTool.Users>();
             //            BindingCollection<Users> lu = iu.GetSortdata_IoRyClass(sql);
             //            this.dataGridView1.DataSource = lu;
+
             string sql = string.Format(@"SELECT   index_int as 序号, loginname_str as 登录名, name_str as 姓名, type_str as 用户类型, power_display_str as 权限, createtime_dt as 创建时间, changetime_dt as 修改时间
             FROM      V_user ");
-            this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
-            this.LastSql = sql;
-            //IoRyWCFClientV5.WCFClientV5的WCF例子
-            //IoRyWCFClientV5.WCFClientV5 wc5 = new IoRyWCFClientV5.WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url);
+
+            //统一的方式
+            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
+
+            ////Core
+            //this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
+            //this.LastSql = sql;
+
+            ////WCFClientV5的WCF例子
+            //WCFClientV5 wc5 = new WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url);
             //wc5.myAsnyGetDataSet += Wc5_myAsnyGetDataSet;
             //wc5.myProgressBar = ((MainForm.MainForm)this.MdiParent).toolStripProgressBar1.ProgressBar;
             //wc5.MyButtons = new List<Button> { this.bt_OK, this.bt_chaxun };
-            //wc5.myGetDataSetAsync(sql, null);
+            //wc5.GetDataSet_Async(sql, null);
+
 
             this.dtp_start.Value = DateTime.Now.AddDays(-1);
             this.dtp_end.Value = DateTime.Now.AddDays(1);
@@ -74,6 +95,7 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
 
         }
 
+        //WCF
         //private void Wc5_myAsnyGetDataSet(DataSet DS, object obj)
         //{
         //    this.dataGridView1.DataSource = DS.Tables[0];
@@ -81,13 +103,18 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
 
         void freshsql()
         {
-            //IoRyWCFClientV5.WCFClientV5 wc5 = new IoRyWCFClientV5.WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url);
+            //统一的方式
+            Base.MyTool.bindDataGridView_Async(this.dataGridView1, this.LastSql, IoRyFunction.IC);
+
+            //WCFClientV5 wc5 = new WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url);
             //wc5.myAsnyGetDataSet += Wc5_myAsnyGetDataSet;
             //wc5.myProgressBar = ((MainForm.MainForm)this.MdiParent).toolStripProgressBar1.ProgressBar;
             //wc5.MyButtons = new List<Button> { this.bt_OK, this.bt_chaxun };
-            //wc5.myGetDataSetAsync(this.LastSql, null);
-            IoRyClass ic = IoRyFunction.IC;
-            this.dataGridView1.DataSource = ic.GetTable(this.LastSql);
+            //wc5.GetDataSet_Async(this.LastSql, null);
+
+            ////Core
+            //IoRyClass ic = IoRyFunction.IC;
+            //this.dataGridView1.DataSource = ic.GetTable(this.LastSql);
         }
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -149,7 +176,16 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
 
         private bool Cf_RepeatEvent(string sql)
         {
-            DataSet ds = IoRyFunction.IC.GetDataSet(sql);
+            //统一的方法
+            DataSet ds = Base.MyTool.GetDataSet(sql, IoRyFunction.IC);
+
+            ////Core
+            //DataSet ds = IoRyFunction.IC.GetDataSet(sql);
+
+            ////WCF
+            //DataSet ds = IoRyFunction.IC.GetDataSet_Syn(sql);
+
+
             if (ds.Tables[0].Rows.Count > 0)
             {
                 return true;

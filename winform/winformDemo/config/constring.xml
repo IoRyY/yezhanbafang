@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <constring>
-  <!-- 这里的类型请输入 SQL,ACCESS 或者 Oracle-->
+  <!-- 这里的类型请输入 SQL,ACCESS Oracle Excel-->
   <type>SQL</type>
   <!-- Data Source=192.168.0.21;Initial Catalog=test;Persist Security Info=True;User ID=sa;Password=sa -->
   <!-- Data Source=IORYY-PC\SQLEXPRESS;Initial Catalog=AML;Integrated Security=True -->
   <sqlserver>
-    <simple>Data Source=10.1.13.156;Initial Catalog=xyslab;Persist Security Info=True;User ID=sa;Password=abc_123</simple>
-    <ip>127.0.0.1</ip>
-    <databasename>yuan</databasename>
-    <username></username>
-    <passwordencryption></passwordencryption>
-    <encryptKey></encryptKey>
+    <simple>Data Source=.;Initial Catalog=gaokao;Persist Security Info=True;User ID=sa;Password=sa</simple>
+    <ip>.</ip>
+    <databasename>gaokao</databasename>
+    <username>sa</username>
+    <passwordencryption>ImP/TtVrp/w=</passwordencryption>
+    <encryptKey>ydhydhnb</encryptKey>
     <password>123</password>
   </sqlserver>
   <!-- Provider=Microsoft.Jet.OLEDB.4.0;Data Source=E:\xiangmu\IoRyClass\IoRyClass\123123.mdb;Jet OLEDB:Database Password=123 -->
@@ -25,10 +25,14 @@
   <!-- Provider=MSDAORA;Data Source=dbserver;User ID=name;Password=pwd     另一种 Provider=OraOledb.Oracle; -->
   <Oracle>
     <simple></simple>
+    <Provider>OraOledb.Oracle</Provider>
     <DataSource>yuan</DataSource>
     <username></username>
     <passwordencryption></passwordencryption>
     <encryptKey></encryptKey>
     <password>123</password>
   </Oracle>
+  <Excel>
+    <path>G:\a.xlsx</path>
+  </Excel>
 </constring>

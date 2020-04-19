@@ -1,5 +1,4 @@
-﻿using CreateDataTableTool;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +23,7 @@ namespace yezhanbafang.fw.winform.Demo.forms
         {
             string sql = string.Format(@"SELECT   IP_str as IP, UUID_GUID as UUID, key_str as [key], value_str as value, createtime_dt as 创建时间, changetime_dt as 修改时间, PC_config_GUID as ID
             FROM      PC_config; ");
-            this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
+            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
             this.LastSql = sql;
             this.dtp_start.Value = DateTime.Now.AddDays(-1);
             this.dtp_end.Value = DateTime.Now.AddDays(1);
@@ -44,15 +43,14 @@ namespace yezhanbafang.fw.winform.Demo.forms
 
         void freshsql()
         {
-            IoRyClass ic = IoRyFunction.IC;
-            this.dataGridView1.DataSource = ic.GetTable(this.LastSql);
+            Base.MyTool.bindDataGridView_Async(this.dataGridView1, this.LastSql, IoRyFunction.IC);
         }
 
         private void bt_OK_Click(object sender, EventArgs e)
         {
             string sql = string.Format(@"SELECT   IP_str as IP, UUID_GUID as UUID, key_str as [key], value_str as value, createtime_dt as 创建时间, changetime_dt as 修改时间, PC_config_GUID as ID
             FROM      PC_config where createtime_dt between '{0}' and  '{1}'", this.dtp_start.Value, this.dtp_end.Value);
-            this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
+            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
             this.LastSql = sql;
         }
 
@@ -64,7 +62,7 @@ namespace yezhanbafang.fw.winform.Demo.forms
         }
         private void F_QueryEvent(string sql)
         {
-            this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
+            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
             this.LastSql = sql;
         }
 
@@ -92,7 +90,7 @@ namespace yezhanbafang.fw.winform.Demo.forms
                 ip = Program.PCIP;
             }
             sql += string.Format(" and IP_str='{0}'", ip);
-            DataSet ds = IoRyFunction.IC.GetDataSet(sql);
+            DataSet ds = Base.MyTool.GetDataSet(sql, IoRyFunction.IC);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 return true;
@@ -140,7 +138,7 @@ namespace yezhanbafang.fw.winform.Demo.forms
         private void bt_IP_Click(object sender, EventArgs e)
         {
             string sql = string.Format("select * from PC_config where IP_str='{0}'", this.txt_IP.Text.Trim().Replace("'", "''"));
-            DataTable dt = IoRyFunction.IC.GetTable(sql);
+            DataTable dt = Base.MyTool.GetDataSet(sql, IoRyFunction.IC).Tables[0];
             if (dt.Rows.Count == 0)
             {
                 if (MessageBox.Show("找不到此IP的UUID记录!是否继续?", "是否继续?", MessageBoxButtons.YesNo) == DialogResult.No)

@@ -4,44 +4,44 @@ using System.Linq;
 using System.Data;
 
 /************************************************************************************
- * 作者 袁东辉 时间：2016-1 最后修改时间：2018-1
+ * 作者 袁东辉 时间：2016-1 最后修改时间：2020-3
  * Email windy_23762872@126.com 253625488@qq.com
  * 博客 2016BigProject http://blog.csdn.net/yuandonghuia/article/details/50514985
- * 作用 代码生成器生成的View和Table类
- * VS版本 2010 2013 2015
+ * 作用 代码生成器生成的Table类
+ * VS版本 2010 2013 2015 2019
  ***********************************************************************************/
 
-namespace CreateDataTableTool
+namespace yezhanbafang.fw
 {
     /// <summary>
     /// 自定义前缀+表名称为类名
     /// </summary>
     public class Users : IoRyRow
     {
-        int? _index_int;
+        int? _Users_GUID;
         /// <summary>
-        /// 数据库index_int字段
+        /// 数据库Users_GUID字段
         /// </summary>
         [IoRyDisPlay(DisplayName ="")]
-        public int? index_int
+        public int? Users_GUID
         {
             get
             {
-                return _index_int;
+                return _Users_GUID;
             }
             set
             {
-                _index_int = value;
+                _Users_GUID = value;
                 if (value == null)
                 {
-                    LIC.Where(x => x.ioryName == "index_int").First().ioryValueNull = true;
+                    LIC.Where(x => x.ioryName == "Users_GUID").First().ioryValueNull = true;
                 }
                 else
                 {
-                    LIC.Where(x => x.ioryName == "index_int").First().ioryValueNull = false;
+                    LIC.Where(x => x.ioryName == "Users_GUID").First().ioryValueNull = false;
                 }
-                LIC.Where(x => x.ioryName == "index_int").First().ioryValueChange = true;
-                LIC.Where(x => x.ioryName == "index_int").First().ioryValue = Convert.ToString(value);
+                LIC.Where(x => x.ioryName == "Users_GUID").First().ioryValueChange = true;
+                LIC.Where(x => x.ioryName == "Users_GUID").First().ioryValue = Convert.ToString(value);
             }
         }
 
@@ -96,6 +96,33 @@ namespace CreateDataTableTool
                 }
                 LIC.Where(x => x.ioryName == "pwd_str").First().ioryValueChange = true;
                 LIC.Where(x => x.ioryName == "pwd_str").First().ioryValue = Convert.ToString(value);
+            }
+        }
+
+        string _pwd_encrypt_str;
+        /// <summary>
+        /// 数据库pwd_encrypt_str字段
+        /// </summary>
+        [IoRyDisPlay(DisplayName ="")]
+        public string pwd_encrypt_str
+        {
+            get
+            {
+                return _pwd_encrypt_str;
+            }
+            set
+            {
+                _pwd_encrypt_str = value;
+                if (value == null)
+                {
+                    LIC.Where(x => x.ioryName == "pwd_encrypt_str").First().ioryValueNull = true;
+                }
+                else
+                {
+                    LIC.Where(x => x.ioryName == "pwd_encrypt_str").First().ioryValueNull = false;
+                }
+                LIC.Where(x => x.ioryName == "pwd_encrypt_str").First().ioryValueChange = true;
+                LIC.Where(x => x.ioryName == "pwd_encrypt_str").First().ioryValue = Convert.ToString(value);
             }
         }
 
@@ -239,9 +266,10 @@ namespace CreateDataTableTool
         /// </summary>
         public void SetData(DataRow dr)
         {
-            index_int = dr.Field<int?>("index_int");
+            Users_GUID = dr.Field<int?>("Users_GUID");
             loginname_str = dr.Field<string>("loginname_str");
             pwd_str = dr.Field<string>("pwd_str");
+            pwd_encrypt_str = dr.Field<string>("pwd_encrypt_str");
             name_str = dr.Field<string>("name_str");
             type_str = dr.Field<string>("type_str");
             power_str = dr.Field<string>("power_str");
@@ -259,7 +287,7 @@ namespace CreateDataTableTool
         {
             LIC.Add(new IoRyCol
             {
-                ioryName = "index_int",
+                ioryName = "Users_GUID",
                 ioryType = "int?",
                 IsIdentity = true,
                 IsKey = true,
@@ -280,6 +308,16 @@ namespace CreateDataTableTool
             LIC.Add(new IoRyCol
             {
                 ioryName = "pwd_str",
+                ioryType = "string",
+                IsIdentity = false,
+                IsKey = false,
+                IsNull = true,
+                ioryValueNull = true,
+                ioryValueChange = false
+            });
+            LIC.Add(new IoRyCol
+            {
+                ioryName = "pwd_encrypt_str",
                 ioryType = "string",
                 IsIdentity = false,
                 IsKey = false,

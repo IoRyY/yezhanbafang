@@ -1,5 +1,4 @@
-﻿using CreateDataTableTool;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,7 +21,7 @@ namespace yezhanbafang.fw.winform.Demo.forms
         {
             string sql = string.Format(@"SELECT top 200  IP_str as 操作IP, sopreater_str as 操作者, type_str as 类型, tablename_str as 表名, SQL_str as [SQL],olddata_str as 旧数据, createtime_dt as 创建时间,UUID_GUID_str as UUID, log_data_GUID as ID
             FROM      log_data order by createtime_dt desc; ");
-            this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
+            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
             this.LastSql = sql;
             this.dtp_start.Value = DateTime.Now.AddDays(-1);
             this.dtp_end.Value = DateTime.Now.AddDays(1);
@@ -32,7 +31,9 @@ namespace yezhanbafang.fw.winform.Demo.forms
         {
             string sql = string.Format(@"SELECT  IP_str as 操作IP, sopreater_str as 操作者, type_str as 类型, tablename_str as 表名, SQL_str as [SQL],olddata_str as 旧数据, createtime_dt as 创建时间,UUID_GUID_str as UUID, log_data_GUID as ID
             FROM      log_data where createtime_dt between '{0}' and  '{1}'", this.dtp_start.Value, this.dtp_end.Value);
-            this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
+            //Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
+            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC,
+                ((MainForm.MainForm)this.MdiParent).toolStripProgressBar1.ProgressBar, new List<Button> { this.bt_OK, this.bt_chaxun });
             this.LastSql = sql;
         }
 
@@ -44,7 +45,7 @@ namespace yezhanbafang.fw.winform.Demo.forms
         }
         private void F_QueryEvent(string sql)
         {
-            this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
+            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
             this.LastSql = sql;
         }
     }

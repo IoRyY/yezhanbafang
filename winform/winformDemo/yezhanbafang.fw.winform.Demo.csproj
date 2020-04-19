@@ -84,16 +84,15 @@
     <Compile Include="Base\bg.Designer.cs">
       <DependentUpon>bg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Base\MyTool.cs" />
     <Compile Include="CreateClass\IoRyAttribute.cs" />
     <Compile Include="CreateClass\IoRyCol.cs" />
     <Compile Include="CreateClass\IoRyEntity.cs" />
     <Compile Include="CreateClass\IoRyFunction.cs" />
     <Compile Include="CreateClass\IoRyRowInterface.cs" />
     <Compile Include="CreateClass\SortBindingCollection.cs" />
-    <Compile Include="CreateClass\Table_Config.cs" />
     <Compile Include="CreateClass\Table_log_data.cs" />
     <Compile Include="CreateClass\Table_PC_config.cs" />
-    <Compile Include="CreateClass\Table_PowerTeams.cs" />
     <Compile Include="CreateClass\Table_Users.cs" />
     <Compile Include="forms\logdata.cs">
       <SubType>Form</SubType>
@@ -182,6 +181,10 @@
     <ProjectReference Include="..\..\framework\yezhanbafang.fw.Core\yezhanbafang.fw.Core.csproj">
       <Project>{877c5076-dab7-4b67-8759-a0ca3c9bbbb4}</Project>
       <Name>yezhanbafang.fw.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WCF\IoRyWCFClient5.0\yezhanbafang.fw.WCF.Client.csproj">
+      <Project>{b22f0455-a477-44f2-92ac-0c51d1030ca9}</Project>
+      <Name>yezhanbafang.fw.WCF.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\classControlForm\yezhanbafang.fw.winform.classControlForm.csproj">
       <Project>{81ce80a5-b500-4e51-b6cb-18e26ebbca07}</Project>
