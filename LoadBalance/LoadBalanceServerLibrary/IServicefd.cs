@@ -112,9 +112,17 @@ namespace yezhanbafang.fw.WCF
         /// </summary>
         public string Function { get; set; }
         /// <summary>
+        /// 方法路由名称
+        /// </summary>
+        public string RouteName { get; set; }
+        /// <summary>
         /// Json的入参
         /// </summary>
-        public string JsonParm { get; set; }
+        public string JsonIn { get; set; }
+        /// <summary>
+        /// Json的出参
+        /// </summary>
+        public string JsonOut { get; set; }
         /// <summary>
         /// 消息是否正常
         /// </summary>
