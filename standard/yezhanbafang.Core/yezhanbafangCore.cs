@@ -164,7 +164,7 @@ namespace yezhanbafang.sd.Core
             XmlNode contype = xmlDoc.SelectSingleNode("constring/type");
             if (contype.InnerText.Trim() != "MSSQL" && contype.InnerText.Trim() != "ACCESS" && contype.InnerText.Trim() != "Oracle" && contype.InnerText.Trim() != "Excel")
             {
-                throw new Exception("数据连接类型没填写,或者填写错误,只能填写SQL;ACCESS;Oracle;Excel并且区分大小写!");
+                throw new Exception("数据连接类型没填写,或者填写错误,只能填写MSSQL;Oracle;MySQL;ACCESS;Excel并且区分大小写!");
             }
 
             if (contype.InnerText.Trim() == "MSSQL")//sql

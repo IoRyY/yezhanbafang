@@ -106,5 +106,39 @@ namespace yezhanbafang.fw.winform.Demo.Base
         {
             ((DataGridView)obj).DataSource = DS.Tables[0];
         }
+
+        /// <summary>
+        /// 获取小dataset-webapi
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="ic"></param>
+        /// <returns></returns>
+        public static DataSet GetDataSet(string sql, fw.WebAPI.DLL.Client.WebApiDLLClient ic)
+        {
+            return ic.GetDataSet_Syn(sql);
+        }
+
+        /// <summary>
+        /// WebApi的同步方式
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="sql"></param>
+        /// <param name="ic"></param>
+        public static void bindDataGridView_Syn(DataGridView dgv, string sql, fw.WebAPI.DLL.Client.WebApiDLLClient ic)
+        {
+            dgv.DataSource = ic.GetDataSet_Syn(sql).Tables[0];
+        }
+
+        /// <summary>
+        /// WebApi的同步方式 未完成
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="sql"></param>
+        /// <param name="ic"></param>
+        public static void bindDataGridView_Async(DataGridView dgv, string sql, fw.WebAPI.DLL.Client.WebApiDLLClient ic)
+        {
+            dgv.DataSource = ic.GetDataSet_Syn(sql).Tables[0];
+        }
+
     }
 }

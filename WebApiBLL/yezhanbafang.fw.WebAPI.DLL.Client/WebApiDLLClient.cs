@@ -1,12 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Threading.Tasks;
-using yezhanbafang.sd.Core;
+using yezhanbafang.fw.Core;
 
-namespace yezhanbafang.sd.WebAPI.DLL.Client
+namespace yezhanbafang.fw.WebAPI.DLL.Client
 {
     /// <summary>
     /// 
@@ -25,6 +24,11 @@ namespace yezhanbafang.sd.WebAPI.DLL.Client
             WC = new WebApiClient(url, configpath);
         }
 
+        void Core2Framework(BllClass bc)
+        {
+            bc.JsonOut = bc.JsonOut.Replace("System.Guid, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e", "System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089");
+        }
+
         #region 和WebApi交互的方法
 
         /// <summary>
@@ -35,7 +39,9 @@ namespace yezhanbafang.sd.WebAPI.DLL.Client
         public async Task<DataSet> GetDataSet_Async(string sql)
         {
             BllClass bc = await WC.CallWebAPI_Async(sql, "GetDataSet");
-            return JsonConvert.DeserializeObject<DataSet>(bc.JsonOut, new Newtonsoft.Json.Converters.DataSetConverter());
+            this.Core2Framework(bc);
+            byte[] mbs = IoRyClass.StringToBytes(bc.JsonOut);
+            return IoRyClass.RetrieveXmlDataSet(mbs);
         }
 
         /// <summary>
@@ -47,7 +53,9 @@ namespace yezhanbafang.sd.WebAPI.DLL.Client
         public async Task<DataSet> GetDataSet_Async(string sql, string cuser)
         {
             BllClass bc = await WC.CallWebAPI_Async(sql, cuser, "GetDataSet");
-            return JsonConvert.DeserializeObject<DataSet>(bc.JsonOut, new Newtonsoft.Json.Converters.DataSetConverter());
+            this.Core2Framework(bc);
+            byte[] mbs = IoRyClass.StringToBytes(bc.JsonOut);
+            return IoRyClass.RetrieveXmlDataSet(mbs);
         }
 
         /// <summary>
@@ -78,7 +86,9 @@ namespace yezhanbafang.sd.WebAPI.DLL.Client
         public async Task<DataSet> ExcutSP_Async(string SPname, List<DbParameter> DbParameterS)
         {
             BllClass bc = await WC.CallWebAPI_Async(SPname, DbParameterS, "ExcutSP");
-            return JsonConvert.DeserializeObject<DataSet>(bc.JsonOut, new Newtonsoft.Json.Converters.DataSetConverter());
+            this.Core2Framework(bc);
+            byte[] mbs = IoRyClass.StringToBytes(bc.JsonOut);
+            return IoRyClass.RetrieveXmlDataSet(mbs);
         }
 
 
@@ -90,12 +100,9 @@ namespace yezhanbafang.sd.WebAPI.DLL.Client
         public DataSet GetDataSet_Syn(string sql)
         {
             BllClass bc = WC.CallWebAPI_Syn(sql, "GetDataSet");
-            //bc.JsonOut = bc.JsonOut.Replace("System.Guid, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e", "System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089");
-            //byte[] mbs = Convert.FromBase64String(bc.JsonOut);
-            //byte[] mbs = YezhanbafangCore.StringToBytes(bc.JsonOut);
-            //DataSet ds = YezhanbafangCore.RetrieveXmlDataSet(mbs);
-            DataSet ds = JsonConvert.DeserializeObject<DataSet>(bc.JsonOut, new Newtonsoft.Json.Converters.DataSetConverter());
-            return ds;
+            this.Core2Framework(bc);
+            byte[] mbs = IoRyClass.StringToBytes(bc.JsonOut);
+            return IoRyClass.RetrieveXmlDataSet(mbs);
         }
 
         /// <summary>
@@ -107,7 +114,9 @@ namespace yezhanbafang.sd.WebAPI.DLL.Client
         public DataSet GetDataSet_Syn(string sql, string cuser)
         {
             BllClass bc = WC.CallWebAPI_Syn(sql, cuser, "GetDataSet_Log");
-            return JsonConvert.DeserializeObject<DataSet>(bc.JsonOut, new Newtonsoft.Json.Converters.DataSetConverter());
+            this.Core2Framework(bc);
+            byte[] mbs = IoRyClass.StringToBytes(bc.JsonOut);
+            return IoRyClass.RetrieveXmlDataSet(mbs);
         }
 
         /// <summary>
@@ -142,7 +151,9 @@ namespace yezhanbafang.sd.WebAPI.DLL.Client
         public DataSet ExcutSP_Syn(string SPname, List<DbParameter> DbParameterS)
         {
             BllClass bc = WC.CallWebAPI_Syn(SPname, DbParameterS, "ExcutSP");
-            return JsonConvert.DeserializeObject<DataSet>(bc.JsonOut, new Newtonsoft.Json.Converters.DataSetConverter());
+            this.Core2Framework(bc);
+            byte[] mbs = IoRyClass.StringToBytes(bc.JsonOut);
+            return IoRyClass.RetrieveXmlDataSet(mbs);
         }
 
         #endregion

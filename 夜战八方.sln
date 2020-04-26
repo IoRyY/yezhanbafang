@@ -65,7 +65,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yezhanbafang.sd.WebAPI.Serv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yezhanbafang.sd.WebAPI.BLL.Client", "WebApiBLL\yezhanbafang.sd.WebAPI.BLL.Client\yezhanbafang.sd.WebAPI.BLL.Client.csproj", "{417AFE08-C73C-47DC-A43B-D2AABFDDF81A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.sd.WebAPI.DLL.Client", "WebApiBLL\yezhanbafang.sd.WebAPI.DLL.Client\yezhanbafang.sd.WebAPI.DLL.Client.csproj", "{FF021696-5A4E-4093-88A7-CD71B6FFBC39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yezhanbafang.sd.WebAPI.DLL.Client", "WebApiBLL\yezhanbafang.sd.WebAPI.DLL.Client\yezhanbafang.sd.WebAPI.DLL.Client.csproj", "{FF021696-5A4E-4093-88A7-CD71B6FFBC39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.fw.WebAPI.DLL.Client", "WebApiBLL\yezhanbafang.fw.WebAPI.DLL.Client\yezhanbafang.fw.WebAPI.DLL.Client.csproj", "{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -253,6 +255,14 @@ Global
 		{FF021696-5A4E-4093-88A7-CD71B6FFBC39}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FF021696-5A4E-4093-88A7-CD71B6FFBC39}.Release|x86.ActiveCfg = Release|Any CPU
 		{FF021696-5A4E-4093-88A7-CD71B6FFBC39}.Release|x86.Build.0 = Release|Any CPU
+		{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B}.Debug|x86.Build.0 = Debug|Any CPU
+		{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B}.Release|x86.ActiveCfg = Release|Any CPU
+		{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -281,6 +291,7 @@ Global
 		{B329DB53-0730-4CF1-B79B-A698A61F585B} = {62C6D9FB-375A-4D65-B33E-70D80CBF5D43}
 		{417AFE08-C73C-47DC-A43B-D2AABFDDF81A} = {62C6D9FB-375A-4D65-B33E-70D80CBF5D43}
 		{FF021696-5A4E-4093-88A7-CD71B6FFBC39} = {62C6D9FB-375A-4D65-B33E-70D80CBF5D43}
+		{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B} = {62C6D9FB-375A-4D65-B33E-70D80CBF5D43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4CC346A1-B2AF-48E2-B3D2-802FC493D8C3}

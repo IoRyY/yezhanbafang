@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace yezhanbafang.sd.WebAPI
+namespace yezhanbafang.fw.WebAPI
 {
     /// <summary>
     /// 20200426 取消加密的方式,外层的https的方式本身就加密了,不用额外再搞了.

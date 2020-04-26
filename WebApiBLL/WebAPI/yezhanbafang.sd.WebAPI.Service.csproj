@@ -14,5 +14,11 @@
     <ProjectReference Include="..\..\standard\yezhanbafang.MSSql\yezhanbafang.sd.MSSQL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="config\constring.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>

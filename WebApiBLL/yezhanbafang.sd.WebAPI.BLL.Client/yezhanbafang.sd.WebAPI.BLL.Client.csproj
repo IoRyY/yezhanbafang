@@ -1,7 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Product>WebApi的BLL方式的客户端DLL</Product>
+    <Authors>夜战八方</Authors>
   </PropertyGroup>
 
 </Project>

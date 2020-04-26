@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using yezhanbafang.fw.WCF.Client;
+using yezhanbafang.fw.WebAPI.DLL.Client;
 
 /************************************************************************************
  * 作者 袁东辉 时间：2016-1 2020-4修改
@@ -24,18 +25,17 @@ namespace yezhanbafang.fw
     /// </summary>
     public static class IoRyFunction
     {
-        public static string cOperator = Dns.GetHostName();
-        public static string mxml = "constring.xml";
-        public static string url = "net.tcp://127.0.0.1:8090/yuan";﻿
-        static WCFClientV5 ic = null;
+        public static string IoRyClassXmlPath = "config\\constring.xml";
+        public static string WebApiUrl = "https://localhost:44373/api/DLL";
+        static WebApiDLLClient ic = null;
 
-        public static WCFClientV5 IC
+        public static WebApiDLLClient IC
         {
             get
             {
                 if (ic == null)
                 {
-                    ic = new WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url, true);
+                    ic = new WebApiDLLClient(IoRyFunction.WebApiUrl, IoRyFunction.IoRyClassXmlPath);
                 }
                 return ic;
             }

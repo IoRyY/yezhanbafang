@@ -1,18 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <constring>
-  <!-- 这里的类型请输入 MSSQL,ACCESS Oracle Excel-->
-  <type>ACCESS</type>
+  <!-- 这里的类型请输入 SQL,ACCESS Oracle Excel-->
+  <type>MSSQL</type>
   <!-- Data Source=192.168.0.21;Initial Catalog=test;Persist Security Info=True;User ID=sa;Password=sa -->
   <!-- Data Source=IORYY-PC\SQLEXPRESS;Initial Catalog=AML;Integrated Security=True -->
   <sqlserver>
-    <simple></simple>
-    <ip>127.0.0.1</ip>
-    <databasename>yuan</databasename>
+    <simple>Data Source=10.1.13.156;Initial Catalog=XYSLab;Persist Security Info=True;User ID=sa;Password=abc_123</simple>
+    <ip>.</ip>
+    <databasename>gaokao</databasename>
+    <username>sa</username>
+    <passwordencryption>ImP/TtVrp/w=</passwordencryption>
+    <encryptKey>ydhydhnb</encryptKey>
+    <password>123</password>
+  </sqlserver>
+  <!-- Database=liscp;Data Source=221.238.85.130;User Id=xhhm;Password=Xhhm1@3$5^;pooling=false;CharSet=utf8;port=3300 -->
+  <MySQL>
+    <simple>Database=db;Data Source=127.0.0.1;User Id=xhhm;Password=123;pooling=false;CharSet=utf8;port=3300</simple>
+    <ip></ip>
+    <port></port>
+    <databasename></databasename>
     <username></username>
     <passwordencryption></passwordencryption>
     <encryptKey></encryptKey>
-    <password>123</password>
-  </sqlserver>
+    <password></password>
+  </MySQL>
   <!-- Provider=Microsoft.Jet.OLEDB.4.0;Data Source=E:\xiangmu\IoRyClass\IoRyClass\123123.mdb;Jet OLEDB:Database Password=123 -->
   <!-- Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\新建 Microsoft Office Access 应用程序.mdb" -->
   <access>
