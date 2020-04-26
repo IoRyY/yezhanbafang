@@ -2,11 +2,11 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace yezhanbafang.sd.WebAPI.Client
+namespace yezhanbafang.sd.WebAPI.BLL.Client
 {
-    public class WebApiClient
+    public class WebApiBLLClient
     {
-        public async Task<string> CallWCF_Async(string bcin,string url)
+        public async Task<string> CallWebAPI_Async(string bcin, string url)
         {
             using (var client = new HttpClient())
             {
@@ -18,7 +18,7 @@ namespace yezhanbafang.sd.WebAPI.Client
                 return responseBody;
             }
         }
-        public string CallWCF_Syn(string bcin, string url)
+        public string CallWebAPI_Syn(string bcin, string url)
         {
             using (var client = new HttpClient())
             {

@@ -10,5 +10,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\standard\yezhanbafang.MSSql\yezhanbafang.sd.MSSQL.csproj" />
+  </ItemGroup>
+
 
 </Project>
