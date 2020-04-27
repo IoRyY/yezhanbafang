@@ -11,3 +11,5 @@ yezhanbafang.fw.ORMTool是个人写的以Core为核心的ORM工具以及自写�
 yezhanbafang.fw.WCF.AutoUpdate是在WCF的基础上实现了一个自动更新的插件,可以通过递归更新指定文件夹下的所有文件夹以及文件,并且是根据文件的MD5值比较判断文件是否更新.<br/>
 yezhanbafang.fw.winform.Demo是我个人类库的集大成者,它应用了上面ORM工具生成的类以及数据库配置文件,实现了数据表的自动CRUD(连界面都自动实现了),而且能通过WCF方式和数据库直连两种方式实现.并且应用上了上面的插件和类库.<br/>
 yezhanbafang.fw.MSSqlBakUp 是可以给非程序员使用的一个工具,可以用来备份Sqlserver数据库,以及实现异地备份(这里还应用到了我自写的短信平台服务,备份失败成功都有短信提醒,防止程序崩溃导致短信发送失败,只要没收到短信,也是不正常的情况)
+
+20200427在ORMTool中新增了WebAPI的方式,并且在winform.Demo中也同时实现了Core,WCF,WebAPI三种例子代码的合并类,现在可以在不动demo代码,只动ORMTool生成类的情况下直接切换Core,WCF,WebAPI三种方式,有点小牛逼
