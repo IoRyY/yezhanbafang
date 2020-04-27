@@ -565,6 +565,7 @@
             this.tb_webapi.Name = "tb_webapi";
             this.tb_webapi.Size = new System.Drawing.Size(213, 21);
             this.tb_webapi.TabIndex = 22;
+            this.tb_webapi.Text = "https://localhost:44373/api/DLL";
             // 
             // label17
             // 
@@ -637,7 +638,7 @@
             this.tb_namespace.Name = "tb_namespace";
             this.tb_namespace.Size = new System.Drawing.Size(213, 21);
             this.tb_namespace.TabIndex = 6;
-            this.tb_namespace.Text = "yezhanbafang.fw";
+            this.tb_namespace.Text = "yezhanbafang";
             // 
             // bt_createxml
             // 

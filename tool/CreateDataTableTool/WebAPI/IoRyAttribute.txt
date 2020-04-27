@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 
 /************************************************************************************
  * 作者 袁东辉 时间：2017-10 20200401
@@ -8,7 +8,7 @@
  * 通过此属性来控制显示层的文字描述
  ***********************************************************************************/
 
-namespace yezhanbafang.fw
+namespace yezhanbafang
 {
     [AttributeUsage(AttributeTargets.All)]
     public class IoRyDisPlayAttribute : Attribute

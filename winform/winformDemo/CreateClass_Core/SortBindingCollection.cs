@@ -9,7 +9,7 @@ using System.ComponentModel;
  * VS版本 2010 2013
  ***********************************************************************************/
 
-namespace yezhanbafang.fw
+namespace yezhanbafang
 {
     /// <summary>
     /// 自定义绑定列表类 2016年 参考网上代码

@@ -5,7 +5,7 @@
  * VS版本 2010 2013 2019
  ***********************************************************************************/
 
-namespace yezhanbafang.fw
+namespace yezhanbafang
 {
     public class IoRyCol
     {

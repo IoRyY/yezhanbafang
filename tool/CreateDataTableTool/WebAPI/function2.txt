@@ -1,0 +1,51 @@
+﻿
+        static WebApiDLLClient ic = null;
+
+        public static WebApiDLLClient IC
+        {
+            get
+            {
+                if (ic == null)
+                {
+                    ic = new WebApiDLLClient(IoRyFunction.WebApiUrl, IoRyFunction.IoRyClassXmlPath);
+                }
+                return ic;
+            }
+        }
+
+        /// <summary>
+        /// 执行sql语句们(仅对sqlserver)
+        /// </summary>
+        /// <param name="sql"></param>
+        public static void CallIoRyClass(string sql)
+        {
+            try
+            {
+                IC.ExcutSqlTran_Syn(sql);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 执行sql语句with Log
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="cuser">执行者</param>
+        public static void CallIoRyClass(string sql, string cuser)
+        {
+            try
+            {
+                IC.ExcutSqlTran_Syn(sql, cuser);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+    }
+}

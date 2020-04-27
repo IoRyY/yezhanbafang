@@ -9,7 +9,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription(@"
 2017-10-18 增加了根据CreateClass的Attribute属性
 2018-1-3 增加了存储过程支持
-2020-3 进行了大幅度的完善")]
+2020-3 进行了大幅度的完善
+2020-4 增加了WebAPI的方式")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("夜战八方")]
 [assembly: AssemblyProduct("自写的ORM工具,配合自写的Core以及自己的winform等更佳")]
@@ -35,5 +36,5 @@ using System.Runtime.InteropServices;
 // 可以指定所有这些值，也可以使用“内部版本号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.5.22.24")]
-[assembly: AssemblyFileVersion("2.5.22.24")]
+[assembly: AssemblyVersion("3.5.23.24")]
+[assembly: AssemblyFileVersion("3.5.23.24")]

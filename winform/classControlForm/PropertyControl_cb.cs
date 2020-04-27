@@ -34,7 +34,7 @@ namespace yezhanbafang.fw.winform.classControlForm
 
             string sql = "select * from " + pxml.Element("comboTable").Value.Replace("'", "''");
             Assembly assembly = Assembly.GetEntryAssembly(); // 获取调用此dll的程序集 
-            object obj = assembly.CreateInstance("CreateDataTableTool.IoRyEntity`1[CreateDataTableTool." + pxml.Element("comboTable").Value + "]");
+            object obj = assembly.CreateInstance("yezhanbafang.IoRyEntity`1[yezhanbafang." + pxml.Element("comboTable").Value + "]");
             if (obj == null)
             {
                 throw new Exception("创建[" + pxml.Element("comboTable").Value + "]实例失败,请查询是否存在此表或者视图,或者CreateClass是否创建!");

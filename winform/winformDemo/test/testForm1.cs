@@ -27,19 +27,14 @@ namespace yezhanbafang.fw.winform.Demo.test
             f.ShowDialog();
         }
 
+        /// <summary>
+        /// WCF Core WebApi的方式一样 注意WCF还可以自动控制进度条与按钮状态
+        /// </summary>
+        /// <param name="sql"></param>
         private void F_QueryEvent(string sql)
         {
             //统一的方式
-            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
-
-            ////WCF
-            //IoRyEntity<Users> iu = new IoRyEntity<Users>();
-            //BindingCollection<Users> lu = iu.GetSortData_IoRyClass(sql);
-            //this.dataGridView1.DataSource = lu;
-
-            ////Core
-            //this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
-
+            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
             this.LastSql = sql;
         }
 
@@ -47,46 +42,18 @@ namespace yezhanbafang.fw.winform.Demo.test
         {
             string sql = string.Format(@"SELECT   index_int as 序号, loginname_str as 登录名, name_str as 姓名, type_str as 用户类型, power_display_str as 权限, createtime_dt as 创建时间, changetime_dt as 修改时间
 FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.Value, this.dtp_end.Value);
+            this.LastSql = sql;
             //统一的方式
-            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
-
-            ////WCF
-            //IoRyEntity<Users> iu = new IoRyEntity<Users>();
-            //BindingCollection<Users> lu = iu.GetSortData_IoRyClass(sql);
-            //this.dataGridView1.DataSource = lu;
-
-            ////Core
-            //this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
-            //this.LastSql = sql;
+            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
         }
 
         private void testForm1_Load(object sender, EventArgs e)
         {
-            //绑定方式datagridview方式1,createclass产生类集合,绑定,这样需要自己设置中文名
-            //绑定方式datagridview方式2,直接通过SQL语句产生datatable,绑定datatable
-            //            string sql = string.Format(@"SELECT   index_int as 序号, loginname_str as 登录名, name_str as 姓名, type_str as 用户类型, power_str as 权限, createtime_dt as 创建时间, changetime_dt as 修改时间
-            //FROM      dbo.Users ");
-            //            IoRyEntity<Users> iu = new CreateDataTableTool.IoRyEntity<CreateDataTableTool.Users>();
-            //            BindingCollection<Users> lu = iu.GetSortdata_IoRyClass(sql);
-            //            this.dataGridView1.DataSource = lu;
-
             string sql = string.Format(@"SELECT   index_int as 序号, loginname_str as 登录名, name_str as 姓名, type_str as 用户类型, power_display_str as 权限, createtime_dt as 创建时间, changetime_dt as 修改时间
             FROM      V_user ");
-
+            this.LastSql = sql;
             //统一的方式
-            Base.MyTool.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
-
-            ////Core
-            //this.dataGridView1.DataSource = IoRyFunction.IC.GetTable(sql);
-            //this.LastSql = sql;
-
-            ////WCFClientV5的WCF例子
-            //WCFClientV5 wc5 = new WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url);
-            //wc5.myAsnyGetDataSet += Wc5_myAsnyGetDataSet;
-            //wc5.myProgressBar = ((MainForm.MainForm)this.MdiParent).toolStripProgressBar1.ProgressBar;
-            //wc5.MyButtons = new List<Button> { this.bt_OK, this.bt_chaxun };
-            //wc5.GetDataSet_Async(sql, null);
-
+            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
 
             this.dtp_start.Value = DateTime.Now.AddDays(-1);
             this.dtp_end.Value = DateTime.Now.AddDays(1);
@@ -95,26 +62,11 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
 
         }
 
-        //WCF
-        //private void Wc5_myAsnyGetDataSet(DataSet DS, object obj)
-        //{
-        //    this.dataGridView1.DataSource = DS.Tables[0];
-        //}
-
         void freshsql()
         {
             //统一的方式
-            Base.MyTool.bindDataGridView_Async(this.dataGridView1, this.LastSql, IoRyFunction.IC);
+            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, this.LastSql, IoRyFunction.IC);
 
-            //WCFClientV5 wc5 = new WCFClientV5(IoRyFunction.mxml, IoRyFunction.cOperator, IoRyFunction.url);
-            //wc5.myAsnyGetDataSet += Wc5_myAsnyGetDataSet;
-            //wc5.myProgressBar = ((MainForm.MainForm)this.MdiParent).toolStripProgressBar1.ProgressBar;
-            //wc5.MyButtons = new List<Button> { this.bt_OK, this.bt_chaxun };
-            //wc5.GetDataSet_Async(this.LastSql, null);
-
-            ////Core
-            //IoRyClass ic = IoRyFunction.IC;
-            //this.dataGridView1.DataSource = ic.GetTable(this.LastSql);
         }
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -177,13 +129,7 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
         private bool Cf_RepeatEvent(string sql)
         {
             //统一的方法
-            DataSet ds = Base.MyTool.GetDataSet(sql, IoRyFunction.IC);
-
-            ////Core
-            //DataSet ds = IoRyFunction.IC.GetDataSet(sql);
-
-            ////WCF
-            //DataSet ds = IoRyFunction.IC.GetDataSet_Syn(sql);
+            DataSet ds = Base.MyToolCore.GetDataSet(sql, IoRyFunction.IC);
 
 
             if (ds.Tables[0].Rows.Count > 0)

@@ -11,3 +11,8 @@
 9,20190612在classControlForm加入了DateTime类型的支持
 10.20200419进行了大的修改,WCF方式和直连的方式,在最终界面上统一,用户甚至可以不知道用的是什么方式.
 11.20200426 增加了WebApi的方式,注意,这个方式要求项目framework版本462 不用这个的话可以要求项目版本4.0Clinet
+
+实现demo,首先随便建立一个数据库,然后通过ORMTool连接数据库,将log_data,PC_config表插入,
+然后可以生成Core,WebAPI,WCF三种模式的类,放到Demo中,然后再配置Core的配置文件,WebAPI服务的配置文件,WCF的配置文件
+这样demo里这两个例子就能跑起来了
+看例子的时候,最好看forms/PCconfig.cs这个例子,比较全 

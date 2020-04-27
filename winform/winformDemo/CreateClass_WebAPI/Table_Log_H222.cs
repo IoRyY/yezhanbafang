@@ -11,253 +11,145 @@ using System.Data;
  * VS版本 2010 2013 2015 2019
  ***********************************************************************************/
 
-namespace yezhanbafang.fw
+namespace yezhanbafang
 {
     /// <summary>
     /// 自定义前缀+表名称为类名
     /// </summary>
-    public class Users : IoRyRow
+    public class Log_H222 : IoRyRow
     {
-        int? _Users_GUID;
+        int? _int_index;
         /// <summary>
-        /// 数据库Users_GUID字段
+        /// 数据库int_index字段
         /// </summary>
         [IoRyDisPlay(DisplayName ="")]
-        public int? Users_GUID
+        public int? int_index
         {
             get
             {
-                return _Users_GUID;
+                return _int_index;
             }
             set
             {
-                _Users_GUID = value;
+                _int_index = value;
                 if (value == null)
                 {
-                    LIC.Where(x => x.ioryName == "Users_GUID").First().ioryValueNull = true;
+                    LIC.Where(x => x.ioryName == "int_index").First().ioryValueNull = true;
                 }
                 else
                 {
-                    LIC.Where(x => x.ioryName == "Users_GUID").First().ioryValueNull = false;
+                    LIC.Where(x => x.ioryName == "int_index").First().ioryValueNull = false;
                 }
-                LIC.Where(x => x.ioryName == "Users_GUID").First().ioryValueChange = true;
-                LIC.Where(x => x.ioryName == "Users_GUID").First().ioryValue = Convert.ToString(value);
+                LIC.Where(x => x.ioryName == "int_index").First().ioryValueChange = true;
+                LIC.Where(x => x.ioryName == "int_index").First().ioryValue = Convert.ToString(value);
             }
         }
 
-        string _loginname_str;
+        decimal? _ceshi;
         /// <summary>
-        /// 数据库loginname_str字段
+        /// 数据库ceshi字段
         /// </summary>
         [IoRyDisPlay(DisplayName ="")]
-        public string loginname_str
+        public decimal? ceshi
         {
             get
             {
-                return _loginname_str;
+                return _ceshi;
             }
             set
             {
-                _loginname_str = value;
+                _ceshi = value;
                 if (value == null)
                 {
-                    LIC.Where(x => x.ioryName == "loginname_str").First().ioryValueNull = true;
+                    LIC.Where(x => x.ioryName == "ceshi").First().ioryValueNull = true;
                 }
                 else
                 {
-                    LIC.Where(x => x.ioryName == "loginname_str").First().ioryValueNull = false;
+                    LIC.Where(x => x.ioryName == "ceshi").First().ioryValueNull = false;
                 }
-                LIC.Where(x => x.ioryName == "loginname_str").First().ioryValueChange = true;
-                LIC.Where(x => x.ioryName == "loginname_str").First().ioryValue = Convert.ToString(value);
+                LIC.Where(x => x.ioryName == "ceshi").First().ioryValueChange = true;
+                LIC.Where(x => x.ioryName == "ceshi").First().ioryValue = Convert.ToString(value);
             }
         }
 
-        string _pwd_str;
+        double? _cc;
         /// <summary>
-        /// 数据库pwd_str字段
+        /// 数据库cc字段
         /// </summary>
         [IoRyDisPlay(DisplayName ="")]
-        public string pwd_str
+        public double? cc
         {
             get
             {
-                return _pwd_str;
+                return _cc;
             }
             set
             {
-                _pwd_str = value;
+                _cc = value;
                 if (value == null)
                 {
-                    LIC.Where(x => x.ioryName == "pwd_str").First().ioryValueNull = true;
+                    LIC.Where(x => x.ioryName == "cc").First().ioryValueNull = true;
                 }
                 else
                 {
-                    LIC.Where(x => x.ioryName == "pwd_str").First().ioryValueNull = false;
+                    LIC.Where(x => x.ioryName == "cc").First().ioryValueNull = false;
                 }
-                LIC.Where(x => x.ioryName == "pwd_str").First().ioryValueChange = true;
-                LIC.Where(x => x.ioryName == "pwd_str").First().ioryValue = Convert.ToString(value);
+                LIC.Where(x => x.ioryName == "cc").First().ioryValueChange = true;
+                LIC.Where(x => x.ioryName == "cc").First().ioryValue = Convert.ToString(value);
             }
         }
 
-        string _pwd_encrypt_str;
+        byte[] _sda;
         /// <summary>
-        /// 数据库pwd_encrypt_str字段
+        /// 数据库sda字段
         /// </summary>
         [IoRyDisPlay(DisplayName ="")]
-        public string pwd_encrypt_str
+        public byte[] sda
         {
             get
             {
-                return _pwd_encrypt_str;
+                return _sda;
             }
             set
             {
-                _pwd_encrypt_str = value;
+                _sda = value;
                 if (value == null)
                 {
-                    LIC.Where(x => x.ioryName == "pwd_encrypt_str").First().ioryValueNull = true;
+                    LIC.Where(x => x.ioryName == "sda").First().ioryValueNull = true;
                 }
                 else
                 {
-                    LIC.Where(x => x.ioryName == "pwd_encrypt_str").First().ioryValueNull = false;
+                    LIC.Where(x => x.ioryName == "sda").First().ioryValueNull = false;
                 }
-                LIC.Where(x => x.ioryName == "pwd_encrypt_str").First().ioryValueChange = true;
-                LIC.Where(x => x.ioryName == "pwd_encrypt_str").First().ioryValue = Convert.ToString(value);
+                LIC.Where(x => x.ioryName == "sda").First().ioryValueChange = true;
+                LIC.Where(x => x.ioryName == "sda").First().ioryValue = Convert.ToString(value);
             }
         }
 
-        string _name_str;
+        string _qq;
         /// <summary>
-        /// 数据库name_str字段
+        /// 数据库qq字段
         /// </summary>
         [IoRyDisPlay(DisplayName ="")]
-        public string name_str
+        public string qq
         {
             get
             {
-                return _name_str;
+                return _qq;
             }
             set
             {
-                _name_str = value;
+                _qq = value;
                 if (value == null)
                 {
-                    LIC.Where(x => x.ioryName == "name_str").First().ioryValueNull = true;
+                    LIC.Where(x => x.ioryName == "qq").First().ioryValueNull = true;
                 }
                 else
                 {
-                    LIC.Where(x => x.ioryName == "name_str").First().ioryValueNull = false;
+                    LIC.Where(x => x.ioryName == "qq").First().ioryValueNull = false;
                 }
-                LIC.Where(x => x.ioryName == "name_str").First().ioryValueChange = true;
-                LIC.Where(x => x.ioryName == "name_str").First().ioryValue = Convert.ToString(value);
-            }
-        }
-
-        string _type_str;
-        /// <summary>
-        /// 数据库type_str字段
-        /// </summary>
-        [IoRyDisPlay(DisplayName ="")]
-        public string type_str
-        {
-            get
-            {
-                return _type_str;
-            }
-            set
-            {
-                _type_str = value;
-                if (value == null)
-                {
-                    LIC.Where(x => x.ioryName == "type_str").First().ioryValueNull = true;
-                }
-                else
-                {
-                    LIC.Where(x => x.ioryName == "type_str").First().ioryValueNull = false;
-                }
-                LIC.Where(x => x.ioryName == "type_str").First().ioryValueChange = true;
-                LIC.Where(x => x.ioryName == "type_str").First().ioryValue = Convert.ToString(value);
-            }
-        }
-
-        string _power_str;
-        /// <summary>
-        /// 数据库power_str字段
-        /// </summary>
-        [IoRyDisPlay(DisplayName ="")]
-        public string power_str
-        {
-            get
-            {
-                return _power_str;
-            }
-            set
-            {
-                _power_str = value;
-                if (value == null)
-                {
-                    LIC.Where(x => x.ioryName == "power_str").First().ioryValueNull = true;
-                }
-                else
-                {
-                    LIC.Where(x => x.ioryName == "power_str").First().ioryValueNull = false;
-                }
-                LIC.Where(x => x.ioryName == "power_str").First().ioryValueChange = true;
-                LIC.Where(x => x.ioryName == "power_str").First().ioryValue = Convert.ToString(value);
-            }
-        }
-
-        DateTime? _createtime_dt;
-        /// <summary>
-        /// 数据库createtime_dt字段
-        /// </summary>
-        [IoRyDisPlay(DisplayName ="")]
-        public DateTime? createtime_dt
-        {
-            get
-            {
-                return _createtime_dt;
-            }
-            set
-            {
-                _createtime_dt = value;
-                if (value == null)
-                {
-                    LIC.Where(x => x.ioryName == "createtime_dt").First().ioryValueNull = true;
-                }
-                else
-                {
-                    LIC.Where(x => x.ioryName == "createtime_dt").First().ioryValueNull = false;
-                }
-                LIC.Where(x => x.ioryName == "createtime_dt").First().ioryValueChange = true;
-                LIC.Where(x => x.ioryName == "createtime_dt").First().ioryValue = Convert.ToString(value);
-            }
-        }
-
-        DateTime? _changetime_dt;
-        /// <summary>
-        /// 数据库changetime_dt字段
-        /// </summary>
-        [IoRyDisPlay(DisplayName ="")]
-        public DateTime? changetime_dt
-        {
-            get
-            {
-                return _changetime_dt;
-            }
-            set
-            {
-                _changetime_dt = value;
-                if (value == null)
-                {
-                    LIC.Where(x => x.ioryName == "changetime_dt").First().ioryValueNull = true;
-                }
-                else
-                {
-                    LIC.Where(x => x.ioryName == "changetime_dt").First().ioryValueNull = false;
-                }
-                LIC.Where(x => x.ioryName == "changetime_dt").First().ioryValueChange = true;
-                LIC.Where(x => x.ioryName == "changetime_dt").First().ioryValue = Convert.ToString(value);
+                LIC.Where(x => x.ioryName == "qq").First().ioryValueChange = true;
+                LIC.Where(x => x.ioryName == "qq").First().ioryValue = Convert.ToString(value);
             }
         }
 
@@ -266,15 +158,11 @@ namespace yezhanbafang.fw
         /// </summary>
         public void SetData(DataRow dr)
         {
-            Users_GUID = dr.Field<int?>("Users_GUID");
-            loginname_str = dr.Field<string>("loginname_str");
-            pwd_str = dr.Field<string>("pwd_str");
-            pwd_encrypt_str = dr.Field<string>("pwd_encrypt_str");
-            name_str = dr.Field<string>("name_str");
-            type_str = dr.Field<string>("type_str");
-            power_str = dr.Field<string>("power_str");
-            createtime_dt = dr.Field<DateTime?>("createtime_dt");
-            changetime_dt = dr.Field<DateTime?>("changetime_dt");
+            int_index = dr.Field<int?>("int_index");
+            ceshi = dr.Field<decimal?>("ceshi");
+            cc = dr.Field<double?>("cc");
+            sda = dr.Field<byte[]>("sda");
+            qq = dr.Field<string>("qq");
             foreach (var item in LIC)
             {
                 item.ioryValueChange = false;
@@ -283,11 +171,11 @@ namespace yezhanbafang.fw
         /// <summary>
         /// 初始化函数
         /// </summary>
-        public Users()
+        public Log_H222()
         {
             LIC.Add(new IoRyCol
             {
-                ioryName = "Users_GUID",
+                ioryName = "int_index",
                 ioryType = "int?",
                 IsIdentity = true,
                 IsKey = true,
@@ -297,78 +185,38 @@ namespace yezhanbafang.fw
             });
             LIC.Add(new IoRyCol
             {
-                ioryName = "loginname_str",
+                ioryName = "ceshi",
+                ioryType = "decimal?",
+                IsIdentity = false,
+                IsKey = false,
+                IsNull = true,
+                ioryValueNull = true,
+                ioryValueChange = false
+            });
+            LIC.Add(new IoRyCol
+            {
+                ioryName = "cc",
+                ioryType = "double?",
+                IsIdentity = false,
+                IsKey = false,
+                IsNull = true,
+                ioryValueNull = true,
+                ioryValueChange = false
+            });
+            LIC.Add(new IoRyCol
+            {
+                ioryName = "sda",
+                ioryType = "byte[]",
+                IsIdentity = false,
+                IsKey = false,
+                IsNull = true,
+                ioryValueNull = true,
+                ioryValueChange = false
+            });
+            LIC.Add(new IoRyCol
+            {
+                ioryName = "qq",
                 ioryType = "string",
-                IsIdentity = false,
-                IsKey = false,
-                IsNull = true,
-                ioryValueNull = true,
-                ioryValueChange = false
-            });
-            LIC.Add(new IoRyCol
-            {
-                ioryName = "pwd_str",
-                ioryType = "string",
-                IsIdentity = false,
-                IsKey = false,
-                IsNull = true,
-                ioryValueNull = true,
-                ioryValueChange = false
-            });
-            LIC.Add(new IoRyCol
-            {
-                ioryName = "pwd_encrypt_str",
-                ioryType = "string",
-                IsIdentity = false,
-                IsKey = false,
-                IsNull = true,
-                ioryValueNull = true,
-                ioryValueChange = false
-            });
-            LIC.Add(new IoRyCol
-            {
-                ioryName = "name_str",
-                ioryType = "string",
-                IsIdentity = false,
-                IsKey = false,
-                IsNull = true,
-                ioryValueNull = true,
-                ioryValueChange = false
-            });
-            LIC.Add(new IoRyCol
-            {
-                ioryName = "type_str",
-                ioryType = "string",
-                IsIdentity = false,
-                IsKey = false,
-                IsNull = true,
-                ioryValueNull = true,
-                ioryValueChange = false
-            });
-            LIC.Add(new IoRyCol
-            {
-                ioryName = "power_str",
-                ioryType = "string",
-                IsIdentity = false,
-                IsKey = false,
-                IsNull = true,
-                ioryValueNull = true,
-                ioryValueChange = false
-            });
-            LIC.Add(new IoRyCol
-            {
-                ioryName = "createtime_dt",
-                ioryType = "DateTime?",
-                IsIdentity = false,
-                IsKey = false,
-                IsNull = true,
-                ioryValueNull = true,
-                ioryValueChange = false
-            });
-            LIC.Add(new IoRyCol
-            {
-                ioryName = "changetime_dt",
-                ioryType = "DateTime?",
                 IsIdentity = false,
                 IsKey = false,
                 IsNull = true,
@@ -377,7 +225,7 @@ namespace yezhanbafang.fw
             });
         }
 
-        string tablename = "Users";﻿
+        string tablename = "Log_H222";﻿
         /// <summary>
         /// LIC是列集合
         /// i前缀+列名为字段名

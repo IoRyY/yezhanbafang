@@ -96,8 +96,8 @@ namespace yezhanbafang.fw.winform.Demo.MainForm
                 case "节点1":
                     this.lb_formname.Text = "用户管理";
 
-                    //MyTform.Show();
-                    //MyTform.Activate();
+                    MyTform.Show();
+                    MyTform.Activate();
 
                     break;
                 case "节点2":

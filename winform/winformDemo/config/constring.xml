@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <constring>
   <!-- 这里的类型请输入 SQL,ACCESS Oracle Excel-->
-  <type>SQL</type>
+  <type>MSSQL</type>
   <!-- Data Source=192.168.0.21;Initial Catalog=test;Persist Security Info=True;User ID=sa;Password=sa -->
   <!-- Data Source=IORYY-PC\SQLEXPRESS;Initial Catalog=AML;Integrated Security=True -->
   <sqlserver>
-    <simple>Data Source=.;Initial Catalog=gaokao;Persist Security Info=True;User ID=sa;Password=sa</simple>
+    <simple>Data Source=.;Initial Catalog=Car;Persist Security Info=True;User ID=sa;Password=sa</simple>
     <ip>.</ip>
     <databasename>gaokao</databasename>
     <username>sa</username>

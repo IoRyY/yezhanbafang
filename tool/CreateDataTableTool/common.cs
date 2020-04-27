@@ -31,7 +31,7 @@ namespace yezhanbafang.fw.ORMTool
         public static string calltype = "IoRyClass";
         public static string IoRyClassXML = null;
         public static string WCFIPport = "";
-        public static string WebAPIURL = "";
+        public static string WebApiUrl = "";
 
         #endregion
 
@@ -231,7 +231,28 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
                     //System.IO.File.Copy("WCFv5\\IoRyWCFClientV5.xml", "CreateClass\\DLL\\IoRyWCFClientV5.xml", true);
                     break;
                 case "WebAPI":
-
+                    mystr = myRead("WebAPI\\function1.txt");
+                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr += @"
+        public static string IoRyClassXmlPath = " + "\"" + IoRyClassXML + "\";" + @"
+        public static string WebApiUrl = " + "\"" + WebApiUrl + "\";";
+                    mystr += myRead("WebAPI\\function2.txt");
+                    myWrite(mystr, "IoRyFunction");
+                    mystr = myRead("WebAPI\\col.txt");
+                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    myWrite(mystr, "IoRyCol");
+                    mystr = myRead("WebAPI\\entity.txt");
+                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    myWrite(mystr, "IoRyEntity");
+                    mystr = myRead("WebAPI\\rowinterface.txt");
+                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    myWrite(mystr, "IoRyRowInterface");
+                    mystr = myRead("WebAPI\\SortBindingCollection.txt");
+                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    myWrite(mystr, "SortBindingCollection");
+                    mystr = myRead("WebAPI\\IoRyAttribute.txt");
+                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    myWrite(mystr, "IoRyAttribute");
                     break;
 
             }

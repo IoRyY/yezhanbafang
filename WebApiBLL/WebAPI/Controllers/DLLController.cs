@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -50,8 +51,6 @@ namespace yezhanbafang.sd.WebAPI.Service.Controllers
                         //DataSet ds1 = IoRyClass.RetrieveXmlDataSet(mbs1);
                         //DataSet ds1 = JsonConvert.DeserializeObject<DataSet>(StringDataSet, new Newtonsoft.Json.Converters.DataSetConverter());
 
-                        //去掉xml的声明,因为外层还有一个xml
-                        //StringDataSet = StringDataSet.Replace("<?xml version=\"1.0\"?>", "");
                         bcin.JsonOut = StringDataSet;
                         return bcin;
                     case "GetDataSet_Log":

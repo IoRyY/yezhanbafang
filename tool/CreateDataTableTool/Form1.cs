@@ -29,7 +29,7 @@ namespace yezhanbafang.fw.ORMTool
                 this.tb_ip.Text.Trim(), this.tb_ku.Text.Trim(), this.tb_name.Text.Trim(), this.tb_pw.Text.Trim());
             XElement xe = XElement.Load("constring.xml");
             //string a = xe.Element("type").Value;
-            xe.Element("type").Value = "SQL";
+            xe.Element("type").Value = "MSSQL";
             xe.Element("sqlserver").Element("simple").Value = cons;
             xe.Element("sqlserver").Element("ip").Value = this.tb_ip.Text.Trim();
             xe.Element("sqlserver").Element("databasename").Value = this.tb_ku.Text.Trim();
@@ -265,7 +265,7 @@ namespace yezhanbafang.fw.ORMTool
                 common.calltype = this.cb_calltype.Text.Trim();
                 common.IoRyClassXML = this.tb_icxml.Text.Trim();
                 common.WCFIPport = this.tb_wcfxml.Text.Trim();
-                common.WebAPIURL = this.tb_webapi.Text.Trim();
+                common.WebApiUrl = this.tb_webapi.Text.Trim();
                 common.create(ic);
                 MessageBox.Show("生成成功!");
             }

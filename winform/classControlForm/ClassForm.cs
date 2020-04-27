@@ -75,7 +75,7 @@ namespace yezhanbafang.fw.winform.classControlForm
             InitializeComponent();
             xel = cxml;
             Assembly assembly = Assembly.GetEntryAssembly(); // 获取调用此dll的程序集 
-            bj = assembly.CreateInstance("yezhanbafang.fw." + cxml.Element("className").Value);
+            bj = assembly.CreateInstance("yezhanbafang." + cxml.Element("className").Value);
             if (bj == null)
             {
                 throw new Exception("创建[" + cxml.Element("className").Value + "]实例失败,请查询是否存在此表或者视图,或者CreateClass是否创建!");
@@ -96,7 +96,7 @@ namespace yezhanbafang.fw.winform.classControlForm
             InitializeComponent();
             xel = cxml;
             Assembly assembly = Assembly.GetEntryAssembly(); // 获取调用此dll的程序集 
-            bj = assembly.CreateInstance("yezhanbafang.fw." + cxml.Element("className").Value);
+            bj = assembly.CreateInstance("yezhanbafang." + cxml.Element("className").Value);
             if (bj == null)
             {
                 throw new Exception("创建[" + cxml.Element("className").Value + "]实例失败,请查询是否存在此表或者视图,或者CreateClass是否创建!");

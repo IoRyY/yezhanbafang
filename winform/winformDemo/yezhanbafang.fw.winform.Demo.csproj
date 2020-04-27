@@ -54,9 +54,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -92,15 +89,19 @@
       <DependentUpon>bg.cs</DependentUpon>
     </Compile>
     <Compile Include="Base\MyTool.cs" />
-    <Compile Include="CreateClass\IoRyAttribute.cs" />
-    <Compile Include="CreateClass\IoRyCol.cs" />
-    <Compile Include="CreateClass\IoRyEntity.cs" />
-    <Compile Include="CreateClass\IoRyFunction.cs" />
-    <Compile Include="CreateClass\IoRyRowInterface.cs" />
-    <Compile Include="CreateClass\SortBindingCollection.cs" />
-    <Compile Include="CreateClass\Table_log_data.cs" />
-    <Compile Include="CreateClass\Table_PC_config.cs" />
-    <Compile Include="CreateClass\Table_Users.cs" />
+    <Compile Include="CreateClass_Core\IoRyAttribute.cs" />
+    <Compile Include="CreateClass_Core\IoRyCol.cs" />
+    <Compile Include="CreateClass_Core\IoRyEntity.cs" />
+    <Compile Include="CreateClass_Core\IoRyFunction.cs" />
+    <Compile Include="CreateClass_Core\IoRyRowInterface.cs" />
+    <Compile Include="CreateClass_Core\SortBindingCollection.cs" />
+    <Compile Include="CreateClass_Core\Table_log_data.cs" />
+    <Compile Include="CreateClass_Core\Table_Log_H.cs" />
+    <Compile Include="CreateClass_Core\Table_Log_H222.cs" />
+    <Compile Include="CreateClass_Core\Table_PC_config.cs" />
+    <Compile Include="CreateClass_Core\Table_Users.cs" />
+    <Compile Include="CreateClass_Core\Table___EFMigrationsHistory.cs" />
+    <Compile Include="CreateClass_Core\View_View_1.cs" />
     <Compile Include="forms\logdata.cs">
       <SubType>Form</SubType>
     </Compile>

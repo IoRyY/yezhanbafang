@@ -12,7 +12,7 @@ using yezhanbafang.fw.WCF.Client;
  * VS版本 2010 2013
  ***********************************************************************************/
 
-namespace yezhanbafang.fw
+namespace yezhanbafang
 {
     /// <summary>
     /// 此静态类执行执行同步,异步的请

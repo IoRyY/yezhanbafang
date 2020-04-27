@@ -144,12 +144,34 @@
     <Content Include="WCFv5\wei.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WebAPI\col.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebAPI\entity.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebAPI\function1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebAPI\function2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebAPI\IoRyAttribute.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebAPI\rowinterface.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebAPI\SortBindingCollection.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebAPI\wei.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\file_c_72px_1086555_easyicon.net.ico" />
     <None Include="Resources\ms_visual_c_128px_1097733_easyicon.net.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WebAPI\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\framework\yezhanbafang.fw.Core\yezhanbafang.fw.Core.csproj">
       <Project>{877c5076-dab7-4b67-8759-a0ca3c9bbbb4}</Project>
