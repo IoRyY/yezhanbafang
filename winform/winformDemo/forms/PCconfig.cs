@@ -23,8 +23,8 @@ namespace yezhanbafang.fw.winform.Demo.forms
         {
             string sql = string.Format(@"SELECT   IP_str as IP, UUID_GUID as UUID, key_str as [key], value_str as value, createtime_dt as 创建时间, changetime_dt as 修改时间, PC_config_GUID as ID
             FROM      PC_config; ");
-            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
             this.LastSql = sql;
+            this.freshsql();
             this.dtp_start.Value = DateTime.Now.AddDays(-1);
             this.dtp_end.Value = DateTime.Now.AddDays(1);
             //datagridview虽然设置了protect但是依然不行,如果实在不行的话,这个控件不继承了
@@ -37,33 +37,23 @@ namespace yezhanbafang.fw.winform.Demo.forms
                 string mindex = this.dataGridView1.Rows[e.RowIndex].Cells["ID"].Value.ToString();
                 string sql = string.Format("select * from PC_config where PC_config_GUID='{0}'", mindex);
                 userChange(sql);
-                freshsql();
+                this.freshsql();
             }
-        }
-
-        void freshsql()
-        {
-            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, this.LastSql, IoRyFunction.IC);
         }
 
         private void bt_OK_Click(object sender, EventArgs e)
         {
             string sql = string.Format(@"SELECT   IP_str as IP, UUID_GUID as UUID, key_str as [key], value_str as value, createtime_dt as 创建时间, changetime_dt as 修改时间, PC_config_GUID as ID
             FROM      PC_config where createtime_dt between '{0}' and  '{1}'", this.dtp_start.Value, this.dtp_end.Value);
-            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
             this.LastSql = sql;
+            this.freshsql();
         }
 
         private void bt_chaxun_Click(object sender, EventArgs e)
         {
-            selectControl.QueryForm f = new selectControl.QueryForm(AppDomain.CurrentDomain.BaseDirectory + "config\\query\\PCQuery.xml");
+            selectControl.QueryForm f = Base.MyToolCore.Create_QueryForm("config\\query\\PCQuery.xml", IoRyFunction.IC);
             f.QueryEvent += F_QueryEvent;
             f.ShowDialog();
-        }
-        private void F_QueryEvent(string sql)
-        {
-            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
-            this.LastSql = sql;
         }
 
         private void bt_Add_Click(object sender, EventArgs e)
@@ -114,7 +104,7 @@ namespace yezhanbafang.fw.winform.Demo.forms
             string mindex = this.dataGridView1.Rows[this.dataGridView1.SelectedCells[0].RowIndex].Cells["ID"].Value.ToString();
             string sql = string.Format("select * from PC_config where PC_config_GUID='{0}'", mindex);
             userChange(sql);
-            freshsql();
+            this.freshsql();
         }
         void userChange(string sql)
         {

@@ -7,8 +7,8 @@
   <PC_config columnname="PC_config_GUID" columntype="uniqueidentifier" identity="否" isnull="否" iskey="是"></PC_config>
   <PC_config columnname="UUID_GUID" columntype="uniqueidentifier" identity="否" isnull="是" iskey="否"></PC_config>
   <PC_config columnname="IP_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></PC_config>
-  <PC_config columnname="key_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></PC_config>
-  <PC_config columnname="value_str" columntype="nvarchar(500)" identity="否" isnull="是" iskey="否"></PC_config>
+  <PC_config columnname="key_str" columntype="nvarchar(500)" identity="否" isnull="是" iskey="否"></PC_config>
+  <PC_config columnname="value_str" columntype="nvarchar(4000)" identity="否" isnull="是" iskey="否"></PC_config>
   <PC_config columnname="createtime_dt" columntype="datetime" identity="否" isnull="是" iskey="否"></PC_config>
   <PC_config columnname="changetime_dt" columntype="datetime" identity="否" isnull="是" iskey="否"></PC_config>
 

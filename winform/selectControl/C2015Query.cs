@@ -17,7 +17,8 @@ namespace yezhanbafang.fw.winform.selectControl
             InitializeComponent();
         }
 
-        string _path = "";
+        string _xmlpath = "";
+        string _xmlstring = "";
 
         private void C2015Query_Load(object sender, EventArgs e)
         {
@@ -39,8 +40,17 @@ namespace yezhanbafang.fw.winform.selectControl
 
         public void XmlPath(string path)
         {
-            _path = path;
-            XElement xe = XElement.Load(_path);
+            _xmlpath = path;
+            XElement xe = XElement.Load(_xmlpath);
+            this.cb_zd.DisplayMember = "mdisplay";
+            this.cb_zd.ValueMember = "mvalue";
+            this.cb_zd.DataSource = xe.Elements("MyQuery").Select(x => new { mdisplay = x.Attribute("display").Value, mvalue = x.Attribute("value").Value }).ToList();
+        }
+
+        public void XmlString(string xmlstring)
+        {
+            _xmlstring = xmlstring;
+            XElement xe = XElement.Parse(xmlstring);
             this.cb_zd.DisplayMember = "mdisplay";
             this.cb_zd.ValueMember = "mvalue";
             this.cb_zd.DataSource = xe.Elements("MyQuery").Select(x => new { mdisplay = x.Attribute("display").Value, mvalue = x.Attribute("value").Value }).ToList();
@@ -115,7 +125,15 @@ namespace yezhanbafang.fw.winform.selectControl
 
         private void cb_zd_SelectedIndexChanged(object sender, EventArgs e)
         {
-            XElement xe = XElement.Load(_path);
+            XElement xe = null;
+            if (this._xmlpath == null || this._xmlpath == "")
+            {
+                xe = XElement.Parse(_xmlstring);
+            }
+            else
+            {
+                xe = XElement.Load(_xmlpath);
+            }
             var rst = xe.Elements("MyQuery").Where(x => x.Attribute("display").Value == this.cb_zd.Text && x.Attribute("value").Value == this.cb_zd.SelectedValue.ToString()).
                 Select(x => x.Attribute("type").Value);
             if (rst.Count() == 1)

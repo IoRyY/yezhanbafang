@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("完整应用Core,WCF,WebAPI种种,OrmTool,winform种种的综合Demo")]
-[assembly: AssemblyDescription("完整应用Core,WCF,WebAPI种种,OrmTool,winform种种的综合Demo")]
+[assembly: AssemblyDescription("完整应用Core,WCF,WebAPI种种,OrmTool,winform种种的综合Demo 20200428大改")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("夜战八方")]
 [assembly: AssemblyProduct("完整应用Core,WCF,WebAPI种种,OrmTool,winform种种的综合Demo")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.9.9.11")]
-[assembly: AssemblyFileVersion("4.9.9.11")]
+[assembly: AssemblyVersion("5.10.9.11")]
+[assembly: AssemblyFileVersion("5.10.9.11")]

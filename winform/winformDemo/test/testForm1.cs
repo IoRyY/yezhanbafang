@@ -22,20 +22,10 @@ namespace yezhanbafang.fw.winform.Demo.test
 
         private void bt_chaxun_Click(object sender, EventArgs e)
         {
-            selectControl.QueryForm f = new selectControl.QueryForm(AppDomain.CurrentDomain.BaseDirectory + "config\\query\\OutQuery.xml");
+            //selectControl.QueryForm f = new selectControl.QueryForm(AppDomain.CurrentDomain.BaseDirectory + "config\\query\\OutQuery.xml");
+            selectControl.QueryForm f = Base.MyToolCore.Create_QueryForm("config\\query\\OutQuery.xml", IoRyFunction.IC);
             f.QueryEvent += F_QueryEvent;
             f.ShowDialog();
-        }
-
-        /// <summary>
-        /// WCF Core WebApi的方式一样 注意WCF还可以自动控制进度条与按钮状态
-        /// </summary>
-        /// <param name="sql"></param>
-        private void F_QueryEvent(string sql)
-        {
-            //统一的方式
-            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
-            this.LastSql = sql;
         }
 
         private void bt_OK_Click(object sender, EventArgs e)
@@ -44,7 +34,8 @@ namespace yezhanbafang.fw.winform.Demo.test
 FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.Value, this.dtp_end.Value);
             this.LastSql = sql;
             //统一的方式
-            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
+            //Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
+            this.freshsql();
         }
 
         private void testForm1_Load(object sender, EventArgs e)
@@ -52,8 +43,8 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
             string sql = string.Format(@"SELECT   index_int as 序号, loginname_str as 登录名, name_str as 姓名, type_str as 用户类型, power_display_str as 权限, createtime_dt as 创建时间, changetime_dt as 修改时间
             FROM      V_user ");
             this.LastSql = sql;
-            //统一的方式
-            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, sql, IoRyFunction.IC);
+
+            this.freshsql();
 
             this.dtp_start.Value = DateTime.Now.AddDays(-1);
             this.dtp_end.Value = DateTime.Now.AddDays(1);
@@ -62,12 +53,6 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
 
         }
 
-        void freshsql()
-        {
-            //统一的方式
-            Base.MyToolCore.bindDataGridView_Async(this.dataGridView1, this.LastSql, IoRyFunction.IC);
-
-        }
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -76,7 +61,7 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
                 string mindex = this.dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string sql = string.Format("select * from users where index_int='{0}'", mindex);
                 userChange(sql);
-                freshsql();
+                this.freshsql();
             }
         }
 
@@ -85,7 +70,7 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
             string mindex = this.dataGridView1.Rows[this.dataGridView1.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
             string sql = string.Format("select * from users where index_int='{0}'", mindex);
             userChange(sql);
-            freshsql();
+            this.freshsql();
         }
 
         void userChange(string sql)
@@ -117,7 +102,7 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
             cf.RepeatEvent += Cf_RepeatEvent;
             cf.Text = "用户新增";
             cf.ShowDialog();
-            freshsql();
+            this.freshsql();
         }
 
         private bool Cf_AddEvent(object ob)

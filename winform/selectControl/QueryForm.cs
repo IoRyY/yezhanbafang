@@ -20,12 +20,21 @@ namespace yezhanbafang.fw.winform.selectControl
     public partial class QueryForm : Form
     {
         public event QueryDelegate QueryEvent;
-        public QueryForm(string xml)
+        public QueryForm(InitType inittype, string xml)
         {
             InitializeComponent();
             if (!DesignMode)
             {
-                this.c2015QueryS1.XmlPath = xml;
+                switch (inittype)
+                {
+                    case InitType.XmlPath:
+                        this.c2015QueryS1.XmlPath = xml;
+                        break;
+                    case InitType.XmlString:
+                        this.c2015QueryS1.XmlString = xml;
+                        break;
+                }
+                
             }
         }
 
@@ -43,5 +52,10 @@ namespace yezhanbafang.fw.winform.selectControl
         {
             this.Text = "复杂查询窗体" + "  " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
+    }
+    public enum InitType
+    {
+        XmlPath = 1,
+        XmlString = 2
     }
 }

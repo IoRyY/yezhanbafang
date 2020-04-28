@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("复杂查询用的类Sql插件")]
-[assembly: AssemblyDescription("2017-11-3加入sql的安全监测")]
+[assembly: AssemblyDescription("2017-11-3加入sql的安全监测 20200428加入非本地配置的支持,这种配置文件放本地实在太危险")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("夜战八方")]
 [assembly: AssemblyProduct("复杂查询用的类Sql插件")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.3.1.5")]
-[assembly: AssemblyFileVersion("1.3.1.5")]
+[assembly: AssemblyVersion("2.3.1.5")]
+[assembly: AssemblyFileVersion("2.3.1.5")]
