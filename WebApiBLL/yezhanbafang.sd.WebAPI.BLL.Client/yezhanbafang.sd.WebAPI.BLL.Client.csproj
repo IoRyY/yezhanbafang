@@ -5,6 +5,7 @@
     <Product>WebApi的BLL方式的客户端DLL</Product>
     <Authors>夜战八方</Authors>
     <Description>WebApi的BLL方式的客户端DLL</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
