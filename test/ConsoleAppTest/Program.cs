@@ -32,7 +32,7 @@ namespace ConsoleAppTest
                 Console.WriteLine(me.Message);
                 Console.ReadLine();
             }
-            
+
         }
     }
 }

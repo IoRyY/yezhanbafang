@@ -2,7 +2,7 @@
 <Config>
   <TableName description="和基类配套的log表,可以自动记录">log_data</TableName>
   <TableName description="电脑本地配置表">PC_config</TableName>
-  <TableName description="几乎所有项目都需要用户表">Users</TableName>
+  <TableName description="几乎所有项目都需要用户表">users_data</TableName>
 
   <PC_config columnname="PC_config_GUID" columntype="uniqueidentifier" identity="否" isnull="否" iskey="是"></PC_config>
   <PC_config columnname="UUID_GUID" columntype="uniqueidentifier" identity="否" isnull="是" iskey="否"></PC_config>
@@ -22,7 +22,7 @@
   <log_data columnname="olddata_str" columntype="nvarchar(MAX)" identity="否" isnull="是" iskey="否"></log_data>
   <log_data columnname="createtime_dt" columntype="datetime" identity="否" isnull="是" iskey="否"></log_data>
 
-  <Users columnname="Users_GUID" columntype="int" identity="是" isnull="否" iskey="是"></Users>
+  <Users columnname="users_GUID" columntype="uniqueidentifier" identity="否" isnull="否" iskey="是"></Users>
   <Users columnname="loginname_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></Users>
   <Users columnname="pwd_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></Users>
   <Users columnname="pwd_encrypt_str" columntype="nvarchar(200)" identity="否" isnull="是" iskey="否"></Users>
