@@ -22,7 +22,7 @@
   <log_data columnname="olddata_str" columntype="nvarchar(MAX)" identity="否" isnull="是" iskey="否"></log_data>
   <log_data columnname="createtime_dt" columntype="datetime" identity="否" isnull="是" iskey="否"></log_data>
 
-  <Users columnname="users_GUID" columntype="uniqueidentifier" identity="否" isnull="否" iskey="是"></Users>
+  <Users columnname="users_data_GUID" columntype="uniqueidentifier" identity="否" isnull="否" iskey="是"></Users>
   <Users columnname="loginname_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></Users>
   <Users columnname="pwd_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></Users>
   <Users columnname="pwd_encrypt_str" columntype="nvarchar(200)" identity="否" isnull="是" iskey="否"></Users>
