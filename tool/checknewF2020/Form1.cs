@@ -66,7 +66,7 @@ namespace yezhanbafang.fw.WCF.AutoUpdate
             finally
             {
                 Thread.Sleep(1000);
-                Process.Start(updatefile + "\\" + openfile);
+                Process.Start(updatefile + "\\" + openfile, "yuandonghui");
                 this.Invoke((Action)delegate
                 {
                     this.Close();
@@ -135,25 +135,25 @@ namespace yezhanbafang.fw.WCF.AutoUpdate
                         this.progressBar2.Value = 0;
                     });
                     break;
-                //case "Begin":
-                //    this.Invoke((Action)delegate
-                //    {
-                //        this.progressBar2.Maximum = Convert.ToInt32(content);
-                //    });
-                //    break;
-                //case "End":
-                //    this.Invoke((Action)delegate
-                //    {
-                //        this.progressBar2.Value = 0;
-                //        this.progressBar1.Value++;
-                //    });
-                //    break;
-                //case "ServerSendData":
-                //    this.Invoke((Action)delegate
-                //    {
-                //        this.progressBar2.Value++;
-                //    });
-                //    break;
+                case "Error":
+                    this.Invoke((Action)delegate
+                    {
+                        MessageBox.Show(content);
+                    });
+                    break;
+                    //case "End":
+                    //    this.Invoke((Action)delegate
+                    //    {
+                    //        this.progressBar2.Value = 0;
+                    //        this.progressBar1.Value++;
+                    //    });
+                    //    break;
+                    //case "ServerSendData":
+                    //    this.Invoke((Action)delegate
+                    //    {
+                    //        this.progressBar2.Value++;
+                    //    });
+                    //    break;
             }
         }
 

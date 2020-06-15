@@ -387,7 +387,17 @@ namespace yezhanbafang.fw.WCF.Client
                         }
                         break;
                     case "CheckUpdateFiles":
-                        File.WriteAllBytes(System.AppDomain.CurrentDomain.BaseDirectory + dler.Name, mybt.ToArray());
+                        try
+                        {
+                            File.WriteAllBytes(System.AppDomain.CurrentDomain.BaseDirectory + dler.Name, mybt.ToArray());
+                        }
+                        catch (Exception me)
+                        {
+                            if (DuxMessage != null)
+                            {
+                                this.DuxMessage(me.Message, "Error");
+                            }
+                        }
                         break;
                 }
                 if (myProgressBar != null)
