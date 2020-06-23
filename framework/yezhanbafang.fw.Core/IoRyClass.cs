@@ -1150,6 +1150,20 @@ namespace yezhanbafang.fw.Core
         #region 字节转化，压缩
 
         /// <summary>
+        /// 本地文件转化成Base64
+        /// </summary>
+        /// <param name="FilePath"></param>
+        /// <returns></returns>
+        public static string FileToBase64(string FilePath)
+        {
+            FileStream files = new FileStream(FilePath, FileMode.Open);
+            byte[] bt = new byte[files.Length];
+            files.Read(bt, 0, bt.Length);
+            string base64Str = Convert.ToBase64String(bt);
+            return base64Str;
+        }
+
+        /// <summary>
         /// 压缩数据
         /// </summary>
         /// <param name="Data"></param>
