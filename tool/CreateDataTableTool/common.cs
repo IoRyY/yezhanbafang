@@ -531,6 +531,8 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
                 case "float":
                     return "double?";
                 case "image":
+                case "binary":
+                case "varbinary":
                     return "byte[]";
                 case "bigint":
                     return "long?";
