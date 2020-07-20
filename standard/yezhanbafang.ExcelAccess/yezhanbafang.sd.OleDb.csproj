@@ -5,6 +5,7 @@
     <Authors>夜战八方</Authors>
     <Product>standard标准OleEb</Product>
     <Description>standard标准OleEb</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

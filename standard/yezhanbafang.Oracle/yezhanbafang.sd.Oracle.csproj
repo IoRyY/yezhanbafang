@@ -5,6 +5,7 @@
     <Authors>夜战八方</Authors>
     <Product>standard标准Oracle</Product>
     <Description>standard标准Oracle</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
