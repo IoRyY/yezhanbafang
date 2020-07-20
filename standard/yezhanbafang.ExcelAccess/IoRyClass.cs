@@ -119,7 +119,7 @@ namespace yezhanbafang.sd.OleDb
         /// <param name="sql">sql语句</param>
         /// <param name="DbParameterS">入参</param>
         /// <returns>受影响行数</returns>
-        public string ExecuteSql(string sql, List<DbParameter> DbParameterS)
+        public string ExecuteSql_DbParameter(string sql, List<DbParameter> DbParameterS)
         {
             switch (this.Contype)
             {
@@ -208,7 +208,7 @@ namespace yezhanbafang.sd.OleDb
         /// <param name="sql">sql语句们</param>
         /// <param name="DbParameterS">入参</param>
         /// <returns></returns>
-        public string ExecuteSqlTran(string sql, List<DbParameter> DbParameterS)
+        public string ExecuteSqlTran_DbParameter(string sql, List<DbParameter> DbParameterS)
         {
             switch (this.Contype)
             {
@@ -268,9 +268,9 @@ namespace yezhanbafang.sd.OleDb
         /// <param name="sql">sql语句</param>
         /// <param name="DbParameterS">入参</param>
         /// <returns></returns>
-        public DataTable GetTable(string sql, List<DbParameter> DbParameterS)
+        public DataTable GetTable_DbParameter(string sql, List<DbParameter> DbParameterS)
         {
-            return this.GetDataSet(sql, DbParameterS).Tables[0];
+            return this.GetDataSet_DbParameter(sql, DbParameterS).Tables[0];
         }
 
         /// <summary>
@@ -317,7 +317,7 @@ namespace yezhanbafang.sd.OleDb
         /// <param name="sql">sql语句</param>
         /// <param name="DbParameterS">入参</param>
         /// <returns></returns>
-        public DataSet GetDataSet(string sql, List<DbParameter> DbParameterS)
+        public DataSet GetDataSet_DbParameter(string sql, List<DbParameter> DbParameterS)
         {
             switch (this.Contype)
             {
@@ -561,7 +561,7 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "新�
             {
                 tablename = sql.ToLower().Split(new string[] { "set" }, StringSplitOptions.RemoveEmptyEntries)[0].Replace("update", "").Trim();
                 string sqlold = "select * from " + tablename + " where " + sql.ToLower().Split(new string[] { "where" }, StringSplitOptions.None)[1];
-                DataTable oldtable = ic.GetTable(sqlold, DbParameterS);
+                DataTable oldtable = ic.GetTable_DbParameter(sqlold, DbParameterS);
                 if (oldtable.Rows.Count == 0)
                 {
                     return ";";
@@ -615,7 +615,7 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "修�
                     }
                     sqlold = sql.ToLower().Replace("delete", "select * from ");
                 }
-                DataTable oldtable = ic.GetTable(sqlold, DbParameterS);
+                DataTable oldtable = ic.GetTable_DbParameter(sqlold, DbParameterS);
                 if (oldtable.Rows.Count > 0)
                 {
                     XElement xolddata = new XElement("OldData");
@@ -736,7 +736,7 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
                     {
                         newsql = this.GetLogSql_IP(username, sql, DbParameterS) + sql;
                     }
-                    return this.ExecuteSqlTran(newsql, DbParameterS);
+                    return this.ExecuteSqlTran_DbParameter(newsql, DbParameterS);
                 default:
                     throw new Exception("请根据数据库类型选择类库！");
             }
@@ -831,7 +831,7 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
                         {
                             newsql = this.GetLogSql_IP(username, sql, DbParameterS) + sql;
                         }
-                        return this.GetDataSet(newsql, DbParameterS);
+                        return this.GetDataSet_DbParameter(newsql, DbParameterS);
                     }
                     catch (Exception me)
                     {
