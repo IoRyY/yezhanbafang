@@ -50,6 +50,10 @@ namespace yezhanbafang.sd.WebAPI
         /// 执行耗时 毫秒(负载均衡+BLL+DLL)总耗时
         /// </summary>
         public double TimeCost { get; set; }
+        /// <summary>
+        /// 此记录是否需要日志,默认关闭
+        /// </summary>
+        public bool IsLog { get; set; } = false;
     }
 
     /// <summary>

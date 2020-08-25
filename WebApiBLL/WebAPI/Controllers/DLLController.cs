@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using log4net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -27,12 +29,36 @@ namespace yezhanbafang.sd.WebAPI.Service.Controllers
     [ApiController]
     public class DLLController : ControllerBase
     {
+
+        //创建日志记录组件实例
+        static ILog _ydhlog = null;
+        private static log4net.Repository.ILoggerRepository LoggerRepository;
+        public static ILog Ydhlog
+        {
+            get
+            {
+                if (_ydhlog == null)
+                {
+                    LoggerRepository = LogManager.CreateRepository("Log4netConsolePractice");
+                    log4net.Config.XmlConfigurator.ConfigureAndWatch(LoggerRepository, new FileInfo("log4netConfig.xml"));
+                    _ydhlog = LogManager.GetLogger(LoggerRepository.Name, typeof(Program));
+                }
+                return _ydhlog;
+            }
+        }
+
         // POST: api/DLL
         [HttpPost]
         public BllClass Post(BllClass bcin)
         {
             try
             {
+                string sin = JsonConvert.SerializeObject(bcin);
+                if (bcin.IsLog)
+                {
+                    Ydhlog.Info("入参:");
+                    Ydhlog.Info(sin);
+                }
                 DLLjson dj = JsonConvert.DeserializeObject<DLLjson>(bcin.JsonIn);
                 IoRyClass ic = new IoRyClass(dj.ConfigPath);
                 DataSet ds = null;
@@ -52,21 +78,21 @@ namespace yezhanbafang.sd.WebAPI.Service.Controllers
                         //DataSet ds1 = JsonConvert.DeserializeObject<DataSet>(StringDataSet, new Newtonsoft.Json.Converters.DataSetConverter());
 
                         bcin.JsonOut = StringDataSet;
-                        return bcin;
+                        break;
                     case "GetDataSet_Log":
                         ds = ic.Log_GetDataSet(dj.SQL_string, dj.Operater);
                         mbs = IoRyClass.GetXmlFormatDataSet(ds);
                         StringDataSet = IoRyClass.BytesToString(mbs);
                         bcin.JsonOut = StringDataSet;
-                        return bcin;
+                        break;
                     case "ExcutSqlTran":
                         StringDataSet = ic.ExecuteSqlTran(dj.SQL_string);
                         bcin.JsonOut = StringDataSet;
-                        return bcin;
+                        break;
                     case "ExcutSqlTran_Log":
                         StringDataSet = ic.Log_ExecuteSqlTran(dj.SQL_string, dj.Operater);
                         bcin.JsonOut = StringDataSet;
-                        return bcin;
+                        break;
                     case "ExcutSP":
                         List<DbParameter> LD = new List<DbParameter>();
                         foreach (var item in dj.DbParaList)
@@ -81,12 +107,24 @@ namespace yezhanbafang.sd.WebAPI.Service.Controllers
                         mbs = IoRyClass.GetXmlFormatDataSet(ds);
                         StringDataSet = IoRyClass.BytesToString(mbs);
                         bcin.JsonOut = StringDataSet;
-                        return bcin;
+                        break;
                     default:
                         bcin.IsNormal = false;
                         bcin.ErrorMsg = "找不到此RouteName";
-                        return bcin;
+                        break;
                 }
+                string sout = JsonConvert.SerializeObject(bcin);
+                if (bcin.IsLog)
+                {
+                    Ydhlog.Info("出参:");
+                    Ydhlog.Info(sout);
+                }
+                if (!bcin.IsNormal)
+                {
+                    Ydhlog.Error("可预期的错误:");
+                    Ydhlog.Error(sout);
+                }
+                return bcin;
             }
             catch (Exception me)
             {
@@ -97,6 +135,9 @@ namespace yezhanbafang.sd.WebAPI.Service.Controllers
                     me = me.InnerException;
                 }
                 exmsg += me.Message;
+
+                Ydhlog.Error(exmsg);
+
                 bcin.IsNormal = false;
                 bcin.ErrorMsg = exmsg;
                 return bcin;
