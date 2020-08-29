@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using yezhanbafang.fw.Core;
+using yezhanbafang.sd.Core;
+using yezhanbafang.sd.MSSQL;
 
 /************************************************************************************
  * 作者 袁东辉 时间：2016-1 20200326 新增接口实现以及存储过程 20200418 修改命名空间

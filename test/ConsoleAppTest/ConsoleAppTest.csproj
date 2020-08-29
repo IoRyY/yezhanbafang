@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\standard\yezhanbafang.ExcelAccess\yezhanbafang.sd.OleDb.csproj" />
     <ProjectReference Include="..\..\standard\yezhanbafang.MSSql\yezhanbafang.sd.MSSQL.csproj" />
     <ProjectReference Include="..\..\WebApiBLL\yezhanbafang.sd.WebAPI.DLL.Client\yezhanbafang.sd.WebAPI.DLL.Client.csproj" />
   </ItemGroup>

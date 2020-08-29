@@ -187,6 +187,9 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
                     mystr = myRead("IoRyClass\\IoRyAttribute.txt");
                     mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
                     myWrite(mystr, "IoRyAttribute");
+                    mystr = myRead("IoRyClass\\IoRyTransaction.txt");
+                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    myWrite(mystr, "IoRyTransaction");
                     //调试的时候先把生成DLL去了,总是影响跟踪代码 20200418 有了nuget不用再生成DLL了
                     //if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL"))
                     //{
@@ -220,6 +223,9 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
                     mystr = myRead("WCFv5\\IoRyAttribute.txt");
                     mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
                     myWrite(mystr, "IoRyAttribute");
+                    mystr = myRead("IoRyClass\\IoRyTransaction.txt");
+                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    myWrite(mystr, "IoRyTransaction");
                     //调试的时候先把生成DLL去了,总是影响跟踪代码 20200418 有了nuget不用再生成DLL了
                     //if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL"))
                     //{
@@ -253,6 +259,9 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
                     mystr = myRead("WebAPI\\IoRyAttribute.txt");
                     mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
                     myWrite(mystr, "IoRyAttribute");
+                    mystr = myRead("IoRyClass\\IoRyTransaction.txt");
+                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    myWrite(mystr, "IoRyTransaction");
                     break;
 
             }
