@@ -22,7 +22,7 @@ namespace yezhanbafang
         /// <summary>
         /// 数据库int_index字段
         /// </summary>
-        [IoRyDisPlay(DisplayName = "")]
+        [IoRyDisPlay(DisplayName ="")]
         public int? int_index
         {
             get
@@ -49,7 +49,7 @@ namespace yezhanbafang
         /// <summary>
         /// 数据库str_opreater字段
         /// </summary>
-        [IoRyDisPlay(DisplayName = "")]
+        [IoRyDisPlay(DisplayName ="")]
         public string str_opreater
         {
             get
@@ -76,7 +76,7 @@ namespace yezhanbafang
         /// <summary>
         /// 数据库str_Type字段
         /// </summary>
-        [IoRyDisPlay(DisplayName = "")]
+        [IoRyDisPlay(DisplayName ="")]
         public string str_Type
         {
             get
@@ -103,7 +103,7 @@ namespace yezhanbafang
         /// <summary>
         /// 数据库str_tablename字段
         /// </summary>
-        [IoRyDisPlay(DisplayName = "")]
+        [IoRyDisPlay(DisplayName ="")]
         public string str_tablename
         {
             get
@@ -130,7 +130,7 @@ namespace yezhanbafang
         /// <summary>
         /// 数据库str_Sql字段
         /// </summary>
-        [IoRyDisPlay(DisplayName = "")]
+        [IoRyDisPlay(DisplayName ="")]
         public string str_Sql
         {
             get
@@ -157,7 +157,7 @@ namespace yezhanbafang
         /// <summary>
         /// 数据库str_Old字段
         /// </summary>
-        [IoRyDisPlay(DisplayName = "")]
+        [IoRyDisPlay(DisplayName ="")]
         public string str_Old
         {
             get
@@ -184,7 +184,7 @@ namespace yezhanbafang
         /// <summary>
         /// 数据库dat_time字段
         /// </summary>
-        [IoRyDisPlay(DisplayName = "")]
+        [IoRyDisPlay(DisplayName ="")]
         public DateTime? dat_time
         {
             get
@@ -301,7 +301,7 @@ namespace yezhanbafang
             });
         }
 
-        string tablename = "Log_H";
+        string tablename = "Log_H";﻿
         /// <summary>
         /// LIC是列集合
         /// i前缀+列名为字段名

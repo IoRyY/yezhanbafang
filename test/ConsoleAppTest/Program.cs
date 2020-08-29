@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using yezhanbafang;
 
 namespace ConsoleAppTest
 {
@@ -10,9 +11,18 @@ namespace ConsoleAppTest
             try
             {
                 Console.WriteLine("Hello World!");
-                yezhanbafang.sd.WebAPI.DLL.Client.WebApiDLLClient wc = new yezhanbafang.sd.WebAPI.DLL.Client.WebApiDLLClient("https://localhost:44373/api/DLL", "config\\constring.xml");
-                wc.GetDataSet_Syn(@"SELECT   IP_str as IP, UUID_GUID as UUID, key_str as [key], value_str as value, createtime_dt as 创建时间, changetime_dt as 修改时间, PC_config_GUID as ID
-            FROM      PC_config; ");
+                IoRyTransaction it = new IoRyTransaction();
+                Log_H lh = new Log_H();
+                lh.str_opreater = "1";
+                lh.Tran_IoRyAdd(it);
+                Log_H lh2 = new Log_H();
+                lh2.str_opreater = "2";
+                lh2.Tran_IoRyAdd(it);
+                it.Commit();
+                Console.ReadLine();
+                //    yezhanbafang.sd.WebAPI.DLL.Client.WebApiDLLClient wc = new yezhanbafang.sd.WebAPI.DLL.Client.WebApiDLLClient("https://localhost:44373/api/DLL", "config\\constring.xml");
+                //    wc.GetDataSet_Syn(@"SELECT   IP_str as IP, UUID_GUID as UUID, key_str as [key], value_str as value, createtime_dt as 创建时间, changetime_dt as 修改时间, PC_config_GUID as ID
+                //FROM      PC_config; ");
                 while (true)
                 {
                     ////string sql = Console.ReadLine();

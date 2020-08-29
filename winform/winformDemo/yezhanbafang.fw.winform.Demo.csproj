@@ -94,6 +94,7 @@
     <Compile Include="CreateClass_Core\IoRyEntity.cs" />
     <Compile Include="CreateClass_Core\IoRyFunction.cs" />
     <Compile Include="CreateClass_Core\IoRyRowInterface.cs" />
+    <Compile Include="CreateClass_Core\IoRyTransaction.cs" />
     <Compile Include="CreateClass_Core\SortBindingCollection.cs" />
     <Compile Include="CreateClass_Core\Table_log_data.cs" />
     <Compile Include="CreateClass_Core\Table_Log_H.cs" />
