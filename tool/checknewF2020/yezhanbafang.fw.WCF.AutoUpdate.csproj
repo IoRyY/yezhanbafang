@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>update1.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -84,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="29528930.gif" />
+    <Content Include="update1.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\WCF\IoRyWCFClient5.0\yezhanbafang.fw.WCF.Client.csproj">
