@@ -36,7 +36,7 @@
         {
             try
             {
-                IC.Log_ExecuteSqlTran(sql, cuser);
+                IC.Log_ExecuteSql(sql, cuser);
             }
             catch (Exception ex)
             {
