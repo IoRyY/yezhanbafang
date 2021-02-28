@@ -166,29 +166,29 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
                 case "IoRyClass":
                     //写IoRyFunction类
                     mystr = myRead("IoRyClass\\function1.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     mystr += @"
         public static string IoRyClassXmlPath = " + "\"" + IoRyClassXML + "\"" + @";
 ";
                     mystr += myRead("IoRyClass\\function2.txt");
                     myWrite(mystr, "IoRyFunction");
                     mystr = myRead("IoRyClass\\col.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyCol");
                     mystr = myRead("IoRyClass\\entity.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyEntity");
                     mystr = myRead("IoRyClass\\rowinterface.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyRowInterface");
                     mystr = myRead("IoRyClass\\SortBindingCollection.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "SortBindingCollection");
                     mystr = myRead("IoRyClass\\IoRyAttribute.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyAttribute");
                     mystr = myRead("IoRyClass\\IoRyTransaction.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyTransaction");
                     //调试的时候先把生成DLL去了,总是影响跟踪代码 20200418 有了nuget不用再生成DLL了
                     //if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL"))
@@ -202,29 +202,29 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
                 case "WCF":
                     //写IoRyFunction类
                     mystr = myRead("WCFv5\\function1.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     mystr += @"
         public static string mxml = " + "\"" + IoRyClassXML + "\";" + @"
         public static string url = " + "\"" + WCFIPport + "\";";
                     mystr += myRead("WCFv5\\function2.txt");
                     myWrite(mystr, "IoRyFunction");
                     mystr = myRead("WCFv5\\col.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyCol");
                     mystr = myRead("WCFv5\\entity.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyEntity");
                     mystr = myRead("WCFv5\\rowinterface.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyRowInterface");
                     mystr = myRead("WCFv5\\SortBindingCollection.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "SortBindingCollection");
                     mystr = myRead("WCFv5\\IoRyAttribute.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyAttribute");
                     mystr = myRead("IoRyClass\\IoRyTransaction.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyTransaction");
                     //调试的时候先把生成DLL去了,总是影响跟踪代码 20200418 有了nuget不用再生成DLL了
                     //if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "CreateClass\\DLL"))
@@ -238,29 +238,29 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
                     break;
                 case "WebAPI":
                     mystr = myRead("WebAPI\\function1.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     mystr += @"
         public static string IoRyClassXmlPath = " + "\"" + IoRyClassXML + "\";" + @"
         public static string WebApiUrl = " + "\"" + WebApiUrl + "\";";
                     mystr += myRead("WebAPI\\function2.txt");
                     myWrite(mystr, "IoRyFunction");
                     mystr = myRead("WebAPI\\col.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyCol");
                     mystr = myRead("WebAPI\\entity.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyEntity");
                     mystr = myRead("WebAPI\\rowinterface.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyRowInterface");
                     mystr = myRead("WebAPI\\SortBindingCollection.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "SortBindingCollection");
                     mystr = myRead("WebAPI\\IoRyAttribute.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyAttribute");
                     mystr = myRead("IoRyClass\\IoRyTransaction.txt");
-                    mystr = mystr.Replace("CreateDataTableTool", common.inamespace);
+                    mystr = mystr.Replace("yezhanbafang", common.inamespace);
                     myWrite(mystr, "IoRyTransaction");
                     break;
 

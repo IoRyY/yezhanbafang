@@ -729,6 +729,8 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
 
         /// <summary>
         /// 事务执行sql并且生成Log,只支持Sqlserver,oracle不行,报错
+        /// Log_ExecuteSql 与 Log_ExecuteSqlTran 最大的区别是 Log_ExecuteSqlTran的sql本身可以是多条语句,并且用 ; 分隔 但是每条语句的插入项目中不能含有 ;
+        /// Log_ExecuteSql 的sql语句必须是单条sql语句,但是,每条插入语句中,可以包含 ;
         /// </summary>
         /// <param name="sql">sql语句们</param>
         /// <param name="username">执行sql语句的用户</param>
@@ -750,6 +752,26 @@ values ('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}');", username, "存�
                     {
                         newsql = this.GetLogSql_IP(username, sql) + sql;
                     }
+                    return this.ExecuteSqlTran(newsql);
+                default:
+                    throw new Exception("请根据数据库类型选择类库！");
+            }
+        }
+
+        /// <summary>
+        /// Log_ExecuteSql 与 Log_ExecuteSqlTran 最大的区别是 Log_ExecuteSqlTran的sql本身可以是多条语句,并且用 ; 分隔 但是每条语句的插入项目中不能含有 ;
+        /// Log_ExecuteSql 的sql语句必须是单条sql语句,但是,每条插入语句中,可以包含 ;
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public string Log_ExecuteSql(string sql, string username)
+        {
+            switch (this.Contype)
+            {
+                case ConType.MSSQL:
+                    string newsql = "";
+                    newsql = this.GetLogSql_IP(username, sql) + sql;
                     return this.ExecuteSqlTran(newsql);
                 default:
                     throw new Exception("请根据数据库类型选择类库！");
