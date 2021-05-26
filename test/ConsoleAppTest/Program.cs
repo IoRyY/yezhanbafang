@@ -10,6 +10,17 @@ namespace ConsoleAppTest
         {
             try
             {
+
+                string sql = "select dept_name from dept_dict";
+                yezhanbafang.sd.Oracle.IoRyClass ic = new yezhanbafang.sd.Oracle.IoRyClass();
+                DataTable dt = ic.GetTable(sql);
+                foreach (var item in dt.AsEnumerable())
+                {
+                    Console.WriteLine(item.Field<string>("dept_name"));
+                }
+                //Console.WriteLine(dt.Rows[0][0].ToString());
+                Console.ReadLine();
+
                 Console.WriteLine("Hello World!");
                 IoRyTransaction it = new IoRyTransaction();
                 Log_H lh = new Log_H();

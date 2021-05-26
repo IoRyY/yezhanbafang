@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\standard\yezhanbafang.MSSql\yezhanbafang.sd.MSSQL.csproj" />
+    <ProjectReference Include="..\..\standard\yezhanbafang.Oracle\yezhanbafang.sd.Oracle.csproj" />
     <ProjectReference Include="..\..\WebApiBLL\yezhanbafang.sd.WebAPI.DLL.Client\yezhanbafang.sd.WebAPI.DLL.Client.csproj" />
   </ItemGroup>
 

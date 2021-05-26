@@ -33,7 +33,8 @@
     <encryptKey></encryptKey>
     <password>123</password>
   </access>
-  <!-- Provider=MSDAORA;Data Source=dbserver;User ID=name;Password=pwd     另一种 Provider=OraOledb.Oracle; -->
+  <!-- Provider=MSDAORA;Data Source=dbserver;User ID=name;Password=pwd     另一种 Provider=OraOledb.Oracle; 
+  user id=xxx;password=xxx;data source=8.8.8.8:1521/orcl; Pooling=false;-->
   <Oracle>
     <simple></simple>
     <DataSource>yuan</DataSource>
