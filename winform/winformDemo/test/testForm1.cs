@@ -23,7 +23,7 @@ namespace yezhanbafang.fw.winform.Demo.test
         private void bt_chaxun_Click(object sender, EventArgs e)
         {
             //selectControl.QueryForm f = new selectControl.QueryForm(AppDomain.CurrentDomain.BaseDirectory + "config\\query\\OutQuery.xml");
-            selectControl.QueryForm f = Base.MyToolCore.Create_QueryForm("config\\query\\OutQuery.xml", IoRyFunction.IC);
+            selectControl.QueryForm f = Base.MyToolCore.Create_QueryForm(AppDomain.CurrentDomain.BaseDirectory + "config\\query\\OutQuery.xml", IoRyFunction.IC);
             f.QueryEvent += F_QueryEvent;
             f.ShowDialog();
         }
@@ -78,7 +78,7 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
             IoRyEntity<Users> imu = new IoRyEntity<Users>();
             Users mu = imu.GetData_IoRyClass(sql).First();
 
-            XElement xe = XElement.Load("config\\ClassXML.xml");
+            XElement xe = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "config\\ClassXML.xml");
             var xee = xe.Elements("classform");
             classControlForm.ClassForm cf = new classControlForm.ClassForm(xee.Where(x => x.Element("className").Value == "Users").First(), mu);
             cf.UpdateEvent += Cf_UpdateEvent;
@@ -95,7 +95,7 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
 
         private void bt_Add_Click(object sender, EventArgs e)
         {
-            XElement xe = XElement.Load("config\\ClassXML.xml");
+            XElement xe = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "config\\ClassXML.xml");
             var xee = xe.Elements("classform");
             classControlForm.ClassForm cf = new classControlForm.ClassForm(xee.Where(x => x.Element("className").Value == "Users").First());
             cf.AddEvent += Cf_AddEvent;

@@ -51,14 +51,14 @@ namespace yezhanbafang.fw.winform.Demo.forms
 
         private void bt_chaxun_Click(object sender, EventArgs e)
         {
-            selectControl.QueryForm f = Base.MyToolCore.Create_QueryForm("config\\query\\PCQuery.xml", IoRyFunction.IC);
+            selectControl.QueryForm f = Base.MyToolCore.Create_QueryForm(AppDomain.CurrentDomain.BaseDirectory + "config\\query\\PCQuery.xml", IoRyFunction.IC);
             f.QueryEvent += F_QueryEvent;
             f.ShowDialog();
         }
 
         private void bt_Add_Click(object sender, EventArgs e)
         {
-            XElement xe = XElement.Load("config\\ClassXML.xml");
+            XElement xe = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "config\\ClassXML.xml");
             var xee = xe.Elements("classform");
             classControlForm.ClassForm cf = new classControlForm.ClassForm(xee.Where(x => x.Element("className").Value == "PC_config").First(), "日志类");
             cf.AddEvent += Cf_AddEvent;
@@ -111,7 +111,7 @@ namespace yezhanbafang.fw.winform.Demo.forms
             IoRyEntity<PC_config> imu = new IoRyEntity<PC_config>();
             PC_config mu = imu.GetData_IoRyClass(sql).First();
 
-            XElement xe = XElement.Load("config\\ClassXML.xml");
+            XElement xe = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "config\\ClassXML.xml");
             var xee = xe.Elements("classform");
             classControlForm.ClassForm cf = new classControlForm.ClassForm(xee.Where(x => x.Element("className").Value == "PC_config").First(), mu, "日志类");
             cf.UpdateEvent += Cf_UpdateEvent;
@@ -150,7 +150,7 @@ namespace yezhanbafang.fw.winform.Demo.forms
             {
                 this.ip = this.txt_IP.Text.Trim().Replace("'", "''");
             }
-            XElement xe = XElement.Load("config\\ClassXML.xml");
+            XElement xe = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "config\\ClassXML.xml");
             var xee = xe.Elements("classform");
             classControlForm.ClassForm cf = new classControlForm.ClassForm(xee.Where(x => x.Element("className").Value == "PC_config").First(), "日志类");
             cf.AddEvent += Cf_AddEvent2;
@@ -177,7 +177,7 @@ namespace yezhanbafang.fw.winform.Demo.forms
 
         private void bt_global_Click(object sender, EventArgs e)
         {
-            XElement xe = XElement.Load("config\\ClassXML.xml");
+            XElement xe = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "config\\ClassXML.xml");
             var xee = xe.Elements("classform");
             classControlForm.ClassForm cf = new classControlForm.ClassForm(xee.Where(x => x.Element("className").Value == "PC_config").First(), "日志类");
             cf.AddEvent += Cf_AddEventglobal;
