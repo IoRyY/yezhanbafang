@@ -23,7 +23,7 @@ namespace yezhanbafang.fw.winform.Demo.test
         private void bt_chaxun_Click(object sender, EventArgs e)
         {
             //selectControl.QueryForm f = new selectControl.QueryForm(AppDomain.CurrentDomain.BaseDirectory + "config\\query\\OutQuery.xml");
-            selectControl.QueryForm f = Base.MyToolCore.Create_QueryForm(AppDomain.CurrentDomain.BaseDirectory + "config\\query\\OutQuery.xml", IoRyFunction.IC);
+            selectControl.QueryForm f = Base.MyToolCore.Create_QueryForm("config\\query\\OutQuery.xml", IoRyFunction.IC);
             f.QueryEvent += F_QueryEvent;
             f.ShowDialog();
         }
