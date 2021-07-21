@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("完整应用Core,WCF,WebAPI种种,OrmTool,winform种种的综合Demo")]
+[assembly: AssemblyTitle("完整应用Core,WCF,WebAPI种种,OrmTool,winform种种的综合Demo")] 
 [assembly: AssemblyDescription("完整应用Core,WCF,WebAPI种种,OrmTool,winform种种的综合Demo 20200428大改")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("夜战八方")]
