@@ -15,6 +15,7 @@
   </sqlserver>
   <!-- Provider=Microsoft.Jet.OLEDB.4.0;Data Source=E:\xiangmu\IoRyClass\IoRyClass\123123.mdb;Jet OLEDB:Database Password=123 -->
   <!-- Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\新建 Microsoft Office Access 应用程序.mdb" -->
+  <!--Provider=Microsoft.ACE.OLEDB.12.0;Persist Security Info=False;Data Source=|DataDirectory|\FR\新建 Microsoft Office Access 应用程序.accdb-->
   <access>
     <simple>Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\新建 Microsoft Office Access 应用程序.mdb</simple>
     <path>E:\xiangmu\IoRyClass\IoRyClass\123123.mdb</path>
