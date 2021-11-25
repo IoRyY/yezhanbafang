@@ -25,8 +25,8 @@ namespace yezhanbafang
     public static class IoRyFunction
     {
         public static string cOperator = Dns.GetHostName();
-        public static string mxml = "constring.xml";
-        public static string url = "net.tcp://127.0.0.1:8090/yuan";﻿
+        public static string mxml = "erdai.xml";
+        public static string url = "net.tcp://erdai.7xbj.com:9093/yuan";
         static WCFClientV5 ic = null;
 
         public static WCFClientV5 IC

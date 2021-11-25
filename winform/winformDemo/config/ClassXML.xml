@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <classforms>
   <classform>
-    <className>Users</className>
+    <className>users_data</className>
     <Property>
       <column>1</column>
       <row>1</row>

@@ -59,7 +59,7 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
             if (e.RowIndex > -1)
             {
                 string mindex = this.dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                string sql = string.Format("select * from users where index_int='{0}'", mindex);
+                string sql = string.Format("select * from users_data where users_data_GUID='{0}'", mindex);
                 userChange(sql);
                 this.freshsql();
             }
@@ -68,19 +68,19 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
         private void bt_change_Click(object sender, EventArgs e)
         {
             string mindex = this.dataGridView1.Rows[this.dataGridView1.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
-            string sql = string.Format("select * from users where index_int='{0}'", mindex);
+            string sql = string.Format("select * from users_data where users_data_GUID='{0}'", mindex);
             userChange(sql);
             this.freshsql();
         }
 
         void userChange(string sql)
         {
-            IoRyEntity<Users> imu = new IoRyEntity<Users>();
-            Users mu = imu.GetData_IoRyClass(sql).First();
+            IoRyEntity<users_data> imu = new IoRyEntity<users_data>();
+            users_data mu = imu.GetData_IoRyClass(sql).First();
 
             XElement xe = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "config\\ClassXML.xml");
             var xee = xe.Elements("classform");
-            classControlForm.ClassForm cf = new classControlForm.ClassForm(xee.Where(x => x.Element("className").Value == "Users").First(), mu);
+            classControlForm.ClassForm cf = new classControlForm.ClassForm(xee.Where(x => x.Element("className").Value == "users_data").First(), mu);
             cf.UpdateEvent += Cf_UpdateEvent;
             cf.RepeatEvent += Cf_RepeatEvent;
             cf.Text = "用户修改";
@@ -89,7 +89,7 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
 
         private bool Cf_UpdateEvent(object ob)
         {
-            ((Users)ob).changetime_dt = DateTime.Now;
+            ((users_data)ob).changetime_dt = DateTime.Now;
             return true;
         }
 
@@ -97,7 +97,7 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
         {
             XElement xe = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "config\\ClassXML.xml");
             var xee = xe.Elements("classform");
-            classControlForm.ClassForm cf = new classControlForm.ClassForm(xee.Where(x => x.Element("className").Value == "Users").First());
+            classControlForm.ClassForm cf = new classControlForm.ClassForm(xee.Where(x => x.Element("className").Value == "users_data").First());
             cf.AddEvent += Cf_AddEvent;
             cf.RepeatEvent += Cf_RepeatEvent;
             cf.Text = "用户新增";
@@ -107,7 +107,7 @@ FROM      V_user where createtime_dt between '{0}' and  '{1}'", this.dtp_start.V
 
         private bool Cf_AddEvent(object ob)
         {
-            ((Users)ob).createtime_dt = DateTime.Now;
+            ((users_data)ob).createtime_dt = DateTime.Now;
             return true;
         }
 

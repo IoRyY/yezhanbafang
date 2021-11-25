@@ -5,13 +5,13 @@
   <!-- Data Source=192.168.0.21;Initial Catalog=test;Persist Security Info=True;User ID=sa;Password=sa -->
   <!-- Data Source=IORYY-PC\SQLEXPRESS;Initial Catalog=AML;Integrated Security=True -->
   <sqlserver>
-    <simple>Data Source=.;Initial Catalog=Car;Persist Security Info=True;User ID=sa;Password=sa</simple>
-    <ip>.</ip>
-    <databasename>gaokao</databasename>
-    <username>sa</username>
-    <passwordencryption>ImP/TtVrp/w=</passwordencryption>
+    <simple></simple>
+    <ip></ip>
+    <databasename>erdai</databasename>
+    <username>sun</username>
+    <passwordencryption></passwordencryption>
     <encryptKey>ydhydhnb</encryptKey>
-    <password>123</password>
+    <password></password>
   </sqlserver>
   <!-- Database=liscp;Data Source=221.238.85.130;User Id=xhhm;Password=Xhhm1@3$5^;pooling=false;CharSet=utf8;port=3300 -->
   <MySQL>

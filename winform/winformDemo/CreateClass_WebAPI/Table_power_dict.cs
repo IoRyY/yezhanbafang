@@ -4,11 +4,11 @@ using System.Linq;
 using System.Data;
 
 /************************************************************************************
- * 作者 袁东辉 时间：2016-1 最后修改时间：2018-1
+ * 作者 袁东辉 时间：2016-1 最后修改时间：2020-3
  * Email windy_23762872@126.com 253625488@qq.com
  * 博客 2016BigProject http://blog.csdn.net/yuandonghuia/article/details/50514985
- * 作用 代码生成器生成的View和Table类
- * VS版本 2010 2013 2015
+ * 作用 代码生成器生成的Table类
+ * VS版本 2010 2013 2015 2019
  ***********************************************************************************/
 
 namespace yezhanbafang
@@ -72,33 +72,6 @@ namespace yezhanbafang
             }
         }
 
-        int? _order_int;
-        /// <summary>
-        /// 数据库order_int字段
-        /// </summary>
-        [IoRyDisPlay(DisplayName ="")]
-        public int? order_int
-        {
-            get
-            {
-                return _order_int;
-            }
-            set
-            {
-                _order_int = value;
-                if (value == null)
-                {
-                    LIC.Where(x => x.ioryName == "order_int").First().ioryValueNull = true;
-                }
-                else
-                {
-                    LIC.Where(x => x.ioryName == "order_int").First().ioryValueNull = false;
-                }
-                LIC.Where(x => x.ioryName == "order_int").First().ioryValueChange = true;
-                LIC.Where(x => x.ioryName == "order_int").First().ioryValue = Convert.ToString(value);
-            }
-        }
-
         /// <summary>
         /// 实现IoRyTable的接口
         /// </summary>
@@ -106,7 +79,6 @@ namespace yezhanbafang
         {
             power_dict_str = dr.Field<string>("power_dict_str");
             power_display_str = dr.Field<string>("power_display_str");
-            order_int = dr.Field<int?>("order_int");
             foreach (var item in LIC)
             {
                 item.ioryValueChange = false;
@@ -137,16 +109,6 @@ namespace yezhanbafang
                 ioryValueNull = true,
                 ioryValueChange = false
             });
-            LIC.Add(new IoRyCol
-            {
-                ioryName = "order_int",
-                ioryType = "int?",
-                IsIdentity = false,
-                IsKey = false,
-                IsNull = true,
-                ioryValueNull = true,
-                ioryValueChange = false
-            });
         }
 
         string tablename = "power_dict";﻿
@@ -157,10 +119,10 @@ namespace yezhanbafang
         List<IoRyCol> LIC = new List<IoRyCol>();
 
         /// <summary>
-        /// 普通新增
+        /// 获取新增方法的Sql语句
         /// </summary>
         /// <returns></returns>
-        public void IoRyAdd()
+        string IoRyAdd_Sql()
         {
             string sqlp = " insert into " + tablename + " ({0}) values ({1})";
             List<string> lscname = new List<string>();
@@ -170,7 +132,7 @@ namespace yezhanbafang
                 if (item.ioryValueNull == false && item.IsIdentity == false)
                 {
                     lscname.Add(item.ioryName);
-                    lscvalue.Add("'" + item.ioryValue.Replace('\'', '"') + "'");
+                    lscvalue.Add("'" + item.ioryValue.Replace("'", "''") + "'");
                 }
             }
             if (lscname.Count == 0)
@@ -178,7 +140,25 @@ namespace yezhanbafang
                 throw new Exception("新增的类必须有值!");
             }
             string sql = string.Format(sqlp, string.Join(",", lscname), string.Join(",", lscvalue));
-            IoRyFunction.CallIoRyClass(sql);
+            return sql;
+        }
+
+        /// <summary>
+        /// 普通新增
+        /// </summary>
+        /// <returns></returns>
+        public void IoRyAdd()
+        {
+            IoRyFunction.CallIoRyClass(this.IoRyAdd_Sql());
+        }
+
+        /// <summary>
+        /// 普通新增 事务
+        /// </summary>
+        /// <param name="tran"></param>
+        public void Tran_IoRyAdd(IoRyTransaction tran)
+        {
+            tran.Sql += this.IoRyAdd_Sql() + " ;";
         }
 
         /// <summary>
@@ -187,30 +167,15 @@ namespace yezhanbafang
         /// <returns></returns>
         public void IoRyAdd(string cuser)
         {
-            string sqlp = " insert into " + tablename + " ({0}) values ({1})";
-            List<string> lscname = new List<string>();
-            List<string> lscvalue = new List<string>();
-            foreach (IoRyCol item in this.LIC)
-            {
-                if (item.ioryValueNull == false && item.IsIdentity == false)
-                {
-                    lscname.Add(item.ioryName);
-                    lscvalue.Add("'" + item.ioryValue.Replace('\'', '"') + "'");
-                }
-            }
-            if (lscname.Count == 0)
-            {
-                throw new Exception("新增的类必须有值!");
-            }
-            string sql = string.Format(sqlp, string.Join(",", lscname), string.Join(",", lscvalue));
-            IoRyFunction.CallIoRyClass(sql, cuser);
+            IoRyFunction.CallIoRyClass(this.IoRyAdd_Sql(), cuser);
         }
 
         /// <summary>
-        /// 自定义where 修改
+        /// 获取更新方法的Sql语句
         /// </summary>
         /// <param name="keys"></param>
-        public void IoRyUpdate(List<string> keys)
+        /// <returns></returns>
+        string IoRyUpdate_Sql(List<string> keys)
         {
             string sqlp = "update " + tablename + " set {0} where {1}";
             List<string> lsset = new List<string>();
@@ -229,7 +194,7 @@ namespace yezhanbafang
                             }
                             else
                             {
-                                lsset.Add(item.ioryName + "='" + item.ioryValue.Replace('\'', '"') + "'");
+                                lsset.Add(item.ioryName + "='" + item.ioryValue.Replace("'", "''") + "'");
                             }
                         }
                     }
@@ -240,12 +205,30 @@ namespace yezhanbafang
                     lswhere.Add(item + "='" + mv + "'");
                 }
                 string sql = string.Format(sqlp, string.Join(",", lsset), string.Join(" and ", lswhere));
-                IoRyFunction.CallIoRyClass(sql);
+                return sql;
             }
             else
             {
                 throw new Exception("此数据没有修改!");
             }
+        }
+
+        /// <summary>
+        /// 自定义where 修改
+        /// </summary>
+        /// <param name="keys"></param>
+        public void IoRyUpdate(List<string> keys)
+        {
+            IoRyFunction.CallIoRyClass(this.IoRyUpdate_Sql(keys));
+        }
+
+        /// <summary>
+        /// 自定义where 修改 事务
+        /// </summary>
+        /// <param name="tran"></param>
+        public void Tran_IoRyUpdate(IoRyTransaction tran, List<string> keys)
+        {
+            tran.Sql += this.IoRyUpdate_Sql(keys) + " ;";
         }
 
         /// <summary>
@@ -255,40 +238,7 @@ namespace yezhanbafang
         /// <param name="cuser"></param>
         public void IoRyUpdate(List<string> keys, string cuser)
         {
-            string sqlp = "update " + tablename + " set {0} where {1}";
-            List<string> lsset = new List<string>();
-            List<string> lswhere = new List<string>();
-            if (LIC.Any(x => x.ioryValueChange == true))
-            {
-                foreach (var item in LIC)
-                {
-                    if (item.ioryValueChange == true)
-                    {
-                        if (!keys.Contains(item.ioryName))
-                        {
-                            if (item.ioryValueNull)
-                            {
-                                lsset.Add(item.ioryName + " = null ");
-                            }
-                            else
-                            {
-                                lsset.Add(item.ioryName + "='" + item.ioryValue.Replace('\'', '"') + "'");
-                            }
-                        }
-                    }
-                }
-                foreach (var item in keys)
-                {
-                    string mv = LIC.Where(x => x.ioryName == item).First().ioryValue;
-                    lswhere.Add(item + "='" + mv + "'");
-                }
-                string sql = string.Format(sqlp, string.Join(",", lsset), string.Join(" and ", lswhere));
-                IoRyFunction.CallIoRyClass(sql, cuser);
-            }
-            else
-            {
-                throw new Exception("此数据没有修改!");
-            }
+            IoRyFunction.CallIoRyClass(this.IoRyUpdate_Sql(keys), cuser);
         }
 
         /// <summary>
@@ -298,6 +248,16 @@ namespace yezhanbafang
         {
             List<string> ls = LIC.Where(x => x.IsKey == true).Select(x => x.ioryName).ToList();
             this.IoRyUpdate(ls);
+        }
+
+        /// <summary>
+        /// 普通修改 事务 以keys为where
+        /// </summary>
+        /// <param name="tran"></param>
+        public void Tran_IoRyUpdate(IoRyTransaction tran)
+        {
+            List<string> ls = LIC.Where(x => x.IsKey == true).Select(x => x.ioryName).ToList();
+            tran.Sql += this.IoRyUpdate_Sql(ls) + " ;";
         }
 
         /// <summary>
@@ -311,10 +271,11 @@ namespace yezhanbafang
         }
 
         /// <summary>
-        /// 普通删除 自定义where
+        /// 获取删除方法的Sql语句
         /// </summary>
         /// <param name="keys"></param>
-        public void IoRyDelete(List<string> keys)
+        /// <returns></returns>
+        string IoRyDelete_Sql(List<string> keys)
         {
             string sqlp = "delete " + tablename + " where {0}";
             List<string> lswhere = new List<string>();
@@ -324,7 +285,27 @@ namespace yezhanbafang
                 lswhere.Add(item + "='" + mv + "'");
             }
             string sql = string.Format(sqlp, string.Join(" and ", lswhere));
-            IoRyFunction.CallIoRyClass(sql);
+            return sql;
+        }
+
+
+        /// <summary>
+        /// 普通删除 自定义where
+        /// </summary>
+        /// <param name="keys"></param>
+        public void IoRyDelete(List<string> keys)
+        {
+            IoRyFunction.CallIoRyClass(this.IoRyDelete_Sql(keys));
+        }
+
+        /// <summary>
+        /// 普通删除 事务 自定义where
+        /// </summary>
+        /// <param name="tran"></param>
+        /// <param name="keys"></param>
+        public void Tran_IoRyDelete(IoRyTransaction tran, List<string> keys)
+        {
+            tran.Sql += this.IoRyDelete_Sql(keys) + " ;";
         }
 
         /// <summary>
@@ -334,15 +315,7 @@ namespace yezhanbafang
         /// <param name="cuser"></param>
         public void IoRyDelete(List<string> keys, string cuser)
         {
-            string sqlp = "delete " + tablename + " where {0}";
-            List<string> lswhere = new List<string>();
-            foreach (var item in keys)
-            {
-                string mv = LIC.Where(x => x.ioryName == item).First().ioryValue;
-                lswhere.Add(item + "='" + mv + "'");
-            }
-            string sql = string.Format(sqlp, string.Join(" and ", lswhere));
-            IoRyFunction.CallIoRyClass(sql, cuser);
+            IoRyFunction.CallIoRyClass(this.IoRyDelete_Sql(keys), cuser);
         }
 
         /// <summary>
@@ -352,6 +325,16 @@ namespace yezhanbafang
         {
             List<string> ls = LIC.Where(x => x.IsKey == true).Select(x => x.ioryName).ToList();
             this.IoRyDelete(ls);
+        }
+
+        /// <summary>
+        /// 普通删除 事务 以keys为where 
+        /// </summary>
+        /// <param name="tran"></param>
+        public void Tran_IoRyDelete(IoRyTransaction tran)
+        {
+            List<string> ls = LIC.Where(x => x.IsKey == true).Select(x => x.ioryName).ToList();
+            tran.Sql += this.IoRyDelete_Sql(ls) + " ;";
         }
 
         /// <summary>
