@@ -172,8 +172,27 @@ TO DISK ='{0}'", ph);
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
+            //XysSmsC c1 = new XysSmsC();
+            //c1.PhoneNum = "18622420752";
+            //c1.TemplateCode = "SMS_237217359";
+            //c1.json = "{ \"name\":\"ydh\",\"content\":\"123654\",\"dateString\":\"2022-3-28\",\"timeString\":\"15:30\"}";
+            ////c1.json = "";
+
+            //string mdata = Newtonsoft.Json.JsonConvert.SerializeObject(c1);
+            //using (var client = new HttpClient())
+            //{
+            //    HttpContent content = new StringContent(mdata);
+            //    content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            //    string url = "http://10.1.10.213:60080/api/xysSMS/xysSMS";
+            //    HttpResponseMessage response = await client.PostAsync(url, content);//改成自己的
+            //    response.EnsureSuccessStatusCode();//用来抛异常的
+            //    string responseBody = await response.Content.ReadAsStringAsync();
+            //    SMSreturn fh = Newtonsoft.Json.JsonConvert.DeserializeObject<SMSreturn>(responseBody);
+            //    //return fh;
+            //}
+
             this.timer1.Enabled = true;
             this.button3.Text = "异地拷贝开启";
             timer1_Tick(null, null);
@@ -206,4 +225,21 @@ TO DISK ='{0}'", ph);
             }
         }
     }
+
+    public class XysSmsC
+    {
+        /// <summary>
+        /// 收短信的手机号
+        /// </summary>
+        public string PhoneNum { get; set; }
+        /// <summary>
+        /// 模板编号
+        /// </summary>
+        public string TemplateCode { get; set; }
+        /// <summary>
+        /// 入参的json
+        /// </summary>
+        public string json { get; set; }
+    }
+
 }
