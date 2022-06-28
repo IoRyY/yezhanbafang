@@ -65,11 +65,11 @@ namespace yezhanbafang.fw.winform.selectControl
             }
             else
             {
-                zhi = this.tb_nr.Text.Replace('\'', '\"');
+                zhi = this.tb_nr.Text.Replace("'", "''");
             }
             if (this.cb_gx.Text == "无")
             {
-                if (this.cb_ys.Text == "包含")
+                if (this.cb_ys.Text == "包含" || this.cb_ys.Text == "不包含")
                 {
                     return this.cb_zd.SelectedValue + getys() + "'%" + zhi + "%' ";
                 }
@@ -80,7 +80,7 @@ namespace yezhanbafang.fw.winform.selectControl
             }
             else if (this.cb_gx.Text == "并且")
             {
-                if (this.cb_ys.Text == "包含")
+                if (this.cb_ys.Text == "包含" || this.cb_ys.Text == "不包含")
                 {
                     return " and " + this.cb_zd.SelectedValue + getys() + "'%" + zhi + "%' ";
                 }
@@ -91,7 +91,7 @@ namespace yezhanbafang.fw.winform.selectControl
             }
             else
             {
-                if (this.cb_ys.Text == "包含")
+                if (this.cb_ys.Text == "包含" || this.cb_ys.Text == "不包含")
                 {
                     return " or " + this.cb_zd.SelectedValue + getys() + "'%" + zhi + "%' ";
                 }
@@ -117,6 +117,8 @@ namespace yezhanbafang.fw.winform.selectControl
                     return " < ";
                 case "包含":
                     return " like ";
+                case "不包含":
+                    return " not like ";
             }
             return "";
         }

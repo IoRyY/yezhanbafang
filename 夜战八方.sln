@@ -69,7 +69,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yezhanbafang.sd.WebAPI.DLL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.fw.WebAPI.DLL.Client", "WebApiBLL\yezhanbafang.fw.WebAPI.DLL.Client\yezhanbafang.fw.WebAPI.DLL.Client.csproj", "{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.sd.office", "standard\yezhanbafang.sd.office\yezhanbafang.sd.office.csproj", "{E689C1A8-8A11-4111-826D-26BCABD47169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yezhanbafang.sd.office", "standard\yezhanbafang.sd.office\yezhanbafang.sd.office.csproj", "{E689C1A8-8A11-4111-826D-26BCABD47169}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.fw.WCF.Interface", "WCF\yezhanbafang.fw.WCF.Interface\yezhanbafang.fw.WCF.Interface.csproj", "{B92BBD82-E375-45E3-BACC-426B19A260C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testdll", "test\testdll\testdll.csproj", "{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -273,6 +277,22 @@ Global
 		{E689C1A8-8A11-4111-826D-26BCABD47169}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E689C1A8-8A11-4111-826D-26BCABD47169}.Release|x86.ActiveCfg = Release|Any CPU
 		{E689C1A8-8A11-4111-826D-26BCABD47169}.Release|x86.Build.0 = Release|Any CPU
+		{B92BBD82-E375-45E3-BACC-426B19A260C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B92BBD82-E375-45E3-BACC-426B19A260C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B92BBD82-E375-45E3-BACC-426B19A260C4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B92BBD82-E375-45E3-BACC-426B19A260C4}.Debug|x86.Build.0 = Debug|Any CPU
+		{B92BBD82-E375-45E3-BACC-426B19A260C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B92BBD82-E375-45E3-BACC-426B19A260C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B92BBD82-E375-45E3-BACC-426B19A260C4}.Release|x86.ActiveCfg = Release|Any CPU
+		{B92BBD82-E375-45E3-BACC-426B19A260C4}.Release|x86.Build.0 = Release|Any CPU
+		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}.Debug|x86.Build.0 = Debug|Any CPU
+		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}.Release|x86.ActiveCfg = Release|Any CPU
+		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -303,6 +323,8 @@ Global
 		{FF021696-5A4E-4093-88A7-CD71B6FFBC39} = {62C6D9FB-375A-4D65-B33E-70D80CBF5D43}
 		{07CE4A52-1245-4CFD-A0CB-1F0A4C38BD6B} = {62C6D9FB-375A-4D65-B33E-70D80CBF5D43}
 		{E689C1A8-8A11-4111-826D-26BCABD47169} = {ABFDFF24-0830-4CE2-9774-ADBEB52B7328}
+		{B92BBD82-E375-45E3-BACC-426B19A260C4} = {E93BAB98-E1CF-47B1-A7BF-DE4390CEF507}
+		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3} = {AFBF9B7C-2DA4-486B-B75F-9127472BEEA5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4CC346A1-B2AF-48E2-B3D2-802FC493D8C3}

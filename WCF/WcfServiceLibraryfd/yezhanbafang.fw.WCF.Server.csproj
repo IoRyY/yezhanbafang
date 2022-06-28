@@ -66,7 +66,6 @@
     <Compile Include="Details.Designer.cs">
       <DependentUpon>Details.cs</DependentUpon>
     </Compile>
-    <Compile Include="IServicefd.cs" />
     <Compile Include="myMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +112,10 @@
     <ProjectReference Include="..\..\framework\yezhanbafang.fw.Core\yezhanbafang.fw.Core.csproj">
       <Project>{877c5076-dab7-4b67-8759-a0ca3c9bbbb4}</Project>
       <Name>yezhanbafang.fw.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\yezhanbafang.fw.WCF.Interface\yezhanbafang.fw.WCF.Interface.csproj">
+      <Project>{b92bbd82-e375-45e3-bacc-426b19a260c4}</Project>
+      <Name>yezhanbafang.fw.WCF.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -1,12 +1,19 @@
 ﻿using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Collections.Generic;
 
 namespace yezhanbafang.fw.WCF
 {
+    /// <summary>
+    /// WCF接口
+    /// </summary>
     [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(ImyCallBack))]
     public interface ImyService
     {
+        /// <summary>
+        /// 客户端传送data
+        /// </summary>
+        /// <param name="dler"></param>
+        /// <returns></returns>
         [OperationContract]
         bool ClientSendData(ydhDeliver dler);
 
@@ -31,7 +38,7 @@ namespace yezhanbafang.fw.WCF
         string SynMessage(string methodName, string xmlParam, string callOperator, string certificate);
     }
 
-    interface ImyCallBack
+    public interface ImyCallBack
     {
         [OperationContract]
         bool ServerSendData(ydhDeliver dler);
@@ -40,11 +47,17 @@ namespace yezhanbafang.fw.WCF
         void ServerSendMessage(string mesg);
     }
 
+    /// <summary>
+    /// WCF定义的传送类
+    /// </summary>
     [DataContract]
     public class ydhDeliver
     {
         string _Name;
 
+        /// <summary>
+        /// 名称
+        /// </summary>
         [DataMember]
         public string Name
         {
@@ -53,6 +66,9 @@ namespace yezhanbafang.fw.WCF
         }
 
         int _Index;
+        /// <summary>
+        /// 序号
+        /// </summary>
         [DataMember]
         public int Index
         {
@@ -61,13 +77,18 @@ namespace yezhanbafang.fw.WCF
         }
 
         byte[] _Context;
+        /// <summary>
+        /// 具体内容
+        /// </summary>
         [DataMember]
         public byte[] Context
         {
             get { return _Context; }
             set { _Context = value; }
         }
-
+        /// <summary>
+        /// 是否结束
+        /// </summary>
         [DataMember]
         public bool IsFinish { get; set; }
 
@@ -96,5 +117,13 @@ namespace yezhanbafang.fw.WCF
         /// </summary>
         [DataMember]
         public int Max { get; set; }
+    }
+
+    /// <summary>
+    /// 未知的DLL调用 用的接口
+    /// </summary>
+    public interface ServiceDllinterface
+    {
+        string ServiceFunction(string json);
     }
 }

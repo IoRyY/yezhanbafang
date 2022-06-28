@@ -51,6 +51,7 @@
             this.cb_ys.FormattingEnabled = true;
             this.cb_ys.Items.AddRange(new object[] {
             "包含",
+            "不包含",
             "大于",
             "小于",
             "等于",
