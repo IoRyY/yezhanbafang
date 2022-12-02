@@ -123,6 +123,24 @@ namespace yezhanbafang.fw.WCF.Client
             }
         }
 
+        //ProgressBar _myProgressBarSend;
+
+        ///// <summary>
+        ///// 当调用SendFile2Server方法,进度条自动读条 这个必须要跟
+        ///// </summary>
+        //public ProgressBar myProgressBarSend
+        //{
+        //    get { return _myProgressBarSend; }
+        //    set
+        //    {
+        //        _myProgressBarSend = value;
+        //        if (_myProgressBarSend.Visible == true)
+        //        {
+        //            _myProgressBarSend.Visible = false;
+        //        }
+        //    }
+        //}
+
         List<Button> _myButtons;
 
         /// <summary>
@@ -278,7 +296,7 @@ namespace yezhanbafang.fw.WCF.Client
             {
                 MyISC.SynMessage("", "", "", "KeepHearBeat");
             }
-            catch 
+            catch
             {
                 isc = createClient();
                 //初始化
@@ -386,10 +404,38 @@ namespace yezhanbafang.fw.WCF.Client
                             this.DuxMessage(xml, "GetFolderXml");
                         }
                         break;
+                    case "GetFolderFileXml":
+                        string xmlF = IoRyClass.BytesToString(mybt.ToArray());
+                        if (DuxMessage != null)
+                        {
+                            this.DuxMessage(xmlF, "GetFolderFileXml");
+                        }
+                        break;
                     case "CheckUpdateFiles":
                         try
                         {
+                            if (!Directory.Exists(Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory + dler.Name)))
+                            {
+                                Directory.CreateDirectory(Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory + dler.Name));
+                            }
                             File.WriteAllBytes(System.AppDomain.CurrentDomain.BaseDirectory + dler.Name, mybt.ToArray());
+                        }
+                        catch (Exception me)
+                        {
+                            if (DuxMessage != null)
+                            {
+                                this.DuxMessage(me.Message, "Error");
+                            }
+                        }
+                        break;
+                    case "File":
+                        try
+                        {
+                            if (!Directory.Exists(Path.GetDirectoryName(dler.Name)))
+                            {
+                                Directory.CreateDirectory(Path.GetDirectoryName(dler.Name));
+                            }
+                            File.WriteAllBytes(dler.Name, mybt.ToArray());
                         }
                         catch (Exception me)
                         {
@@ -749,6 +795,223 @@ namespace yezhanbafang.fw.WCF.Client
             return ds;
         }
 
+        /// <summary>
+        /// 删除服务器文件
+        /// </summary>
+        /// <param name="ServerFileName"></param>
+        /// <returns></returns>
+        public bool DeleteServerFile(string ServerFileName)
+        {
+            string jmapname = "<ServerFilePath>" + IoRyClass.EncryptRSA_long(ServerFileName, Encrypt) + "</ServerFilePath>";
+            string xl = myxml("", "DeleteFile", new List<string> { jmapname });
+            string rst = MyISC.SynMessage("DeleteFile", xl, this.cOperator, "ydh");
+            XElement xmdata = XElement.Parse(rst);
+            if (xmdata.Element("correct").Value == "false")
+            {
+                throw new Exception(xmdata.Element("Exception").FirstNode.ToString());
+            }
+            return Convert.ToBoolean(xmdata.Element("return").Value);
+        }
+
+        /// <summary>
+        /// 从服务器下载文件
+        /// </summary>
+        /// <param name="LocalFileName"></param>
+        /// <param name="ServerFileName"></param>
+        /// <returns></returns>
+        public bool GetFileFromServer(string LocalFileName, string ServerFileName)
+        {
+            //服务器上有文件才能下载
+            if (this.ChekServerFile(ServerFileName))
+            {
+                string jmapname1 = "<ServerFilePath>" + IoRyClass.EncryptRSA_long(ServerFileName, Encrypt) + "</ServerFilePath>";
+                string jmapname2 = "<ClientFilePath>" + IoRyClass.EncryptRSA_long(LocalFileName, Encrypt) + "</ClientFilePath>";
+                string xl = myxml("", "GetFile", new List<string> { jmapname1 + jmapname2 });
+                this.MyISC.ClientSendMessage("GetFile", xl, this.cOperator, "ydh");
+                if (myProgressBar != null)
+                {
+                    if (myProgressBar.Visible == false)
+                    {
+                        myProgressBar.Visible = true;
+                    }
+                }
+                if (MyButtons.Count != 0)
+                {
+                    foreach (Button item in MyButtons)
+                    {
+                        item.Enabled = false;
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 验证服务器上是否存在某个文件
+        /// </summary>
+        /// <param name="FilePath"></param>
+        /// <returns></returns>
+        bool ChekServerFile(string FilePath)
+        {
+            //验证服务器是否有此文件,如果没有才能上传
+            string jmapname = "<ServerFilePath>" + IoRyClass.EncryptRSA_long(FilePath, Encrypt) + "</ServerFilePath>";
+            string xl = myxml("", "CheckFile", new List<string> { jmapname });
+            string rst = MyISC.SynMessage("CheckFile", xl, this.cOperator, "ydh");
+            XElement xmdata = XElement.Parse(rst);
+            if (xmdata.Element("correct").Value == "false")
+            {
+                throw new Exception(xmdata.Element("Exception").FirstNode.ToString());
+            }
+            return Convert.ToBoolean(xmdata.Element("return").Value);
+        }
+
+        /// <summary>
+        /// 传送文件到服务器 20221201
+        /// </summary>
+        /// <param name="LocalFileName"></param>
+        /// <param name="ServerFileName"></param>
+        /// <returns></returns>
+        public bool SendFile2Server(string LocalFileName, string ServerFileName)
+        {
+            //如果服务器上有文件了,则不能上传
+            if (this.ChekServerFile(ServerFileName))
+            {
+                return false;
+            }
+            ydhDeliver acgf = new ydhDeliver();
+            acgf.Context = File.ReadAllBytes(LocalFileName);
+            acgf.DataType = "bytes";
+            acgf.Name = ServerFileName;
+            acgf.FunctionName = "ClientSendFile";
+            acgf.Max = (acgf.Context.Length / Maxupload) + 1;
+
+            //if (myProgressBarSend != null)
+            //{
+            //    if (myProgressBarSend.Visible == false)
+            //    {
+            //        myProgressBarSend.Visible = true;
+            //        myProgressBarSend.Maximum = ((bb.Length / Minupload) + 1);
+            //    }
+            //}
+            if (myProgressBar != null)
+            {
+                if (myProgressBar.Visible == false)
+                {
+                    myProgressBar.Visible = true;
+                    myProgressBar.Maximum = ((acgf.Context.Length / this.Maxupload) + 1);
+                }
+            }
+            if (MyButtons.Count != 0)
+            {
+                foreach (Button item in MyButtons)
+                {
+                    item.Enabled = false;
+                }
+            }
+
+            System.ComponentModel.BackgroundWorker bw = new System.ComponentModel.BackgroundWorker();
+            bw.WorkerReportsProgress = true;
+            bw.DoWork += Bw_DoWorkFile;
+            bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
+            bw.ProgressChanged += Bw_ProgressChanged;
+            bw.RunWorkerAsync(acgf);
+            return true;
+        }
+
+        private void Bw_DoWorkFile(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+
+            ydhDeliver ac = (ydhDeliver)e.Argument;
+            byte[] bb = ac.Context;
+            System.ComponentModel.BackgroundWorker bgWorker = sender as System.ComponentModel.BackgroundWorker;
+            ydhDeliver mydl = new ydhDeliver();
+            mydl.Name = ac.Name;
+            mydl.DataType = ac.DataType;
+            mydl.FunctionName = ac.FunctionName;
+            mydl.Max = ac.Max;
+
+            //2015-11-13 修改了一个边界问题,去掉了下面的等于号
+            for (int i = 0; i * this.Maxupload < bb.LongLength; i++)
+            {
+                if (bb.LongLength > (i + 1) * this.Maxupload)
+                {
+                    byte[] newbyte = new byte[Maxupload];
+                    Array.Copy(bb, i * Maxupload, newbyte, 0, Maxupload);
+                    mydl.Context = newbyte.ToArray();
+                    //就这几行代码,大数据量传输效率提高了近百倍
+                    //mydl.Context = ac.bytes.Skip(i * this.Maxupload).Take(this.Maxupload).ToArray();
+                    mydl.IsFinish = false;
+                }
+                else
+                {
+                    mydl.Context = bb.Skip(i * this.Maxupload).Take(Convert.ToInt32(bb.LongLength) - i * this.Maxupload).ToArray();
+                    mydl.IsFinish = true;
+                }
+                mydl.Index = i;
+
+                int mycount = 0;
+                try
+                {
+                    while (!MyISC.ClientSendData(mydl))
+                    {
+                        MyISC.ClientSendData(mydl);
+                        mycount++;
+                        if (mycount > 10)
+                        {
+
+                            throw new Exception("DataSend Failed!;网络不通畅,连续重发10次失败");
+                        }
+                    }
+                    bgWorker.ReportProgress(i);
+                }
+                catch (Exception me)
+                {
+                    string exmsg = "";
+                    while (me.InnerException != null)
+                    {
+                        exmsg += me.Message + "\r\n------>\r\n";
+                        me = me.InnerException;
+                    }
+                    exmsg += me.Message;
+
+                    throw new Exception(exmsg);
+
+                }
+            }
+        }
+
+
+        private void Bw_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            if (myProgressBar != null)
+            {
+                if (myProgressBar.Value < myProgressBar.Maximum)
+                {
+                    myProgressBar.Value++;
+                }
+            }
+        }
+
+        private void Bw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            if (myProgressBar != null)
+            {
+                myProgressBar.Visible = false;
+                myProgressBar.Value = 0;
+            }
+            if (MyButtons.Count != 0)
+            {
+                foreach (Button item in MyButtons)
+                {
+                    item.Enabled = true;
+                }
+            }
+        }
+
         #endregion
 
         #region 自动更新相关
@@ -756,7 +1019,18 @@ namespace yezhanbafang.fw.WCF.Client
         /// <summary>
         /// 每次传输的最大量
         /// </summary>
-        int? Maxupload = null;
+        int? _Maxupload = null;
+        public int Maxupload
+        {
+            get
+            {
+                if (_Maxupload == null)
+                {
+                    _Maxupload = Convert.ToInt32(get_EachSendBytesMaxNum());
+                }
+                return Convert.ToInt32(_Maxupload);
+            }
+        }
 
         /// <summary>
         /// 目前来看这个函数没必要做成异步
@@ -765,7 +1039,13 @@ namespace yezhanbafang.fw.WCF.Client
         string get_EachSendBytesMaxNum()
         {
             string xl = myxml("", "EachSendBytesMaxNum", new List<string> { "" });
-            return MyISC.SynMessage("EachSendBytesMaxNum", xl, this.cOperator, "ydh");
+            string rxl= MyISC.SynMessage("EachSendBytesMaxNum", xl, this.cOperator, "ydh");
+            XElement xmdata = XElement.Parse(rxl);
+            if (xmdata.Element("correct").Value == "false")
+            {
+                throw new Exception(xmdata.Element("Exception").FirstNode.ToString());
+            }
+            return xmdata.Element("return").Value;
         }
 
         /// <summary>
@@ -774,13 +1054,18 @@ namespace yezhanbafang.fw.WCF.Client
         /// <param name="re_path"></param>
         public void GetFoldersPathXML(string re_path)
         {
-            if (this.Maxupload == null)
-            {
-                this.Maxupload = Convert.ToInt32(get_EachSendBytesMaxNum());
-            }
             string xl = myxml(re_path, "GetFolderXml", new List<string> { "" });
-            //string rxl = isc.SynMessage("EachSendBytesMaxNum", xl, this.cOperator, "ydh");
             MyISC.ClientSendMessage("GetFolderXml", xl, this.cOperator, "ydh");
+        }
+
+        /// <summary>
+        /// 获取文件夹的xml结构
+        /// </summary>
+        /// <param name="re_path"></param>
+        public void GetFolderFileXml(string re_path)
+        {
+            string xl = myxml(re_path, "GetFolderFileXml", new List<string> { "" });
+            MyISC.ClientSendMessage("GetFolderFileXml", xl, this.cOperator, "ydh");
         }
 
         /// <summary>

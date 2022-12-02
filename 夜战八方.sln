@@ -75,6 +75,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yezhanbafang.fw.WCF.Interfa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testdll", "test\testdll\testdll.csproj", "{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testServer", "test\testServer\testServer.csproj", "{D61727D5-F378-4339-9237-9591AE92BD7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -293,6 +295,14 @@ Global
 		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}.Release|x86.ActiveCfg = Release|Any CPU
 		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3}.Release|x86.Build.0 = Release|Any CPU
+		{D61727D5-F378-4339-9237-9591AE92BD7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61727D5-F378-4339-9237-9591AE92BD7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61727D5-F378-4339-9237-9591AE92BD7F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D61727D5-F378-4339-9237-9591AE92BD7F}.Debug|x86.Build.0 = Debug|Any CPU
+		{D61727D5-F378-4339-9237-9591AE92BD7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61727D5-F378-4339-9237-9591AE92BD7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61727D5-F378-4339-9237-9591AE92BD7F}.Release|x86.ActiveCfg = Release|Any CPU
+		{D61727D5-F378-4339-9237-9591AE92BD7F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -325,6 +335,7 @@ Global
 		{E689C1A8-8A11-4111-826D-26BCABD47169} = {ABFDFF24-0830-4CE2-9774-ADBEB52B7328}
 		{B92BBD82-E375-45E3-BACC-426B19A260C4} = {E93BAB98-E1CF-47B1-A7BF-DE4390CEF507}
 		{A5AEAE9A-78F2-4EDB-8943-0F23BE60BEA3} = {AFBF9B7C-2DA4-486B-B75F-9127472BEEA5}
+		{D61727D5-F378-4339-9237-9591AE92BD7F} = {AFBF9B7C-2DA4-486B-B75F-9127472BEEA5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4CC346A1-B2AF-48E2-B3D2-802FC493D8C3}

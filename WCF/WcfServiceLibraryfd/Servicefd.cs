@@ -455,103 +455,6 @@ $"
             {
                 GetUserInfo("用户调用ClientSendMessage,发送命令:" + methodName + " 用户:" + callOperator + "\r\n" + xmlParam, myTransport.ClientToService);
 
-                #region 这些目前用不到的先注释
-                //if (command.StartsWith("[FileName]"))
-                //{
-                //    string SafeName = command.Split(';')[1];
-                //    while (myListList.Keys.Contains(SafeName))
-                //    {
-                //        SafeName = "New" + SafeName;
-                //    }
-                //    mCB.ServerSendMessage("[FileName];" + SafeName + ";" + command.Split(';')[2]);
-                //    GetUserInfo("服务发送命令:" + "[FileName];" + SafeName + ";" + command.Split(';')[2], myTransport.ServiceToClient);
-                //}
-
-
-
-                //else if (command.StartsWith("[AdminMessage]"))
-                //{
-                //    foreach (var item in WcfServiceLibrary.Servicefd.CommanList.Values)
-                //    {
-                //        try
-                //        {
-                //            item("[AdminMessage]", command);
-                //        }
-                //        catch (Exception ex)
-                //        {
-                //            GetUserInfo("服务发送命令:" + command + ",错误:" + ex.Message, myTransport.ServiceToClient);
-                //        }
-                //    }
-                //}
-                //else if (command.StartsWith("[SendTo]"))
-                //{
-                //    try
-                //    {
-                //        if (command.Split(';')[1] != "")
-                //        {
-                //            string sessionname = ServiceSession.Where(x => x.Value == command.Split(';')[1]).Select(x => x.Key).First();
-                //            WcfServiceLibrary.Servicefd.CommanList[sessionname]("[SendTo]", "[SendTo];" + this.ClientName + ";"
-                //                + command.Split(';')[2] + ";" + command.Split(';')[3]);
-                //        }
-                //        //思考当给所有人发送的情况.
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        GetUserInfo("服务发送命令:" + command + ",错误:" + ex.Message, myTransport.ServiceToClient);
-                //    }
-                //}
-                //else if (command.StartsWith("[IsReceive]"))
-                //{
-                //    string sessionname = ServiceSession.Where(x => x.Value == command.Split(';')[2]).Select(x => x.Key).First();
-                //    WcfServiceLibrary.Servicefd.CommanList[sessionname]("[IsReceive]", command);
-                //    if (command.Split(';')[1] == "Yes")
-                //    {
-                //        System.ComponentModel.BackgroundWorker bw = new System.ComponentModel.BackgroundWorker();
-                //        bw.DoWork += new System.ComponentModel.DoWorkEventHandler(Fujian_DoWork);
-                //        bw.RunWorkerAsync(command.Split(';')[2] + ";" + command.Split(';')[3]);
-                //    }
-                //    else
-                //    {
-                //        File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + temp + command.Split(';')[2] + command.Split(';')[3]);
-                //    }
-                //}
-                //else if (command.StartsWith("[IsDownLoadFinish]"))
-                //{
-                //    string sessionname = ServiceSession.Where(x => x.Value == command.Split(';')[2]).Select(x => x.Key).First();
-                //    WcfServiceLibrary.Servicefd.CommanList[sessionname]("[IsDownLoadFinish]", command);
-                //}
-                //else if (command.StartsWith("[CreatType]"))
-                //{
-
-                //    myType = Type.GetType(command.Split(';')[1]);
-                //    if (myType != null)
-                //    {
-                //        mCB.ServerSendMessage("[CreatType];True");
-                //        GetUserInfo("[CreatType];True", myTransport.ServiceToClient);
-                //    }
-                //    else
-                //    {
-                //        mCB.ServerSendMessage("[CreatType];False");
-                //        GetUserInfo("[CreatType];False", myTransport.ServiceToClient);
-                //    }
-
-                //}
-                //else if (command.StartsWith("[CreateInstance]"))
-                //{
-                //    try
-                //    {
-                //        myobjec = Activator.CreateInstance(myType, command.Split(';')[1]);
-                //        mCB.ServerSendMessage("[CreateInstance];True");
-                //        GetUserInfo("[CreateInstance];True", myTransport.ServiceToClient);
-                //    }
-                //    catch
-                //    {
-                //        mCB.ServerSendMessage("[CreateInstance];False");
-                //        GetUserInfo("[CreateInstance];False", myTransport.ServiceToClient);
-                //    }
-                //}
-                #endregion
-
                 XElement xmdata = XElement.Parse(xmlParam);
                 string fname = xmdata.Element("Function").Value;
                 string fpath = xmdata.Element("xmlPath").Value;
@@ -564,6 +467,47 @@ $"
                 {
                     switch (methodName)
                     {
+                        //                        //20201129新增下载文件
+                        //else if (command.StartsWith("[GetFile]"))
+                        //    {
+                        //        string path = System.AppDomain.CurrentDomain.BaseDirectory + Files + command.Split(';')[1];
+                        //        if (File.Exists(path))
+                        //        {
+                        //            System.ComponentModel.BackgroundWorker bw = new System.ComponentModel.BackgroundWorker();
+                        //            bw.DoWork += new System.ComponentModel.DoWorkEventHandler(FileGet_DoWork);
+                        //            bw.RunWorkerAsync(command.Split(';')[1] + ";" + command.Split(';')[2]);
+                        //            mCB.ServerSendMessage("[GetFile];True");
+                        //        }
+                        //        else
+                        //        {
+                        //            mCB.ServerSendMessage("[GetFile];False");
+                        //        }
+                        //    }
+                        case "GetFile":
+                            //解密服务器端的filename
+                            string Sfilename = IoRyClass.DecryptRSA_long(xmdata.Element("Param").Element("ServerFilePath").Value, rsa.ToXmlString(true));
+                            string Cfilename = IoRyClass.DecryptRSA_long(xmdata.Element("Param").Element("ClientFilePath").Value, rsa.ToXmlString(true));
+
+                            GetUserInfo("上面命令的解密字符串为:" + Sfilename + "  " + Cfilename, myTransport.ClientToService);
+                            string path = System.AppDomain.CurrentDomain.BaseDirectory + Files + Sfilename;
+                            if (File.Exists(path))
+                            {
+                                ydhDeliver acgf = new ydhDeliver();
+                                acgf.Context = File.ReadAllBytes(path);
+                                acgf.DataType = "bytes";
+                                acgf.Name = Cfilename;
+                                acgf.FunctionName = "File";
+                                acgf.Max = (acgf.Context.Length / Maxupload) + 1;
+                                System.ComponentModel.BackgroundWorker bw = new System.ComponentModel.BackgroundWorker();
+                                bw.DoWork += new System.ComponentModel.DoWorkEventHandler(Async_DoWork);
+                                bw.RunWorkerAsync(acgf);
+                                mCB.ServerSendMessage(mycorrect("True", fname));
+                            }
+                            else
+                            {
+                                mCB.ServerSendMessage(mycorrect("False", fname));
+                            }
+                            break;
                         case "GetEncrypt":
                             mCB.ServerSendMessage(mycorrect(rsa.ToXmlString(false), fname));
                             GetUserInfo("服务发送命令:[GetEncrypt];" + rsa.ToXmlString(false), myTransport.ServiceToClient);
@@ -575,14 +519,33 @@ $"
                             string pathxml = xmlpin.ToString();
                             //这里由于怕xml特别大,所以采用分步传输
                             //mCB.ServerSendMessage(mycorrect(pathxml, fname));
-                            AsyncClass ac = new AsyncClass();
-                            ac.bytes = IoRyClass.StringToBytes(mycorrect(pathxml, fname));
-                            ac.bytetype = "string";
+                            ydhDeliver ac = new ydhDeliver();
+                            ac.Context = IoRyClass.StringToBytes(mycorrect(pathxml, fname));
+                            ac.DataType = "string";
                             ac.Name = "GetFolderXml";
+                            ac.FunctionName = "GetFolderXml";
+                            ac.Max = (ac.Context.Length / Maxupload) + 1;
                             System.ComponentModel.BackgroundWorker bwGetFolderXml = new System.ComponentModel.BackgroundWorker();
                             bwGetFolderXml.DoWork += new System.ComponentModel.DoWorkEventHandler(Async_DoWork);
                             bwGetFolderXml.RunWorkerAsync(ac);
                             GetUserInfo("服务发送命令:[GetFolderXml];" + mycorrect(pathxml, fname), myTransport.ServiceToClient);
+                            break;
+                            //20221202 新增获取文件夹以及文件的xml
+                        case "GetFolderFileXml":
+                            //><folder path="test\abc" /><
+                            XElement myrootf = XElement.Parse("<folder path=\"" + fpath + "\" >" + "</folder>");
+                            XElement xmlpinf = recursive_FolderFileXml(AppDomain.CurrentDomain.BaseDirectory + fpath, myrootf);
+                            string pathxmlf = xmlpinf.ToString();
+                            ydhDeliver acf = new ydhDeliver();
+                            acf.Context = IoRyClass.StringToBytes(mycorrect(pathxmlf, fname));
+                            acf.DataType = "string";
+                            acf.Name = "GetFolderFileXml";
+                            acf.FunctionName = "GetFolderFileXml";
+                            acf.Max = (acf.Context.Length / Maxupload) + 1;
+                            System.ComponentModel.BackgroundWorker bwGetFolderXmlF = new System.ComponentModel.BackgroundWorker();
+                            bwGetFolderXmlF.DoWork += new System.ComponentModel.DoWorkEventHandler(Async_DoWork);
+                            bwGetFolderXmlF.RunWorkerAsync(acf);
+                            GetUserInfo("服务发送命令:[GetFolderFileXml];" + mycorrect(pathxmlf, fname), myTransport.ServiceToClient);
                             break;
                         case "CheckUpdateFiles":
                             XElement up = Checkfiles(fpath, xmdata.Element("Param").ToString());
@@ -607,12 +570,18 @@ $"
                             {
                                 if (ret.GetType() == typeof(DataSet))
                                 {
-                                    byte[] bts = IoRyClass.GetXmlFormatDataSet((DataSet)ret);
+                                    ydhDeliver acgf = new ydhDeliver();
+                                    acgf.Context = IoRyClass.GetXmlFormatDataSet((DataSet)ret);
+                                    acgf.DataType = "DataSet";
+                                    acgf.Name = "DataSet";
+                                    acgf.FunctionName = "DataSet";
+                                    acgf.Max = (acgf.Context.Length / Maxupload) + 1;
+                                    //byte[] bts = IoRyClass.GetXmlFormatDataSet((DataSet)ret);
                                     //2015-12-15 增加解密的串
-                                    GetUserInfo("服务查询到的结果:\r\n" + IoRyClass.BytesToString(bts), myTransport.ServiceToClient);
+                                    GetUserInfo("服务查询到的结果:\r\n" + IoRyClass.BytesToString(acgf.Context), myTransport.ServiceToClient);
                                     System.ComponentModel.BackgroundWorker bw1 = new System.ComponentModel.BackgroundWorker();
-                                    bw1.DoWork += new System.ComponentModel.DoWorkEventHandler(Bytes_DoWork);
-                                    bw1.RunWorkerAsync(bts);
+                                    bw1.DoWork += new System.ComponentModel.DoWorkEventHandler(Async_DoWork);
+                                    bw1.RunWorkerAsync(acgf);
                                 }
                                 else if (ret.GetType() == typeof(string))
                                 {
@@ -649,13 +618,18 @@ $"
                             DataSet ds = ic1.ExecuteSP(spname, DbParameterS);
                             if (ds != null)
                             {
-
-                                byte[] bts = IoRyClass.GetXmlFormatDataSet(ds);
+                                ydhDeliver acgf = new ydhDeliver();
+                                acgf.Context = IoRyClass.GetXmlFormatDataSet((DataSet)ds);
+                                acgf.DataType = "DataSet";
+                                acgf.Name = "DataSet";
+                                acgf.FunctionName = "DataSet";
+                                acgf.Max = (acgf.Context.Length / Maxupload) + 1;
+                                //byte[] bts = IoRyClass.GetXmlFormatDataSet(ds);
                                 //2015-12-15 增加解密的串
-                                GetUserInfo("服务查询到的结果:\r\n" + IoRyClass.BytesToString(bts), myTransport.ServiceToClient);
+                                GetUserInfo("服务查询到的结果:\r\n" + IoRyClass.BytesToString(acgf.Context), myTransport.ServiceToClient);
                                 System.ComponentModel.BackgroundWorker bw1 = new System.ComponentModel.BackgroundWorker();
-                                bw1.DoWork += new System.ComponentModel.DoWorkEventHandler(Bytes_DoWork);
-                                bw1.RunWorkerAsync(bts);
+                                bw1.DoWork += new System.ComponentModel.DoWorkEventHandler(Async_DoWork);
+                                bw1.RunWorkerAsync(acgf);
                             }
                             else
                             {
@@ -712,6 +686,7 @@ $"
         #region 数据传输部分 ClientSendData
 
         string temp = "Temp\\";
+        string Files = "UpdateFiles\\";
         SortedList<string, List<ydhDeliver>> myListList = new SortedList<string, List<ydhDeliver>>();
         //每次传输的最大比特数,分号后面为每次传输的最大比特数
         int Maxupload = Convert.ToInt32(Servicefd.GetConfigValue("Max"));
@@ -729,7 +704,7 @@ $"
                     }
                     else
                     {
-                        mCB.ServerSendMessage("[Wrong]DataSend Failed!;网络不通畅,发生丢包!!");
+                        mCB.ServerSendMessage(mywrong("DataSend Failed!;网络不通畅,发生丢包!!"));
                         GetUserInfo("用户上传文件丢包,网络情况不好:" + dler.Name, myTransport.ClientToService);
                         //以后再处理吧
                         return false;
@@ -757,9 +732,24 @@ $"
                     }
                     try
                     {
-                        File.WriteAllBytes(System.AppDomain.CurrentDomain.BaseDirectory + temp + this.ClientName + dler.Name, mybt.ToArray());
-                        GetUserInfo("用户上传文件完成:" + dler.Name, myTransport.ClientToService);
-                        mCB.ServerSendMessage("[UploadFinish];" + dler.Name);
+                        switch(dler.FunctionName)
+                        {
+                            case "ClientSendFile":
+                                string path = System.AppDomain.CurrentDomain.BaseDirectory + Files + dler.Name;
+                                if (!Directory.Exists(Path.GetDirectoryName(path)))
+                                {
+                                    Directory.CreateDirectory(Path.GetDirectoryName(path));
+                                }
+                                File.WriteAllBytes(path, mybt.ToArray());
+                                GetUserInfo("用户上传文件完成:" + dler.Name, myTransport.ClientToService);
+                                mCB.ServerSendMessage(mycorrectAsync(dler.Name, dler.FunctionName, "UploadFinish"));
+                                break;
+                            default:
+                                File.WriteAllBytes(System.AppDomain.CurrentDomain.BaseDirectory + temp + this.ClientName + dler.Name, mybt.ToArray());
+                                GetUserInfo("用户上传文件完成:" + dler.Name, myTransport.ClientToService);
+                                mCB.ServerSendMessage(mycorrectAsync(dler.Name, dler.FunctionName, "UploadFinish"));
+                                break;
+                        }
                     }
                     catch (Exception me)
                     {
@@ -795,74 +785,75 @@ $"
             return true;
         }
 
+        //20221201 集中到Async_DoWork 这个废弃
         //传送byte[]类
-        void Bytes_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            byte[] bb = (byte[])e.Argument;
-            int maxchangdu = (bb.Length / Maxupload) + 1;
-            mCB.ServerSendMessage(mycorrectAsync(maxchangdu.ToString(), "DataSet", "FileTransportCount"));
-            ydhDeliver mydl = new ydhDeliver();
-            mydl.Name = "DataSet";
-            mydl.FunctionName = "DataSet";
-            mydl.DataType = "DataSet";
-            mydl.Max = maxchangdu;
-            //2015-11-13 修改了一个边界问题,去掉了下面的等于号
-            for (int i = 0; i * Maxupload < bb.LongLength; i++)
-            {
-                if (bb.LongLength > (i + 1) * Maxupload)
-                {
-                    //通过计算int的范围,可知目前最大支持传2G的文件.
-                    //mydl.Context = bb.Skip(i * Maxupload).Take(Maxupload).ToArray();
-                    //就这几行代码,大数据量传输效率提高了近百倍
-                    byte[] newbyte = new byte[Maxupload];
-                    Array.Copy(bb, i * Maxupload, newbyte, 0, Maxupload);
-                    mydl.Context = newbyte.ToArray();
-                    mydl.IsFinish = false;
-                }
-                else
-                {
-                    mydl.Context = bb.Skip(i * Maxupload).Take(Convert.ToInt32(bb.LongLength) - i * Maxupload).ToArray();
-                    mydl.IsFinish = true;
-                }
-                mydl.Index = i;
-                mydl.Now = i;
+        //void Bytes_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        //{
+        //    byte[] bb = (byte[])e.Argument;
+        //    int maxchangdu = (bb.Length / Maxupload) + 1;
+        //    mCB.ServerSendMessage(mycorrectAsync(maxchangdu.ToString(), "DataSet", "FileTransportCount"));
+        //    ydhDeliver mydl = new ydhDeliver();
+        //    mydl.Name = "DataSet";
+        //    mydl.FunctionName = "DataSet";
+        //    mydl.DataType = "DataSet";
+        //    mydl.Max = maxchangdu;
+        //    //2015-11-13 修改了一个边界问题,去掉了下面的等于号
+        //    for (int i = 0; i * Maxupload < bb.LongLength; i++)
+        //    {
+        //        if (bb.LongLength > (i + 1) * Maxupload)
+        //        {
+        //            //通过计算int的范围,可知目前最大支持传2G的文件.
+        //            //mydl.Context = bb.Skip(i * Maxupload).Take(Maxupload).ToArray();
+        //            //就这几行代码,大数据量传输效率提高了近百倍
+        //            byte[] newbyte = new byte[Maxupload];
+        //            Array.Copy(bb, i * Maxupload, newbyte, 0, Maxupload);
+        //            mydl.Context = newbyte.ToArray();
+        //            mydl.IsFinish = false;
+        //        }
+        //        else
+        //        {
+        //            mydl.Context = bb.Skip(i * Maxupload).Take(Convert.ToInt32(bb.LongLength) - i * Maxupload).ToArray();
+        //            mydl.IsFinish = true;
+        //        }
+        //        mydl.Index = i;
+        //        mydl.Now = i;
 
-                int mycount = 0;
-                try
-                {
-                    while (!mCB.ServerSendData(mydl))
-                    {
-                        mCB.ServerSendData(mydl);
-                        mycount++;
-                        if (mycount > 10)
-                        {
-                            mCB.ServerSendMessage(mywrong("DataSend Failed!;网络不通畅,连续重发10次失败"));
-                            return;
-                        }
-                    }
-                }
-                catch (Exception me)
-                {
-                    string exmsg = "";
-                    while (me.InnerException != null)
-                    {
-                        exmsg += me.Message + "\r\n------>\r\n";
-                        me = me.InnerException;
-                    }
-                    exmsg += me.Message;
-                    Ydhlog.Error(SessionName + " Bytes_DoWork():" + exmsg);
-                    //有时候断了,就根本发不出去了,这里会异常
-                    try
-                    {
-                        mCB.ServerSendMessage(mywrong("DataSend Failed!;" + exmsg));
-                    }
-                    catch { }
-                    return;
-                }
-            }
-            MonitorWrite MW = new MonitorWrite(GetUserInfo);
-            myMonitor.BeginInvoke(MW, new object[] { this.ClientName, "用户完成接收bytes", myTransport.ServiceToClient });
-        }
+        //        int mycount = 0;
+        //        try
+        //        {
+        //            while (!mCB.ServerSendData(mydl))
+        //            {
+        //                mCB.ServerSendData(mydl);
+        //                mycount++;
+        //                if (mycount > 10)
+        //                {
+        //                    mCB.ServerSendMessage(mywrong("DataSend Failed!;网络不通畅,连续重发10次失败"));
+        //                    return;
+        //                }
+        //            }
+        //        }
+        //        catch (Exception me)
+        //        {
+        //            string exmsg = "";
+        //            while (me.InnerException != null)
+        //            {
+        //                exmsg += me.Message + "\r\n------>\r\n";
+        //                me = me.InnerException;
+        //            }
+        //            exmsg += me.Message;
+        //            Ydhlog.Error(SessionName + " Bytes_DoWork():" + exmsg);
+        //            //有时候断了,就根本发不出去了,这里会异常
+        //            try
+        //            {
+        //                mCB.ServerSendMessage(mywrong("DataSend Failed!;" + exmsg));
+        //            }
+        //            catch { }
+        //            return;
+        //        }
+        //    }
+        //    MonitorWrite MW = new MonitorWrite(GetUserInfo);
+        //    myMonitor.BeginInvoke(MW, new object[] { this.ClientName, "用户完成接收bytes", myTransport.ServiceToClient });
+        //}
 
         /// <summary>
         /// 20200317
@@ -871,15 +862,14 @@ $"
         /// <param name="e"></param>
         void Async_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            AsyncClass ac = (AsyncClass)e.Argument;
-            byte[] bb = ac.bytes;
-            int maxchangdu = (bb.Length / Maxupload) + 1;
-            mCB.ServerSendMessage(mycorrectAsync(maxchangdu.ToString(), ac.Name, "FileTransportCount"));
+            ydhDeliver ac = (ydhDeliver)e.Argument;
+            byte[] bb = ac.Context;
+            mCB.ServerSendMessage(mycorrectAsync(ac.Max.ToString(), ac.FunctionName, "FileTransportCount"));
             ydhDeliver mydl = new ydhDeliver();
             mydl.Name = ac.Name;
-            mydl.DataType = ac.bytetype;
-            mydl.FunctionName = ac.Name;
-            mydl.Max = maxchangdu;
+            mydl.DataType = ac.DataType;
+            mydl.FunctionName = ac.FunctionName;
+            mydl.Max = ac.Max;
             //2015-11-13 修改了一个边界问题,去掉了下面的等于号
             for (int i = 0; i * Maxupload < bb.LongLength; i++)
             {
@@ -1057,12 +1047,36 @@ $"
 
                 switch (methodName)
                 {
+                    //20221201 新增服务器端文件删除的方法
+                    case "DeleteFile":
+                        string filenamedel = IoRyClass.DecryptRSA_long(xmdata.Element("Param").Element("ServerFilePath").Value, rsa.ToXmlString(true));
+                        GetUserInfo("上面命令的解密字符串为:" + filenamedel, myTransport.ClientToService);
+                        string pathdel = System.AppDomain.CurrentDomain.BaseDirectory + Files + filenamedel;
+                        if (File.Exists(pathdel))
+                        {
+                            File.Delete(pathdel);
+                            return mycorrect("True", fnname);
+                        }
+                        else
+                        {
+                            return mycorrect("False", fnname);
+
+                        }
+                    //20221201 新增检查服务器端文件的方法
+                    case "CheckFile":
+                        //解密服务器端的filename
+                        string filename = IoRyClass.DecryptRSA_long(xmdata.Element("Param").Element("ServerFilePath").Value, rsa.ToXmlString(true));
+                        GetUserInfo("上面命令的解密字符串为:" + filename, myTransport.ClientToService);
+                        string path = System.AppDomain.CurrentDomain.BaseDirectory + Files + filename;
+                        bool rstb = File.Exists(path);
+                        GetUserInfo("服务器返回SynMessage:[CheckFile];" + rstb, myTransport.ServiceToClient);
+                        return mycorrect(rstb.ToString(), fnname);
                     case "GetEncrypt":
                         GetUserInfo("服务器返回SynMessage:[GetEncrypt];" + rsa.ToXmlString(false), myTransport.ServiceToClient);
                         return mycorrect(rsa.ToXmlString(false), fnname);
                     case "EachSendBytesMaxNum":
                         GetUserInfo("服务器返回SynMessage:" + "[EachSendBytesMaxNum];" + Maxupload.ToString(), myTransport.ServiceToClient);
-                        return Maxupload.ToString();
+                        return mycorrect(Maxupload.ToString(), fnname);
                     case "InvokeMember":
                         List<object> args = new List<object>();
                         foreach (var item in xmdata.Elements("Param"))
@@ -1331,6 +1345,24 @@ $"
                 XElement fx = new XElement("folder");
                 fx.Add(new XAttribute("path", item.FullName.Replace(AppDomain.CurrentDomain.BaseDirectory, "")));
                 XElement xml = recursive_FolderXml(item.FullName, fx);
+                root.Add(fx);
+            }
+            return root;
+        }
+
+        XElement recursive_FolderFileXml(string TheFolderPath, XElement root)
+        {
+            DirectoryInfo TheFolder = new DirectoryInfo(TheFolderPath);
+            foreach (FileInfo item in TheFolder.GetFiles())
+            {
+                XElement fx = new XElement("file", item.FullName.Replace(AppDomain.CurrentDomain.BaseDirectory, ""));                
+                root.Add(fx);
+            }
+            foreach (DirectoryInfo item in TheFolder.GetDirectories())
+            {
+                XElement fx = new XElement("folder");
+                fx.Add(new XAttribute("path", item.FullName.Replace(AppDomain.CurrentDomain.BaseDirectory, "")));
+                XElement xml = recursive_FolderFileXml(item.FullName, fx);
                 root.Add(fx);
             }
             return root;

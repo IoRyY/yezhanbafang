@@ -11,10 +11,11 @@ namespace yezhanbafang.fw.WCF.Server
         public Servicefd.CommanDelegate uCommanFunction { get; set; }
     }
 
-    public class AsyncClass
-    {
-        public byte[] bytes { get; set; }
-        public string bytetype { get; set; }
-        public string Name { get; set; }
-    }
+    //20221201废弃
+    //public class AsyncClass
+    //{
+    //    public byte[] bytes { get; set; }
+    //    public string bytetype { get; set; }
+    //    public string Name { get; set; }
+    //}
 }
