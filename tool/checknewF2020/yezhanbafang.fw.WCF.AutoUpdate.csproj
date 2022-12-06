@@ -36,6 +36,10 @@
   <PropertyGroup>
     <ApplicationIcon>update1.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -86,7 +90,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="29528930.gif" />
+    <Content Include="bg.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="update1.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -29,6 +29,7 @@ namespace yezhanbafang.fw.WCF.AutoUpdate
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.pictureBox1.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "bg.gif");
             FileVersionInfo myFileVersion = FileVersionInfo.GetVersionInfo("yezhanbafang.fw.WCF.Client.dll");
             this.Text = "正在链接升级服务器......                   " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + "  IoRyWCFClientV5.dll:" + myFileVersion.ProductVersion;
 
