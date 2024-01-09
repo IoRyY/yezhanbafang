@@ -1,21 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A74BFAC4-E0DA-4FBE-A234-A67C36D61116}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{02E67B92-D2BC-44A4-89EB-88043F1520C7}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>yezhanbafang.fw.WCF.Host.Console</RootNamespace>
-    <AssemblyName>yezhanbafang.fw.WCF.Host.Console</AssemblyName>
+    <RootNamespace>yezhanbafang.fw.WCF.ConsoleServer</RootNamespace>
+    <AssemblyName>yezhanbafang.fw.WCF.ConsoleServer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,7 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.15\lib\net40-client\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
@@ -44,24 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Comm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicefd.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\WCF\yezhanbafang.fw.WCF.ConsoleServer\yezhanbafang.fw.WCF.ConsoleServer.csproj">
-      <Project>{02e67b92-d2bc-44a4-89eb-88043f1520c7}</Project>
-      <Name>yezhanbafang.fw.WCF.ConsoleServer</Name>
+    <ProjectReference Include="..\..\framework\yezhanbafang.fw.Core\yezhanbafang.fw.Core.csproj">
+      <Project>{877c5076-dab7-4b67-8759-a0ca3c9bbbb4}</Project>
+      <Name>yezhanbafang.fw.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\yezhanbafang.fw.WCF.Interface\yezhanbafang.fw.WCF.Interface.csproj">
+      <Project>{b92bbd82-e375-45e3-bacc-426b19a260c4}</Project>
+      <Name>yezhanbafang.fw.WCF.Interface</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
