@@ -152,7 +152,7 @@ namespace yezhanbafang.sd.MySQL
         }
 
         /// <summary>
-        /// 事务执行sql，只支持SqlServer有事务
+        /// 事务执行sql
         /// </summary>
         /// <param name="sql">sql语句们</param>
         /// <returns>受影响行数</returns>
@@ -351,6 +351,7 @@ namespace yezhanbafang.sd.MySQL
         /// <summary>
         /// 执行存储过程,用sqlparameter的方式,一般返回数据集 2012-4-17添加
         /// 注意out类型的入参 要设置dd.Direction = System.Data.ParameterDirection.Output; 存储过程中给out复制要 select @id=(select count(*) from log_data)
+        /// 估计以后要抛弃存储过程了,这里就不重点搞了
         /// </summary>
         /// <param name="SPname">SP名称</param>
         /// <param name="DbParameterS">DbParameter的集合</param>

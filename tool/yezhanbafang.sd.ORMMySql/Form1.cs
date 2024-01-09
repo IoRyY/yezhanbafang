@@ -8,12 +8,11 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Soap;
 using System.Xml.Serialization;
 using System.Security.Cryptography;
-using yezhanbafang.fw.Core;
+using yezhanbafang.sd.MySQL;
 
-namespace yezhanbafang.fw.ORMTool
+namespace yezhanbafang.sd.ORMMySql
 {
     public partial class Form1 : Form
     {
@@ -24,30 +23,31 @@ namespace yezhanbafang.fw.ORMTool
 
         private void bt_sqltest_Click(object sender, EventArgs e)
         {
-            string cons = string.Format(
-                "Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
-                this.tb_ip.Text.Trim(), this.tb_ku.Text.Trim(), this.tb_name.Text.Trim(), this.tb_pw.Text.Trim());
-            XElement xe = XElement.Load("constring.xml");
-            //string a = xe.Element("type").Value;
-            xe.Element("type").Value = "MSSQL";
-            xe.Element("sqlserver").Element("simple").Value = cons;
-            xe.Element("sqlserver").Element("ip").Value = this.tb_ip.Text.Trim();
-            xe.Element("sqlserver").Element("databasename").Value = this.tb_ku.Text.Trim();
-            xe.Element("sqlserver").Element("username").Value = this.tb_name.Text.Trim();
-            xe.Element("sqlserver").Element("encryptKey").Value = "ydhydhnb";
-            xe.Element("sqlserver").Element("passwordencryption").Value = IoRyClass.EncryptDES(this.tb_pw.Text.Trim(), "ydhydhnb");
-            xe.Save("constring.xml");
+            MessageBox.Show("请用MSSqlServer专用工具!");
+            //string cons = string.Format(
+            //    "Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
+            //    this.tb_ip.Text.Trim(), this.tb_ku.Text.Trim(), this.tb_name.Text.Trim(), this.tb_pw.Text.Trim());
+            //XElement xe = XElement.Load("constring.xml");
+            ////string a = xe.Element("type").Value;
+            //xe.Element("type").Value = "MSSQL";
+            //xe.Element("sqlserver").Element("simple").Value = cons;
+            //xe.Element("sqlserver").Element("ip").Value = this.tb_ip.Text.Trim();
+            //xe.Element("sqlserver").Element("databasename").Value = this.tb_ku.Text.Trim();
+            //xe.Element("sqlserver").Element("username").Value = this.tb_name.Text.Trim();
+            //xe.Element("sqlserver").Element("encryptKey").Value = "ydhydhnb";
+            //xe.Element("sqlserver").Element("passwordencryption").Value = IoRyClass.EncryptDES(this.tb_pw.Text.Trim(), "ydhydhnb");
+            //xe.Save("constring.xml");
 
-            IoRyClass ic = new IoRyClass();
-            try
-            {
-                ic.GetTable("select 1");
-                MessageBox.Show("连接正常");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //IoRyClass ic = new IoRyClass();
+            //try
+            //{
+            //    ic.GetTable("select 1");
+            //    MessageBox.Show("连接正常");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         void mybind()
@@ -100,6 +100,7 @@ namespace yezhanbafang.fw.ORMTool
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.tabControl1.SelectedIndex = 1;
             mybind();
             this.cb_calltype.SelectedIndex = 1;
             this.Text += "    " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -209,12 +210,12 @@ namespace yezhanbafang.fw.ORMTool
 
             foreach (var item in ml)
             {
-                sqlsub += "[" + item.列名称 + "] ";
+                sqlsub += "`" + item.列名称 + "` ";
                 sqlsub += item.列类型 + " ";
-                if (item.是否自增 == "是")
-                {
-                    sqlsub += "IDENTITY(1,1) ";
-                }
+                //if (item.是否自增 == "是")
+                //{
+                //    sqlsub += "IDENTITY(1,1) ";
+                //}
                 if (item.是否为空 == "是")
                 {
                     sqlsub += "NULL,";
@@ -229,13 +230,10 @@ namespace yezhanbafang.fw.ORMTool
                 }
             }
 
-            string sql = string.Format(@"CREATE TABLE [{0}](
+            string sql = string.Format(@"CREATE TABLE `{0}`(
 {1}
- CONSTRAINT [PK_{0}] PRIMARY KEY CLUSTERED 
-(
-	[{2}] ASC
-)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]", tablename, sqlsub, key);
+PRIMARY KEY (`{2}`)
+) ENGINE=InnoDB AUTO_INCREMENT=4080 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;", tablename, sqlsub, key);
 
             IoRyClass ic = new IoRyClass();
             try
@@ -295,7 +293,7 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
             IoRyClass ic = new IoRyClass();
             DataTable dt = ic.GetTable(sql);
             XElement xe = new XElement("classforms");
-            foreach (var item in dt.AsEnumerable().Select(x=>x.Field<string>("tablename")).Distinct())
+            foreach (var item in dt.AsEnumerable().Select(x => x.Field<string>("tablename")).Distinct())
             {
                 XElement xezi = new XElement("classform");
                 xezi.Add(new XElement("className", item));
@@ -358,31 +356,30 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
 
         private void bt_mysqltest_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("请用MySql专用工具!");
-    //        string cons = string.Format(
-    //"server={0};port=3306;uid={2};pwd={3};database={1};",
-    //this.tb_ip_mysql.Text.Trim(), this.tb_databasename_mysql.Text.Trim(), this.tb_name_mysql.Text.Trim(), this.tb_pw_mysql.Text.Trim());
-    //        XElement xe = XElement.Load("constring.xml");
-    //        //string a = xe.Element("type").Value;
-    //        xe.Element("type").Value = "MySQL";
-    //        xe.Element("MySQL").Element("simple").Value = cons;
-    //        xe.Element("MySQL").Element("ip").Value = this.tb_ip.Text.Trim();
-    //        xe.Element("MySQL").Element("databasename").Value = this.tb_ku.Text.Trim();
-    //        xe.Element("MySQL").Element("username").Value = this.tb_name.Text.Trim();
-    //        xe.Element("MySQL").Element("encryptKey").Value = "ydhydhnb";
-    //        xe.Element("MySQL").Element("passwordencryption").Value = IoRyClass.EncryptDES(this.tb_pw.Text.Trim(), "ydhydhnb");
-    //        xe.Save("constring.xml");
+            string cons = string.Format(
+    "server={0};port=3306;uid={2};pwd={3};database={1};",
+    this.tb_ip_mysql.Text.Trim(), this.tb_databasename_mysql.Text.Trim(), this.tb_name_mysql.Text.Trim(), this.tb_pw_mysql.Text.Trim());
+            XElement xe = XElement.Load("constring.xml");
+            //string a = xe.Element("type").Value;
+            xe.Element("type").Value = "MySQL";
+            xe.Element("MySQL").Element("simple").Value = cons;
+            xe.Element("MySQL").Element("ip").Value = this.tb_ip.Text.Trim();
+            xe.Element("MySQL").Element("databasename").Value = this.tb_ku.Text.Trim();
+            xe.Element("MySQL").Element("username").Value = this.tb_name.Text.Trim();
+            xe.Element("MySQL").Element("encryptKey").Value = "ydhydhnb";
+            xe.Element("MySQL").Element("passwordencryption").Value = IoRyClass.EncryptDES(this.tb_pw.Text.Trim(), "ydhydhnb");
+            xe.Save("constring.xml");
 
-    //        IoRyClass ic = new IoRyClass();
-    //        try
-    //        {
-    //            ic.GetTable("select 1");
-    //            MessageBox.Show("连接正常");
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            MessageBox.Show(ex.Message);
-    //        }
+            IoRyClass ic = new IoRyClass();
+            try
+            {
+                ic.GetTable("select 1");
+                MessageBox.Show("连接正常");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
 

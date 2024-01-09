@@ -162,7 +162,8 @@ namespace yezhanbafang.sd.Core
             xmlDoc.Load(path);
             //判断连接字符的类型
             XmlNode contype = xmlDoc.SelectSingleNode("constring/type");
-            if (contype.InnerText.Trim() != "MSSQL" && contype.InnerText.Trim() != "ACCESS" && contype.InnerText.Trim() != "Oracle" && contype.InnerText.Trim() != "Excel")
+            if (contype.InnerText.Trim() != "MSSQL" && contype.InnerText.Trim() != "ACCESS" 
+                && contype.InnerText.Trim() != "Oracle" && contype.InnerText.Trim() != "Excel" && contype.InnerText.Trim() != "MySQL")
             {
                 throw new Exception("数据连接类型没填写,或者填写错误,只能填写MSSQL;Oracle;MySQL;ACCESS;Excel并且区分大小写!");
             }
@@ -287,7 +288,7 @@ namespace yezhanbafang.sd.Core
                 }
 
             }
-            else if (contype.InnerText.Trim() == "MySQL") //Oracle
+            else if (contype.InnerText.Trim() == "MySQL") 
             {
                 this._Contype = ConType.MySQL;
                 //判断是否用简单的直接写字符串的方式
@@ -319,7 +320,8 @@ namespace yezhanbafang.sd.Core
                         mynode = xmlDoc.SelectSingleNode("constring/MySQL/password");
                         password = mynode.FirstChild.Value;
                     }
-                    string con = string.Format("Database={0};Data Source={1};User Id={3};Password={4};pooling=false;CharSet=utf8;port={2}", databasename, IP, PORT, username, password);
+                    //20230419 改动了链接字符串
+                    string con = string.Format("server={1};port={2};uid={3};pwd={4};database={0};", databasename, IP, PORT, username, password);
                     this.ConString = con;
                 }
             }

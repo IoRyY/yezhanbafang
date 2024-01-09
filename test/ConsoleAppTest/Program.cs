@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using yezhanbafang;
 
 namespace ConsoleAppTest
@@ -10,6 +13,38 @@ namespace ConsoleAppTest
         {
             try
             {
+                //string sqlmysql = "SELECT * FROM world.test_table;";
+                string sqlmysql = "SELECT * FROM test_table where lie1='lie1s'; ";
+                yezhanbafang.sd.MySQL.IoRyClass mysqlic = new yezhanbafang.sd.MySQL.IoRyClass();
+                DataTable dtmysql = mysqlic.GetTable(sqlmysql);
+                byte[] cun = (byte[])dtmysql.Rows[0]["lie4"];
+                File.WriteAllBytes(@"D:\123.docx", cun);
+
+                //                sqlmysql = $@"CREATE TABLE `mytable` (
+                //  `id` int(11) NOT NULL AUTO_INCREMENT,
+                //  `name` varchar(255) NOT NULL,
+                //  `age` int(11) NOT NULL,
+                //  `email` varchar(255) NOT NULL,
+                //  PRIMARY KEY (`id`)
+                //);";
+                //sqlmysql = $@"insert into test_table (lie1,lie2,lie3) values ('lie1s','lie2s','lie3s');insert into test_table (lie4,lie2,lie3) values ('lie11','lie12','lie13');";
+                //mysqlic.ExecuteSqlTran(sqlmysql);
+                //sqlmysql = $@"update test_table set lie3='XXX' where lie1='lie1'";
+                //sqlmysql = $@"delete from test_table where lie1='lie1'";
+                //mysqlic.ExecuteSql(sqlmysql);
+
+                byte[] binaryData = File.ReadAllBytes(@"D:\test.docx");
+                //sqlmysql = $@"INSERT INTO test_table (lie1,lie2,lie3,lie4) VALUES ('lie1s','lie2s','lie3s',@file)";
+                sqlmysql = $@"update test_table set lie4=@file where lie1='lie1s';";
+                List<System.Data.Common.DbParameter> ld = new List<System.Data.Common.DbParameter>();
+                MySqlParameter d1 = new MySqlParameter("@file", binaryData);
+                ld.Add(d1);
+
+                mysqlic.ExecuteSqlTran_DbParameter(sqlmysql, ld);
+
+                Console.ReadLine();
+
+
 
                 string sql = "select dept_name from dept_dict";
                 yezhanbafang.sd.Oracle.IoRyClass ic = new yezhanbafang.sd.Oracle.IoRyClass();

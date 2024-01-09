@@ -1,4 +1,5 @@
-﻿namespace yezhanbafang.fw.ORMTool
+﻿
+namespace yezhanbafang.sd.ORMMySql
 {
     partial class Form1
     {

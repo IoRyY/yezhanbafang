@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+  <TableName description="和基类配套的log表,可以自动记录">log_data</TableName>
+  <TableName description="电脑本地配置表">PC_config</TableName>
+  <TableName description="几乎所有项目都需要用户表">users_data</TableName>
+
+  <PC_config columnname="PC_config_GUID" columntype="uniqueidentifier" identity="否" isnull="否" iskey="是"></PC_config>
+  <PC_config columnname="UUID_GUID" columntype="uniqueidentifier" identity="否" isnull="是" iskey="否"></PC_config>
+  <PC_config columnname="IP_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></PC_config>
+  <PC_config columnname="key_str" columntype="nvarchar(500)" identity="否" isnull="是" iskey="否"></PC_config>
+  <PC_config columnname="value_str" columntype="nvarchar(4000)" identity="否" isnull="是" iskey="否"></PC_config>
+  <PC_config columnname="createtime_dt" columntype="datetime" identity="否" isnull="是" iskey="否"></PC_config>
+  <PC_config columnname="changetime_dt" columntype="datetime" identity="否" isnull="是" iskey="否"></PC_config>
+
+  <log_data columnname="log_data_GUID" columntype="char(36)" identity="否" isnull="否" iskey="是"></log_data>
+  <log_data columnname="sopreater_str" columntype="varchar(50)" identity="否" isnull="是" iskey="否"></log_data>
+  <log_data columnname="UUID_GUID_str" columntype="varchar(50)" identity="否" isnull="是" iskey="否"></log_data>
+  <log_data columnname="IP_str" columntype="varchar(50)" identity="否" isnull="是" iskey="否"></log_data>
+  <log_data columnname="type_str" columntype="varchar(50)" identity="否" isnull="是" iskey="否"></log_data>
+  <log_data columnname="tablename_str" columntype="varchar(50)" identity="否" isnull="是" iskey="否"></log_data>
+  <log_data columnname="SQL_str" columntype="varchar(4000)" identity="否" isnull="是" iskey="否"></log_data>
+  <log_data columnname="olddata_str" columntype="TEXT" identity="否" isnull="是" iskey="否"></log_data>
+  <log_data columnname="createtime_dt" columntype="datetime" identity="否" isnull="是" iskey="否"></log_data>
+
+  <users_data columnname="users_data_GUID" columntype="uniqueidentifier" identity="否" isnull="否" iskey="是"></users_data>
+  <users_data columnname="loginname_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></users_data>
+  <users_data columnname="pwd_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></users_data>
+  <users_data columnname="pwd_encrypt_str" columntype="nvarchar(200)" identity="否" isnull="是" iskey="否"></users_data>
+  <users_data columnname="name_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></users_data>
+  <users_data columnname="type_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></users_data>
+  <users_data columnname="power_str" columntype="nvarchar(50)" identity="否" isnull="是" iskey="否"></users_data>
+  <users_data columnname="createtime_dt" columntype="datetime" identity="否" isnull="是" iskey="否"></users_data>
+  <users_data columnname="changetime_dt" columntype="datetime" identity="否" isnull="是" iskey="否"></users_data>
+</Config>
