@@ -693,7 +693,7 @@
 			this.tb_icxml.Name = "tb_icxml";
 			this.tb_icxml.Size = new System.Drawing.Size(213, 21);
 			this.tb_icxml.TabIndex = 18;
-			this.tb_icxml.Text = "config\\constring.xml";
+			this.tb_icxml.Text = "config\\\\constring.xml";
 			// 
 			// cb_calltype
 			// 
