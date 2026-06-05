@@ -532,6 +532,7 @@ left join sys.extended_properties g on a.id=g.major_id AND a.colid=g.minor_id
                 case "int":
                     return "int?";
                 case "tinyint"://网上查说和 Byte 对应,但是极少用到暂时用这个 自己设计的数据库别找这个别扭
+                case "bit":
                     return "Byte";
                 case "decimal":
                 case "numeric":
